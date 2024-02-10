@@ -1,4 +1,4 @@
-body{
+body {
     background-color: #424242;
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -8,16 +8,50 @@ body{
     height: 100vh;
 }
 
-h1{
+h1 {
     color: white;
     font-size: 400%;
     text-align: center;
     margin-top: 10%;
 }
-.container{
-    width: 100%;
-    text-align: center;
-    background-color: black;
-    padding: 10%;
 
+.container {
+    max-width: 15%;
+    background-color: black;
+    padding: auto;
+    padding: 2%;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 25px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 25px;
+}
+
+.connection {
+    margin-top: 5%;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: black;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #424242;
 }

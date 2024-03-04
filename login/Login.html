@@ -9,17 +9,19 @@
 <body>
     <H1>Bienvenue !</H1>
     <div class="container">
-        <div>
-            <h4>Nom utilisateur</h4>
-        <input type="text">
-        </div>
-        <div>
-            <h4>Mot de passe</h4>
-            <input type="password">
-        </div>
-        <div class="connection">
-            <button class="button-connection"><h2>Connexion</h2></button>
-        </div>
+        <form method="post" action="Login.php">
+            <div>
+                <h4>Nom utilisateur</h4>
+                <input type="text" name="ton nom">
+            </div>
+            <div>
+                <h4>Mot de passe</h4>
+                <input type="password" name="ton mdp">
+            </div>
+            <div class="connection">
+                <button class="button-connection"><h2>Connexion</h2></button>
+            </div>
+        </form>
     </div>
 </body>
 </html>

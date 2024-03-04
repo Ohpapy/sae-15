@@ -44,6 +44,9 @@ body {
     padding: 10px;
     height: 80vh;
     width: 33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .right{
     background-color:  rgb(173, 173, 173);
@@ -53,4 +56,15 @@ body {
     width: 20%;
     margin-right: 15px;
     margin-left: 10%;
+}
+
+.button-valider {
+    margin-bottom: 0%;
+    background-color: #00be00;
+    color: rgb(0, 0, 0);
+    text-align: right;
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+    height: 100%;
 }

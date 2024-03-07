@@ -37,8 +37,7 @@ Pour pousser les modifications sur GitHub, utilisez les commandes git add, git c
 
 Notez que vous devez avoir les droits d'accès appropriés pour cloner et pousser vers le dépôt GitHub.
 
-A stocker dans la BdD :
-Ajouter une facon pour que l'admin puisse modifier la forme du mot de passe
+
 
 
 

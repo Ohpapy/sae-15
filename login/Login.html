@@ -12,14 +12,14 @@
         <form method="post" action="Login.php">
             <div>
                 <h4>Nom utilisateur</h4>
-                <input type="text" name="ton nom">
+                <input type="text" name="ton nom" required autofocus>
             </div>
             <div>
                 <h4>Mot de passe</h4>
-                <input type="password" name="ton mdp">
+                <input type="password" name="ton mdp" required>
             </div>
             <div class="connection">
-                <button class="button-connection"><h2>Connexion</h2></button>
+                <button class="button-connection" type="submit"><h2>Connexion</h2></button>
             </div>
         </form>
     </div>

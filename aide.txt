@@ -36,3 +36,11 @@ Maintenant, chaque fois que vous faites des modifications et que vous les commet
 Pour pousser les modifications sur GitHub, utilisez les commandes git add, git commit, et git push.
 
 Notez que vous devez avoir les droits d'accès appropriés pour cloner et pousser vers le dépôt GitHub.
+
+
+
+
+
+mathieu 
+mamoudou 
+mathis

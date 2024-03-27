@@ -44,6 +44,7 @@ Notez que vous devez avoir les droits d'accès appropriés pour cloner et pousse
 mathieu 
 mamoudou 
 mathis
+maxime
 
 CONTROLE MAJ P =TAG
 
@@ -62,4 +63,4 @@ $db -> exec('SET NAMES utf8')
 }
 catch .....
 
-ecrir un fichier base.php avec une fonction connect base 
+ecrir un fichier base.php avec une fonction connect base

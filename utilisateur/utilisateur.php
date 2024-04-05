@@ -27,34 +27,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/utilistateur.css">
-    <title>Utilisateur</title>
-</head>
-<body>
-    <div class="haut">
-        <div class="child">
-            <div class="filtre">
-                <div class="dropdown">
-                    <button class="button-filtre"><h2>FILTRE</h2></button>
-                    <div class="dropdown-content">
-                        <select class="filtre-select">
-                            <option value="option1">Option 1</option>
-                            <option value="option2">Option 2</option>
-                            <option value="option3">Option 3</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="child">
-            <div class="rechercher">
-                <input type="text" placeholder="Mot-clé">
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/utilistateur.css">
     <title>Utilisateur</title>
 </head>
@@ -83,22 +56,47 @@
                 <button class="button-bp"><h2>Créer une bonne pratique</h2></button>
             </div>
         </div>
-        <div class="child">
-            <div class="admin">
-                <button class="button-admin"><h2>ADMIN</h2></button>
-            </div>
-        </div>
+                <div class="child">
+                    <div class="admin">
+                        <button class="button-admin"><h2>ADMIN</h2></button>
+                    </div>
+                    <div class="deconnexion">
+                        <form action="" method="post">
+                            <button type="submit" name="deconnexion" class="button-deconnexion"><h2>DÉCONNEXION</h2></button>
+                        </form>
+                    </div>
+                </div>
+        <?php
+            // Check if the deconnexion button is clicked
+            if (isset($_POST['deconnexion'])) {
+                // Code for deconnexion
+                // Start the session if not already started
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
+
+                // Unset all of the session variables
+                $_SESSION = array();
+
+                // Destroy the session.
+                session_destroy();
+
+                // Redirect to login page
+                header('Location: login.php');
+                exit;
+            }
+        ?>
     </div>
     <div class="container">
         <div class="BP">
             <?php
 
-            $sql = "SELECT * FROM BonnePratique";
-            $result = $conn->query($sql);
+            $sql = "SELECT * FROM BonnesPratique";
+            $stmt = $conn->query($sql);
 
-            if ($result->num_rows > 0) {
+            if ($stmt->rowCount() > 0) {
                 // Output data of each row
-                while($row = $result->fetch_assoc()) {
+                while($row = $stmt->fetch()) {
                     echo "<div class='bonne-pratique'>";
                     echo "<h2>" . $row["title"] . "</h2>";
                     echo "<p>" . $row["description"] . "</p>";
@@ -107,7 +105,6 @@
             } else {
                 echo "No results found";
             }
-            $conn->close();
             ?>
         </div>
         <div class="valider">

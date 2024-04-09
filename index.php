@@ -19,7 +19,7 @@
                 session_start();
                 $_SESSION['id'] = $resultat['id'];
                 $_SESSION['login'] = $login;
-                header('Location: ./utilisateur/utilisateur.php');
+                header('Location: ./utilisateur/utilisateur.html');
             }
             $req->closeCursor();
             $bd = null;

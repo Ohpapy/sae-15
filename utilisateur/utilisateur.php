@@ -1,33 +1,8 @@
-<?php   
-    try {
-        // Establish database connection
-        $servername = "localhost";
-        $username = "RP09";
-        $password = "RP09";
-        $dbname = "RP09";
-
-        // Create connection
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        // set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $sql = "SELECT * FROM BonnesPratique";
-        $stmt = $conn->query($sql);
-
-        $result = $stmt->fetchAll();
-
-    } catch(PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
-    }
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=, initial-scale=1.0">
     <link rel="stylesheet" href="../css/utilistateur.css">
     <title>Utilisateur</title>
 </head>
@@ -56,56 +31,15 @@
                 <button class="button-bp"><h2>Créer une bonne pratique</h2></button>
             </div>
         </div>
-                <div class="child">
-                    <div class="admin">
-                        <button class="button-admin"><h2>ADMIN</h2></button>
-                    </div>
-                    <div class="deconnexion">
-                        <form action="" method="post">
-                            <button type="submit" name="deconnexion" class="button-deconnexion"><h2>DÉCONNEXION</h2></button>
-                        </form>
-                    </div>
-                </div>
-        <?php
-            // Check if the deconnexion button is clicked
-            if (isset($_POST['deconnexion'])) {
-                // Code for deconnexion
-                // Start the session if not already started
-                if (session_status() == PHP_SESSION_NONE) {
-                    session_start();
-                }
-
-                // Unset all of the session variables
-                $_SESSION = array();
-
-                // Destroy the session.
-                session_destroy();
-
-                // Redirect to login page
-                header('Location: login.php');
-                exit;
-            }
-        ?>
+        <div class="child">
+            <div class="admin">
+                <button class="button-admin"><h2>ADMIN</h2></button>
+            </div>
+        </div>
     </div>
     <div class="container">
         <div class="BP">
-            <?php
-
-            $sql = "SELECT * FROM BonnesPratique";
-            $stmt = $conn->query($sql);
-
-            if ($stmt->rowCount() > 0) {
-                // Output data of each row
-                while($row = $stmt->fetch()) {
-                    echo "<div class='bonne-pratique'>";
-                    echo "<h2>" . $row["title"] . "</h2>";
-                    echo "<p>" . $row["description"] . "</p>";
-                    echo "</div>";
-                }
-            } else {
-                echo "No results found";
-            }
-            ?>
+            
         </div>
         <div class="valider">
             <button class="button-valider"><H2>valider</H2></button>

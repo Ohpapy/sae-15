@@ -107,11 +107,25 @@ button:hover {
     justify-content: center;
     align-items: center;
     padding-top: 1%;
-    width: 100%;
+    width: 48%;
     text-align: center;
     color: rgb(0, 0, 0);
     height: 100%;
 }
+
+.deconnexion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1%;
+    width: 48%;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    height: 100%;
+}
+
+
+
 .button-admin{
     margin-top: 0%;
     background-color: #6b6b6b;

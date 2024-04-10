@@ -53,7 +53,9 @@
                 <button>Rechercher</button>
             </div>
             <div class="content1">
-                <button class="button-bp"><h2>Créer une bonne pratique</h2></button>
+                <form action="../bp/bp.php">
+                    <button class="button-bp"><h2>Créer une bonne pratique</h2></button>
+                </form>
             </div>
         </div>
         <div class="child">

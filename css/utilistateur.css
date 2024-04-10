@@ -21,20 +21,24 @@ body {
     overflow-x: hidden;
     max-width: 100%;
 }
+
 .haut {
     display: flex;
     width: 100%;
     height: 17%;
 }
+
 .child {
     flex: 1;
-    display: flex;
+    display: flex;/* Utilisez flex pour aligner les éléments côte à côte */
     padding: 10px;
 }
-.childmid{
+
+.childmid {
     flex: 1;
     padding: 10px;
 }
+
 .filtre {
     display: flex;
     justify-content: center;
@@ -45,6 +49,7 @@ body {
     color: rgb(0, 0, 0);
     height: 100%;
 }
+
 .button-filtre {
     margin-top: 0%;
     background-color: #6b6b6b;
@@ -56,7 +61,9 @@ body {
     text-align: center;
     color: rgb(0, 0, 0);
     height: 100%;
+    flex: 1;
 }
+
 .rechercher {
     margin: auto;
     margin-top: 1%;
@@ -67,6 +74,7 @@ body {
     width: 100%;
     background-color: #6b6b6b;
 }
+
 input[type="text"] {
     width: 50%;
     padding: 12px 20px;
@@ -74,15 +82,18 @@ input[type="text"] {
     border: 1px solid #ccc;
     border-radius: 25px;
 }
+
 button {
     width: 20%;
     cursor: pointer;
     margin-top: 3%;
     border: 0;
 }
+
 button:hover {
     opacity: 0.8;
 }
+
 .content1 {
     margin: auto;
     margin-top: 1%;
@@ -94,6 +105,7 @@ button:hover {
     width: 100%;
     background-color: #6b6b6b;
 }
+
 .button-bp {
     margin-top: 0%;
     background-color: #6b6b6b;
@@ -116,53 +128,71 @@ button:hover {
     text-align: center;
     color: rgb(0, 0, 0);
     height: 100%;
+    flex: 1;
+    padding-right: 2px;
 }
 
-.deconnexion{
+.deconnexiondiv {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding-top: 1%;
+    text-align: center;
+    color: rgb(0, 0, 0);
     width: 48%;
-    text-align: center;
-    color: rgb(0, 0, 0);
     height: 100%;
 }
 
+.deconnexion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1%;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    height: 100%;
+    flex: 1;
+    padding-left: 2px;
+}
 
-
-.button-admin{
+.button-admin {
     margin-top: 0%;
     background-color: #6b6b6b;
     color: rgb(0, 0, 0);
     text-align: right;
     text-decoration: none;
     padding-top: 1%;
-    width: 100%;
     text-align: center;
     color: rgb(0, 0, 0);
-    height: 100%;
+    width: 100%; /* Les boutons prennent toute la largeur de leur conteneur parent */
+    height: 100%; /* Les boutons prennent toute la hauteur de leur conteneur parent */
+
 }
-.button-deconnexion{
+
+.button-deconnexion {
     margin-top: 0%;
     background-color: #6b6b6b;
     color: rgb(0, 0, 0);
     text-align: right;
     text-decoration: none;
     padding-top: 1%;
-    width: 100%;
+    font-size: 80%;
     text-align: center;
     color: rgb(0, 0, 0);
-    height: 100%;
+    width: 100%; /* Les boutons prennent toute la largeur de leur conteneur parent */
+    height: 100%; /* Les boutons prennent toute la hauteur de leur conteneur parent */
 }
-.texte-bp{
+
+.texte-bp {
     color: rgb(0, 0, 0);
     text-align: center;
     text-decoration: none;
 }
+
 .connection {
     margin-top: 5%;
 }
+
 .container {
     max-width: 90%;
     background-color: rgb(173, 173, 173);
@@ -181,7 +211,7 @@ button:hover {
 
 .valider {
     position: absolute;
-    bottom: 2%; 
+    bottom: 2%;
     right: 2%;
     margin-bottom: 0%;
     width: 10%;
@@ -197,7 +227,8 @@ button:hover {
     text-align: center;
     height: 100%;
 }
-    .button-filtre {
+
+.button-filtre {
     background-color: #6b6b6b;
     color: white;
     border: none;
@@ -211,7 +242,7 @@ button:hover {
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 

@@ -33,7 +33,7 @@
 </head>
 <body>
     <div class="haut">
-        <div class="child">
+        <div class="childmid">
             <div class="filtre">
                 <div class="dropdown">
                     <button class="button-filtre"><h2>FILTRE</h2></button>
@@ -47,7 +47,7 @@
                 </div>
             </div>
         </div>
-        <div class="child">
+        <div class="childmid">
             <div class="rechercher">
                 <input type="text" placeholder="Mot-clé">
                 <button>Rechercher</button>
@@ -56,16 +56,14 @@
                 <button class="button-bp"><h2>Créer une bonne pratique</h2></button>
             </div>
         </div>
-                <div class="child">
-                    <div class="admin">
-                        <button class="button-admin"><h2>ADMIN</h2></button>
-                    </div>
-                    <div class="deconnexion">
-                        <form action="" method="post">
-                            <button type="submit" name="deconnexion" class="button-deconnexion"><h2>DÉCONNEXION</h2></button>
-                        </form>
-                    </div>
-                </div>
+        <div class="child">
+            <form action="" method="post" class="admin">
+                <button type="submit" name="admin" class="button-admin"><h2>ADMIN</h2></button>
+            </form>
+            <form action="" method="post" class="deconnexion">
+                <button type="submit" name="deconnexion" class="button-deconnexion"><h2>DÉCONNEXION</h2></button>
+            </form>
+        </div>
         <?php
             // Check if the deconnexion button is clicked
             if (isset($_POST['deconnexion'])) {

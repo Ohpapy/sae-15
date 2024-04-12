@@ -45,3 +45,10 @@ CREATE TABLE Appartenance(
     FOREIGN KEY (num_phase) REFERENCES phase(num_phase),
     FOREIGN KEY (num_bp) REFERENCES BonnesPratique(num_bp)
 );
+
+
+CREATE TABLE LiaisonMotcleBonnePratique(
+    motcle_num_cles VARCHAR(100) REFERENCES Motcles(num_cles),
+    bonnepratique_num_bp INT REFERENCES BonnesPratique(num_bp),
+    PRIMARY KEY (motcle_num_cles, bonnepratique_num_bp)
+);

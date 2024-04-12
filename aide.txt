@@ -63,3 +63,4 @@ $db -> exec('SET NAMES utf8')
 catch .....
 
 ecrir un fichier base.php avec une fonction connect base 
+pour la partie admin(mathieu) ajoute utilisateur remplace le hastag par une liste déroulante. et remplacer la parite information frome des mot de passe.

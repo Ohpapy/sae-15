@@ -95,7 +95,7 @@
                     JOIN 
                         phase ON Appartenance.num_phase = phase.num_phase";
             $stmt = $conn->prepare($sql);
-            $stmt->execute(['num_bp' => $num_bp]);
+            $stmt->execute();
 
             if ($stmt->rowCount() > 0) {
                 while($row = $stmt->fetch()) {

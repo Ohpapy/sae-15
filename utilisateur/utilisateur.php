@@ -79,23 +79,38 @@
     </div>
     <div class="container">
         <div class="BP">
-            <?php
-
-            $sql = "SELECT * FROM BonnesPratique";
-            $stmt = $conn->query($sql);
+        <?php
+            $sql = "SELECT 
+                        Appartenance.num_bp,
+                        BonnesPratique.test_bp,
+                        BonnesPratique.utilisation_bp,
+                        programme.nom_prog,
+                        phase.nom_phase
+                    FROM 
+                        Appartenance
+                    JOIN 
+                        BonnesPratique ON Appartenance.num_bp = BonnesPratique.num_bp
+                    JOIN 
+                        programme ON Appartenance.num_prog = programme.num_prog
+                    JOIN 
+                        phase ON Appartenance.num_phase = phase.num_phase";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute(['num_bp' => $num_bp]);
 
             if ($stmt->rowCount() > 0) {
-                // Output data of each row
                 while($row = $stmt->fetch()) {
                     echo "<div class='bonne-pratique'>";
-                    echo "<h2>" . $row["title"] . "</h2>";
-                    echo "<p>" . $row["description"] . "</p>";
+                    echo "<h2>" . $row["num_bp"] . "</h2>";
+                    echo "<p>Test: " . $row["test_bp"] . "</p>";
+                    echo "<p>Utilisation: " . $row["utilisation_bp"] . "</p>";
+                    echo "<p>Programme: " . $row["nom_prog"] . "</p>";
+                    echo "<p>Phase: " . $row["nom_phase"] . "</p>";
                     echo "</div>";
                 }
             } else {
                 echo "No results found";
             }
-            ?>
+        ?>
         </div>
         <div class="valider">
             <button class="button-valider"><H2>valider</H2></button>

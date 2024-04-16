@@ -85,7 +85,9 @@
                         BonnesPratique.test_bp,
                         BonnesPratique.utilisation_bp,
                         programme.nom_prog,
-                        phase.nom_phase
+                        phase.nom_phase,
+                        Description.num_description,
+                        Motcles.num_cles
                     FROM 
                         Appartenance
                     JOIN 
@@ -93,24 +95,38 @@
                     JOIN 
                         programme ON Appartenance.num_prog = programme.num_prog
                     JOIN 
-                        phase ON Appartenance.num_phase = phase.num_phase";
+                        phase ON Appartenance.num_phase = phase.num_phase
+                    JOIN 
+                        Description ON Appartenance.num_bp = Description.num_bp
+                    JOIN 
+                        Motcles ON Description.num_cles = Motcles.num_cles
+                    LIMIT 0, 25;";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
 
             if ($stmt->rowCount() > 0) {
                 while($row = $stmt->fetch()) {
-                    echo "<div class='bonne-pratique'>";
+                    echo "<div class='bonne-pratique' onclick='openDetails(" . $row["num_bp"] . ")'>";
                     echo "<h2>" . $row["num_bp"] . "</h2>";
                     echo "<p>Test: " . $row["test_bp"] . "</p>";
                     echo "<p>Utilisation: " . $row["utilisation_bp"] . "</p>";
                     echo "<p>Programme: " . $row["nom_prog"] . "</p>";
                     echo "<p>Phase: " . $row["nom_phase"] . "</p>";
+                    echo "<p>Description: " . $row["num_description"] . "</p>";
+                    echo "<p>Mot clé: " . $row["num_cles"] . "</p>";
                     echo "</div>";
                 }
             } else {
                 echo "No results found";
             }
         ?>
+
+        <script>
+            function openDetails(num_bp) {
+                var win = window.open('details.php?num_bp=' + num_bp, '_blank', 'width=50%,height=100%');
+                win.focus();
+            }
+        </script>
         </div>
         <div class="valider">
             <button class="button-valider"><H2>valider</H2></button>

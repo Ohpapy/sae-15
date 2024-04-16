@@ -37,12 +37,24 @@
         </div>
         <div class="center">
             <form action="bp_creation.php" method="post">
-                <label for="nom_bp">Nom de Bonne Pratique:</label>
-                <input type="text" id="nom_bp" name="nom_bp" required>
-                <label for="num_bp">Numéro de Bonne Pratique:</label>
-                <input type="text" id="num_bp" name="num_bp" required>
-                <label for="utilisation_bp">Utilisation de Bonne Pratique:</label>
-                <input type="text" id="utilisation_bp" name="utilisation_bp" required>
+                <label for="programme">Programme:</label>
+                <select id="programme" name="programme" required>
+                <label for="nom">Nom de la bonne pratique:</label>
+                <input type="text" id="nom" name="nom" required>
+                <?php
+                    foreach ($result as $row) {
+                        echo "<option value='" . $row['id'] . "'>" . $row['nom'] . "</option>";
+                    }
+                ?>
+                </select>
+                <label for="phase">Phase:</label>
+                <select id="phase" name="phase" required>
+                <?php
+                    foreach ($result as $row) {
+                        echo "<option value='" . $row['id'] . "'>" . $row['nom'] . "</option>";
+                    }
+                ?>
+                </select>
                 <div class="valider">
                     <button type="submit" class="button-valider">VALIDER</button>
                 </div>

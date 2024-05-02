@@ -101,9 +101,11 @@
             if ($stmt->rowCount() > 0) {
                 while($row = $stmt->fetch()) {
                     echo "<div class='bonne-pratique'>";
+                    echo "<div class='info-container'>";
                     echo "<p>Test: " . $row["test_bp"] . "</p>";
                     echo "<p>Programme: " . $row["nom_prog"] . "</p>";
                     echo "<p>Phase: " . $row["nom_phase"] . "</p>";
+                    echo "</div>";
                     echo "</div>";
                 }
             } else {

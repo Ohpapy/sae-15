@@ -4,10 +4,15 @@
     try {
         $conn = createConnexion(); 
 
-        $sql = "SELECT * FROM bonnespratique";
-        $stmt = $conn->query($sql);
+        // chercher tous les prog
+        $sqlProg = "SELECT * FROM programme";
+        $stmtProg = $conn->query($sqlProg);
+        $programmes = $stmtProg->fetchAll();
 
-        $result = $stmt->fetchAll();
+        // chercher toutes les phases
+        $sqlPhase = "SELECT * FROM phase";
+        $stmtPhase = $conn->query($sqlPhase);
+        $phases = $stmtPhase->fetchAll();
 
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();
@@ -31,24 +36,34 @@
         </div>
         <div class="center">
             <form action="bp_creation.php" method="post">
-                <label for="programme">Programme:</label>
-                <select id="programme" name="programme" required>
-                <label for="nom">Nom de la bonne pratique:</label>
-                <input type="text" id="nom" name="nom" required>
-                <?php
-                    foreach ($result as $row) {
-                        echo "<option value='" . $row['num_bp'] . "'>" . $row['nom'] . "</option>";
-                    }
-                ?>
-                </select>
-                <label for="phase">Phase:</label>
-                <select id="phase" name="phase" required>
-                <?php
-                    foreach ($result as $row) {
-                        echo "<option value='" . $row['id'] . "'>" . $row['nom'] . "</option>";
-                    }
-                ?>
-                </select>
+                <div>
+                    <label for="item">Item:</label>
+                    <input type="text" id="item" name="item" required>
+                </div>
+                <hr>
+                <div>
+                    <label for="motcles">Mots clés:</label>
+                    <input type="text" id="motcles" name="motcles" required><br>
+                    <small>Separer les mots clés par des ";"</small>
+                </div>
+                <hr>
+                <div>
+                    <label for="programme">Programme:</label>
+                    <select id="programme" name="programme" required>
+                        <?php foreach ($programmes as $row) : ?>
+                            <option value="<?= $row['num_prog'] ?>"><?= $row['nom_prog'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <hr>
+                <div>
+                    <label for="phase">Phase:</label>
+                    <select id="phase" name="phase" required>
+                        <?php foreach ($phases as $row) : ?>
+                            <option value="<?= $row['num_phase'] ?>"><?= $row['nom_phase'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
                 <div class="valider">
                     <button type="submit" class="button-valider">VALIDER</button>
                 </div>

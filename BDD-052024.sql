@@ -45,14 +45,14 @@ DROP TABLE IF EXISTS `bonnespratique`;
 CREATE TABLE IF NOT EXISTS `bonnespratique` (
   `num_bp` int(11) NOT NULL AUTO_INCREMENT,
   `test_bp` text,
-  `utilisation_bp` text,
+  `utilisation_bp` tinyint(3) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`num_bp`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 -- Listage des données de la table rp09.bonnespratique : ~2 rows (environ)
 INSERT INTO `bonnespratique` (`num_bp`, `test_bp`, `utilisation_bp`) VALUES
-	(1, 'test', 'tst'),
-	(2, 'test2', 'tst');
+	(1, 'test', 1),
+	(2, 'test2', 1);
 
 -- Listage de la structure de la table rp09. bp_motcles
 DROP TABLE IF EXISTS `bp_motcles`;

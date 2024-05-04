@@ -8,6 +8,31 @@
 
         $result = $stmt->fetchAll();
 
+        // recherche des bonnes pratiques
+        $sqlGetBP = "SELECT bonnespratique.num_bp, bonnespratique.test_bp, programme.nom_prog, phase.nom_phase
+        FROM appartenance
+        JOIN bonnespratique ON appartenance.num_bp = bonnespratique.num_bp
+        JOIN programme ON appartenance.num_prog = programme.num_prog
+        JOIN phase ON appartenance.num_phase = phase.num_phase;";
+        $stmt = $conn->prepare($sqlGetBP);
+        $stmt->execute();
+    
+        $bps = $stmt->fetchAll();
+    
+        // recherches des descriptions des bonnes pratiques
+        $sqlDescriptions = "SELECT appartenance.num_bp, bonnespratique.test_bp, bonnespratique.utilisation_bp, programme.nom_prog, phase.nom_phase, GROUP_CONCAT(motcles.mot SEPARATOR ' - ') AS motcles
+        FROM appartenance
+        JOIN bonnespratique ON appartenance.num_bp = bonnespratique.num_bp
+        JOIN programme ON appartenance.num_prog = programme.num_prog
+        JOIN phase ON appartenance.num_phase = phase.num_phase
+        JOIN bp_motcles ON appartenance.num_bp = bp_motcles.num_bp
+        JOIN motcles ON bp_motcles.num_cles = motcles.num_cles
+        GROUP BY appartenance.num_bp, bonnespratique.test_bp, bonnespratique.utilisation_bp, programme.nom_prog, phase.nom_phase;";
+        $stmt2 = $conn->prepare($sqlDescriptions);
+        $stmt2->execute();
+    
+        $descriptions = $stmt2->fetchAll();
+
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();
     }
@@ -15,6 +40,22 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     
+    if (isset($_POST['recherche']) && $_POST['recherche'] !== "") {
+        // recherche des bonnes pratiques
+        $sqlrecherche = "SELECT appartenance.num_bp, bonnespratique.test_bp, bonnespratique.utilisation_bp, programme.nom_prog, phase.nom_phase
+        FROM appartenance
+        JOIN bonnespratique ON appartenance.num_bp = bonnespratique.num_bp
+        JOIN programme ON appartenance.num_prog = programme.num_prog
+        JOIN phase ON appartenance.num_phase = phase.num_phase
+        JOIN bp_motcles ON appartenance.num_bp = bp_motcles.num_bp
+        JOIN motcles ON bp_motcles.num_cles = motcles.num_cles
+        WHERE motcles.mot = ?;";
+        $stmt = $conn->prepare($sqlrecherche);
+        $stmt->execute([$_POST['recherche']]);
+    
+        $bps = $stmt->fetchAll();
+    }
+
     if (isset($_POST['deconnexion'])) {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -24,29 +65,6 @@
         header('Location: ../index.php');
         exit;
     }
-
-    $sqlGetBP = "SELECT bonnespratique.test_bp, programme.nom_prog, phase.nom_phase
-    FROM appartenance
-    JOIN bonnespratique ON appartenance.num_bp = bonnespratique.num_bp
-    JOIN programme ON appartenance.num_prog = programme.num_prog
-    JOIN phase ON appartenance.num_phase = phase.num_phase;";
-    $stmt = $conn->prepare($sqlGetBP);
-    $stmt->execute();
-
-    $bps = $stmt->fetchAll();
-
-    
-    $sqlDescriptions = "SELECT appartenance.num_bp, bonnespratique.test_bp, bonnespratique.utilisation_bp, programme.nom_prog, phase.nom_phase, bp_motcles.num_bp, motcles.num_cles
-    FROM appartenance
-    JOIN bonnespratique ON appartenance.num_bp = bonnespratique.num_bp
-    JOIN programme ON appartenance.num_prog = programme.num_prog
-    JOIN phase ON appartenance.num_phase = phase.num_phase
-    JOIN bp_motcles ON appartenance.num_bp = bp_motcles.num_bp
-    JOIN motcles ON bp_motcles.num_cles = motcles.num_cles";
-    $stmt2 = $conn->prepare($sqlDescriptions);
-    $stmt2->execute();
-
-    $descriptions = $stmt2->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -75,8 +93,10 @@
         </div>
         <div class="childmid">
             <div class="rechercher">
-                <input type="text" placeholder="Mot-clé">
-                <button>Rechercher</button>
+                <form action="" method="post">
+                    <input type="text" name="recherche" placeholder="Mot-clé">
+                    <button>Rechercher</button>
+                </form>
             </div>
             <div class="content1">
                 <form action="../bp/bp.php">
@@ -97,7 +117,7 @@
         <div class="BP">
             <?php if (count($bps) > 0) : ?>
                 <?php foreach ($bps as $bp) : ?>
-                    <div class='bonne-pratique'>
+                    <div class='bonne-pratique' data-numbp="<?= $bp["num_bp"] ?>">
                         <div class='info-container'>
                             <p>Test: <?= $bp["test_bp"] ?></p>
                             <p>Programme: <?= $bp["nom_prog"] ?></p>
@@ -114,21 +134,20 @@
         </div>
     </div>
     <div class="popup">
-        <div>
-            <?php if (count($descriptions) > 0) : ?>
-                <?php foreach ($descriptions as $desc) : ?>
+        <?php if (count($descriptions) > 0) : ?>
+            <?php foreach ($descriptions as $desc) : ?>
+                <div id="numbp_<?= $desc["num_bp"] ?>" style="display: none">
                     <h2><?= $desc["num_bp"] ?></h2>
                     <p>Test: <?= $desc["test_bp"] ?></p>
-                    <p>Utilisation: <?= $desc["utilisation_bp"] ?></p>
+                    <p>Utilisation: <?= $desc["utilisation_bp"] === 1 ? "oui" : "non" ?></p>
                     <p>Programme: <?= $desc["nom_prog"] ?></p>
                     <p>Phase: <?= $desc["nom_phase"] ?></p>
-                    <p>Description: <?= $desc["num_description"] ?></p>
-                    <p>Mot clé: <?= $desc["num_cles"] ?></p>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <p>No results found</p>
-            <?php endif; ?>
-        </div>
+                    <p>Mot clé: <?= $desc["motcles"] ?></p>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>No results found</p>
+        <?php endif; ?>
         <button class="close-button">
             Fermer
         </button>
@@ -136,12 +155,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            $(".bonne-pratique").on("click", function() {
+            $(".bonne-pratique").on("click", function(e) {
                 $(".popup").addClass("show");
+                const numbp = $(e.currentTarget).data('numbp');
+                $('.popup').find("#numbp_" + numbp).show();
             });
-    
-            $(".close-button").on("click", function() {
+            
+            $(".close-button").on("click", function(e) {
                 $(".popup").removeClass("show");
+                $('.popup > div').hide();
             });
         });
     </script>

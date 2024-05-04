@@ -16,13 +16,13 @@
         foreach ($motcles as $motcle) {
             $sqlselectmc = "SELECT * FROM motcles WHERE mot = ?";
             $stmtselectmc = $conn->prepare($sqlselectmc);
-            $stmtselectmc->execute([$motcle]);
+            $stmtselectmc->execute([trim($motcle)]);
             $existemc = $stmtselectmc->fetch();
             $num_cle = $existemc['num_cles'];
             if (!$existemc) {
                 $sqlmc = "INSERT INTO motcles (mot) VALUES (?)";
                 $stmtmc = $conn->prepare($sqlmc);
-                $stmtmc->execute([$motcle]);
+                $stmtmc->execute([trim($motcle)]);
                 $num_cle = $conn->lastInsertId();
             }
             $sqlbpmc = "INSERT INTO bp_motcles (num_bp,num_cles) VALUES (?,?)";

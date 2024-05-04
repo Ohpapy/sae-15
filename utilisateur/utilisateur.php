@@ -41,7 +41,7 @@
     error_reporting(E_ALL);
     
     if (isset($_POST['recherche']) && $_POST['recherche'] !== "") {
-        // recherche des bonnes pratiques
+        // recherche des mots cles par texte
         $sqlrecherche = "SELECT appartenance.num_bp, bonnespratique.test_bp, bonnespratique.utilisation_bp, programme.nom_prog, phase.nom_phase
         FROM appartenance
         JOIN bonnespratique ON appartenance.num_bp = bonnespratique.num_bp
@@ -94,7 +94,7 @@
         <div class="childmid">
             <div class="rechercher">
                 <form action="" method="post">
-                    <input type="text" name="recherche" placeholder="Mot-clé">
+                    <input type="text" name="recherche" placeholder="Mot-clé" value="<?= isset($_POST['recherche']) ? $_POST['recherche'] : "" ?>">
                     <button>Rechercher</button>
                 </form>
             </div>

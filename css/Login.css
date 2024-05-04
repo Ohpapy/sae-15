@@ -18,9 +18,7 @@ h1 {
 .container {
     max-width: 20%;
     background-color: black;
-    padding: auto;
     padding: 2%;
-    align-items: center;
     margin-left: auto;
     margin-right: auto;
     border-radius: 25px;
@@ -39,14 +37,13 @@ input[type="password"] {
     box-sizing: border-box;
     border-radius: 25px;
 }
+
 .button-connection {
-    margin-bottom: 0%;
     background-color: #ffffff;
     color: rgb(0, 0, 0);
     text-decoration: none;
     width: 80%;
     text-align: center;
-    color: rgb(0, 0, 0);
     height: 10%;
 }
 

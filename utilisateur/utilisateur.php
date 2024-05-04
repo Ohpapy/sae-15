@@ -1,15 +1,8 @@
-<?php   
+<?php 
+    include_once('../outils/bd.php');
+    
     try {
-        // Establish database connection
-        $servername = "localhost";
-        $username = "RP09";
-        $password = "RP09";
-        $dbname = "RP09";
-
-        // Create connection
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+        $conn = createConnexion();
         $sql = "SELECT * FROM BonnesPratique";
         $stmt = $conn->query($sql);
 
@@ -21,7 +14,41 @@
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
+    
+    if (isset($_POST['deconnexion'])) {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $_SESSION = array();
+        session_destroy();
+        header('Location: ../index.php');
+        exit;
+    }
+
+    $sqlGetBP = "SELECT bonnespratique.test_bp, programme.nom_prog, phase.nom_phase
+    FROM appartenance
+    JOIN bonnespratique ON appartenance.num_bp = bonnespratique.num_bp
+    JOIN programme ON appartenance.num_prog = programme.num_prog
+    JOIN phase ON appartenance.num_phase = phase.num_phase;";
+    $stmt = $conn->prepare($sqlGetBP);
+    $stmt->execute();
+
+    $bps = $stmt->fetchAll();
+
+    
+    $sqlDescriptions = "SELECT appartenance.num_bp, bonnespratique.test_bp, bonnespratique.utilisation_bp, programme.nom_prog, phase.nom_phase, bp_motcles.num_bp, motcles.num_cles
+    FROM appartenance
+    JOIN bonnespratique ON appartenance.num_bp = bonnespratique.num_bp
+    JOIN programme ON appartenance.num_prog = programme.num_prog
+    JOIN phase ON appartenance.num_phase = phase.num_phase
+    JOIN bp_motcles ON appartenance.num_bp = bp_motcles.num_bp
+    JOIN motcles ON bp_motcles.num_cles = motcles.num_cles";
+    $stmt2 = $conn->prepare($sqlDescriptions);
+    $stmt2->execute();
+
+    $descriptions = $stmt2->fetchAll();
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -65,110 +92,57 @@
                 <button type="submit" name="deconnexion" class="button-deconnexion"><h2>DÉCONNEXION</h2></button>
             </form>
         </div>
-        <?php
-            if (isset($_POST['deconnexion'])) {
-                if (session_status() == PHP_SESSION_NONE) {
-                    session_start();
-                }
-                $_SESSION = array();
-                session_destroy();
-                header('Location: ../index.php');
-                exit;
-            }
-        ?>
     </div>
     <div class="container">
         <div class="BP">
-        <?php
-            $sql = "SELECT 
-                        BonnesPratique.test_bp,
-                        programme.nom_prog,
-                        phase.nom_phase
-                    FROM 
-                        Appartenance
-                    JOIN 
-                        BonnesPratique ON Appartenance.num_bp = BonnesPratique.num_bp
-                    JOIN 
-                        programme ON Appartenance.num_prog = programme.num_prog
-                    JOIN 
-                        phase ON Appartenance.num_phase = phase.num_phase
-                    JOIN 
-                        Description ON Appartenance.num_bp = Description.num_bp
-                    LIMIT 0, 25;";
-            $stmt = $conn->prepare($sql);
-            $stmt->execute();
-
-            if ($stmt->rowCount() > 0) {
-                while($row = $stmt->fetch()) {
-                    echo "<div class='bonne-pratique'>";
-                    echo "<div class='info-container'>";
-                    echo "<p>Test: " . $row["test_bp"] . "</p>";
-                    echo "<p>Programme: " . $row["nom_prog"] . "</p>";
-                    echo "<p>Phase: " . $row["nom_phase"] . "</p>";
-                    echo "</div>";
-                    echo "</div>";
-                }
-            } else {
-                echo "No results found";
-            }
-        ?>
+            <?php if (count($bps) > 0) : ?>
+                <?php foreach ($bps as $bp) : ?>
+                    <div class='bonne-pratique'>
+                        <div class='info-container'>
+                            <p>Test: <?= $bp["test_bp"] ?></p>
+                            <p>Programme: <?= $bp["nom_prog"] ?></p>
+                            <p>Phase: <?= $bp["nom_phase"] ?></p>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <p>No results found</p>
+            <?php endif ?>
         </div>
         <div class="valider">
             <button class="button-valider"><H2>valider</H2></button>
         </div>
     </div>
     <div class="popup">
-            <?php
-                $sql = "SELECT 
-                    Appartenance.num_bp,
-                    BonnesPratique.test_bp,
-                    BonnesPratique.utilisation_bp,
-                    programme.nom_prog,
-                    phase.nom_phase,
-                    Description.num_description,
-                    Motcles.num_cles
-                FROM 
-                    Appartenance
-                JOIN 
-                    BonnesPratique ON Appartenance.num_bp = BonnesPratique.num_bp
-                JOIN 
-                    programme ON Appartenance.num_prog = programme.num_prog
-                JOIN 
-                    phase ON Appartenance.num_phase = phase.num_phase
-                JOIN 
-                    Description ON Appartenance.num_bp = Description.num_bp
-                JOIN 
-                    Motcles ON Description.num_cles = Motcles.num_cles
-                LIMIT 0, 25;";
-                $stmt = $conn->prepare($sql);
-                $stmt->execute();
-                if ($stmt->rowCount() > 0) {
-                    while($row = $stmt->fetch()) {
-                        echo "<h2>" . $row["num_bp"] . "</h2>";
-                        echo "<p>Test: " . $row["test_bp"] . "</p>";
-                        echo "<p>Utilisation: " . $row["utilisation_bp"] . "</p>";
-                        echo "<p>Programme: " . $row["nom_prog"] . "</p>";
-                        echo "<p>Phase: " . $row["nom_phase"] . "</p>";
-                        echo "<p>Description: " . $row["num_description"] . "</p>";
-                        echo "<p>Mot clé: " . $row["num_cles"] . "</p>";
-                    }
-                } else {
-                    echo "No results found";
-                }
-            ?>
-            <button class="close-button">
-                Fermer
-            </button>
+        <div>
+            <?php if (count($descriptions) > 0) : ?>
+                <?php foreach ($descriptions as $desc) : ?>
+                    <h2><?= $desc["num_bp"] ?></h2>
+                    <p>Test: <?= $desc["test_bp"] ?></p>
+                    <p>Utilisation: <?= $desc["utilisation_bp"] ?></p>
+                    <p>Programme: <?= $desc["nom_prog"] ?></p>
+                    <p>Phase: <?= $desc["nom_phase"] ?></p>
+                    <p>Description: <?= $desc["num_description"] ?></p>
+                    <p>Mot clé: <?= $desc["num_cles"] ?></p>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No results found</p>
+            <?php endif; ?>
+        </div>
+        <button class="close-button">
+            Fermer
+        </button>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        $(".bonne-pratique").on("click", function() {
-            $(".popup").addClass("show");
-        });
-    </script>
-    <script>
-        $(".close-button").on("click", function() {
-            $(".popup").removeClass("show");
+        $(document).ready(function() {
+            $(".bonne-pratique").on("click", function() {
+                $(".popup").addClass("show");
+            });
+    
+            $(".close-button").on("click", function() {
+                $(".popup").removeClass("show");
+            });
         });
     </script>
 </body>

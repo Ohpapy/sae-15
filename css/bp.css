@@ -21,6 +21,7 @@ body {
     overflow-x: hidden;
     max-width: 100%;
 }
+
 .main {
     display: flex;
     justify-content: center;
@@ -28,8 +29,9 @@ body {
     height: 100vh;
     max-width: 100%;
 }
-.left{
-    background-color:  rgb(173, 173, 173);
+
+.left {
+    background-color: rgb(173, 173, 173);
     border-radius: 15px;
     padding: 10px;
     height: 80vh;
@@ -38,8 +40,9 @@ body {
     margin-right: 15%;
     align-items: center;
 }
-.center{
-    background-color:  rgb(173, 173, 173);
+
+.center {
+    background-color: rgb(173, 173, 173);
     border-radius: 15px;
     padding: 10px;
     height: 80vh;
@@ -48,8 +51,9 @@ body {
     flex-direction: column;
     justify-content: space-between;
 }
-.right{
-    background-color:  rgb(173, 173, 173);
+
+.right {
+    background-color: rgb(173, 173, 173);
     border-radius: 15px;
     padding: 10px;
     height: 80vh;
@@ -59,7 +63,6 @@ body {
 }
 
 .button-valider {
-    margin-bottom: 0%;
     background-color: #00be00;
     color: rgb(0, 0, 0);
     text-align: right;

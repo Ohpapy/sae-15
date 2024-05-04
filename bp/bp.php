@@ -1,16 +1,10 @@
 <?php   
+    include_once('../outils/bd.php');
+
     try {
-        // Establish database connection
-        $servername = "localhost";
-        $username = "RP09";
-        $password = "RP09";
-        $dbname = "RP09";
+        $conn = createConnexion(); 
 
-        // Create connection
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $sql = "SELECT * FROM BonnesPratique";
+        $sql = "SELECT * FROM bonnespratique";
         $stmt = $conn->query($sql);
 
         $result = $stmt->fetchAll();
@@ -43,7 +37,7 @@
                 <input type="text" id="nom" name="nom" required>
                 <?php
                     foreach ($result as $row) {
-                        echo "<option value='" . $row['id'] . "'>" . $row['nom'] . "</option>";
+                        echo "<option value='" . $row['num_bp'] . "'>" . $row['nom'] . "</option>";
                     }
                 ?>
                 </select>

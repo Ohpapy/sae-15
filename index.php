@@ -2,15 +2,17 @@
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
+    include_once('./outils/bd.php');
+    
     try {
-        $bd = new PDO ( "mysql:host=localhost;dbname=RP09", "RP09", "RP09" );
-        $bd->exec('SET NAMES utf8');
+        $bd = createConnexion();
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $login = htmlspecialchars($_POST['login']);
             $mdp = htmlspecialchars($_POST['mdp']);
             $req = $bd->prepare('SELECT * FROM utilisateur WHERE login_ut = :login AND mdp_ut = :mdp'); // On prépare la requête
             $req->execute(array('login' => $login, 'mdp' => $mdp)); // On exécute la requête en passant les paramètres
             $resultat = $req->fetch(); // On récupère le résultat
+            
             if (!$resultat) {
                 echo 'Mauvais identifiant ou mot de passe !';
                 sleep(2);
@@ -21,6 +23,7 @@
                 $_SESSION['login'] = $login;
                 header('Location: ./utilisateur/utilisateur.php');
             }
+            
             $req->closeCursor();
             $bd = null;
             exit();
@@ -36,11 +39,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/Login.css">
+    <link rel="stylesheet" href="./css/login.css">
     <title>Connexion</title>
 </head>
 <body>
-    <H1>Bienvenue !</H1>
+    <h1>Bienvenue !</h1>
     <div class="container">
         <form method="post" action="index.php">            
             <div>

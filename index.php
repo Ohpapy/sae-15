@@ -12,17 +12,27 @@
             $req->execute(array('login' => $login)); // On exécute la requête en passant les paramètres
             $user = $req->fetch(); // On récupère le résultat
 
-            if (!password_verify($mdp, $user['mdp_ut'])) {
-                echo 'Mauvais identifiant ou mot de passe !';
-                sleep(2);
-                header('Location: ./index.php');
-            } else {
-                session_start();
-                $_SESSION['id'] = $resultat['id'];
-                $_SESSION['login'] = $login;
-                header('Location: ./utilisateur/utilisateur.php');
+            if ($user["bloque_ut"] != 1) {
+                if (!password_verify($mdp, $user['mdp_ut'])) {
+                    echo 'Mauvais identifiant ou mot de passe !';
+                    sleep(2);
+                    $tentative = $user['tentative_ut'] + 1;
+                    $sqltentative = $bd->prepare('UPDATE utilisateur SET tentative_ut = :tentative WHERE login_ut = :login');
+                    $sqltentative->execute(array('tentative' => $tentative, 'login' => $login));
+                    if ($tentative >= 3) {
+                        $sqlblock = $bd->prepare('UPDATE utilisateur SET bloque_ut = 1 WHERE login_ut = :login');
+                        $sqlblock->execute(array('login' => $login));
+                        echo 'Compte bloqué !';
+                    }
+                } else {
+                    session_start();
+                    $_SESSION['id'] = $resultat['id'];
+                    $_SESSION['login'] = $login;
+                    header('Location: ./utilisateur/utilisateur.php');
+                    $sqlclean = $bd->prepare('UPDATE utilisateur SET tentative_ut = 0 WHERE login_ut = :login');
+                    $sqlclean->execute(array('login' => $login));
+                }
             }
-            
             $req->closeCursor();
             $bd = null;
             exit();

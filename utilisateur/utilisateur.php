@@ -31,7 +31,23 @@
         GROUP BY appartenance.num_bp, bonnespratique.test_bp, bonnespratique.utilisation_bp, programme.nom_prog, phase.nom_phase;";
         $stmt2 = $conn->prepare($sqlDescriptions);
         $stmt2->execute();
-    
+
+        // select all phases
+
+        $sqlfiltrephase = "SELECT nom_phase FROM phase";
+        $stmt = $conn->prepare($sqlfiltrephase);
+        $stmt->execute();
+
+        $phases = $stmt->fetchAll();
+
+        // select all prog
+
+        $sqlfiltreprog = "SELECT nom_prog FROM programme";
+        $stmt = $conn->prepare($sqlfiltreprog);
+        $stmt->execute();
+
+        $progs = $stmt->fetchAll();
+
         $descriptions = $stmt2->fetchAll();
 
     } catch(PDOException $e) {
@@ -40,22 +56,6 @@
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-    
-    if (isset($_POST['recherche']) && $_POST['recherche'] !== "") {
-        // recherche des mots cles par texte
-        $sqlrecherche = "SELECT appartenance.num_bp, bonnespratique.test_bp, bonnespratique.utilisation_bp, programme.nom_prog, phase.nom_phase
-        FROM appartenance
-        JOIN bonnespratique ON appartenance.num_bp = bonnespratique.num_bp
-        JOIN programme ON appartenance.num_prog = programme.num_prog
-        JOIN phase ON appartenance.num_phase = phase.num_phase
-        JOIN bp_motcles ON appartenance.num_bp = bp_motcles.num_bp
-        JOIN motcles ON bp_motcles.num_cles = motcles.num_cles
-        WHERE motcles.mot = ?;";
-        $stmt = $conn->prepare($sqlrecherche);
-        $stmt->execute([$_POST['recherche']]);
-    
-        $bps = $stmt->fetchAll();
-    }
 
     if (isset($_POST['deconnexion'])) {
         include_once('../outils/logout.php');
@@ -65,6 +65,41 @@
         $stmt = $conn->prepare($sqldelete);
         $stmt->execute([$_POST['delete']]);
         header('Location: ../utilisateur/utilisateur.php');
+    }
+
+    if (isset($_POST['filtrePhase']) && isset($_POST['filtreProg']) && isset($_POST['recherche'])) {
+        $sqlrecherche = "SELECT DISTINCT appartenance.num_bp, bonnespratique.test_bp, bonnespratique.utilisation_bp, programme.nom_prog, phase.nom_phase
+        FROM appartenance
+        JOIN bonnespratique ON appartenance.num_bp = bonnespratique.num_bp
+        JOIN programme ON appartenance.num_prog = programme.num_prog
+        JOIN phase ON appartenance.num_phase = phase.num_phase
+        JOIN bp_motcles ON appartenance.num_bp = bp_motcles.num_bp
+        JOIN motcles ON bp_motcles.num_cles = motcles.num_cles WHERE 1=1";
+
+        $params = [];
+
+        if ($_POST['recherche'] !== "") {
+            // recherche des mots cles par texte
+            $sqlrecherche .= " AND motcles.mot = :motcle";
+            $params['motcle'] = $_POST['recherche'];
+        }
+
+        if ($_POST['filtrePhase'] !== "*") {
+            // recherche des mots cles par texte
+            $sqlrecherche .= " AND phase.nom_phase = :phase";
+            $params['phase'] = $_POST['filtrePhase'];
+        }
+
+        if ($_POST['filtreProg'] !== "*") {
+            // recherche des mots cles par texte
+            $sqlrecherche .= " AND programme.nom_prog = :prog";
+            $params['prog'] = $_POST['filtreProg'];
+        }
+
+        $stmt = $conn->prepare($sqlrecherche);
+        $stmt->execute($params);
+    
+        $bps = $stmt->fetchAll();
     }
 ?>
 
@@ -79,25 +114,49 @@
     <div class="haut">
         <div class="childmid">
             <div class="filtre">
-                <div class="dropdown">
-                    <button class="button-filtre"><h2>FILTRE</h2></button>
-                    <div class="dropdown-content">
-                        <select class="filtre-select">
-                            <option value="option1">Option 1</option>
-                            <option value="option2">Option 2</option>
-                            <option value="option3">Option 3</option>
-                        </select>
+                <form action="" method="POST">
+                    <div class="dropdowns">
+                        <div class="dropdown">
+                            <label>Filtre par phase</label>
+                            <select class="filtre-select" name="filtrePhase">
+                                <option value="*">Tous</option>
+                                <?php if (count($phases) > 0) : ?>
+                                    <?php foreach ($phases as $phase) : ?>
+                                        <option value="<?= $phase["nom_phase"] ?>" 
+                                            <?php if (isset($_POST['filtrePhase']) && $_POST['filtrePhase'] == $phase["nom_phase"]): ?>
+                                                selected
+                                            <?php endif ?>
+                                        ><?= $phase["nom_phase"] ?></option>
+                                    <?php endforeach; ?>
+                                <?php endif ?>
+                            </select>
+                        </div>
+                        <div class="dropdown">
+                            <label>Filtre par prog</label>
+                            <select class="filtre-select" name="filtreProg">
+                                <option value="*">Tous</option>
+                                <?php if (count($progs) > 0) : ?>
+                                    <?php foreach ($progs as $prog) : ?>
+                                        <option value="<?= $prog["nom_prog"] ?>" 
+                                            <?php if (isset($_POST['filtreProg']) && $_POST['filtreProg'] == $prog["nom_prog"]): ?>
+                                                selected
+                                            <?php endif ?>
+                                        ><?= $prog["nom_prog"] ?></option>
+                                    <?php endforeach; ?>
+                                <?php endif ?>
+                            </select>
+                        </div>
+                        <div>        
+                            <label>Recherche par mot clé</label>
+                            <input type="text" name="recherche" placeholder="Mot-clé" value="<?= isset($_POST['recherche']) ? $_POST['recherche'] : "" ?>">
+                        </div>
                     </div>
-                </div>
+                    <button>Filtrer</button>
+                </form>
             </div>
         </div>
         <div class="childmid">
-            <div class="rechercher">
-                <form action="" method="post">
-                    <input type="text" name="recherche" placeholder="Mot-clé" value="<?= isset($_POST['recherche']) ? $_POST['recherche'] : "" ?>">
-                    <button>Rechercher</button>
-                </form>
-            </div>
+            <h1>Liste des bonnes pratiques</h1>
             <div class="content1">
                 <form action="../bp/bp.php">
                     <button class="button-bp"><h2>Créer une bonne pratique</h2></button>
@@ -119,15 +178,19 @@
                 <?php foreach ($bps as $bp) : ?>
                     <div class='bonne-pratique'>
                         <div class='info-container'>
+                            <div class="checkbox">
+                                <input type="checkbox" name="select" value="<?= $bp["num_bp"] ?>">
+                            </div>
                             <p>Test: <?= $bp["test_bp"] ?></p>
                             <p>Programme: <?= $bp["nom_prog"] ?></p>
                             <p>Phase: <?= $bp["nom_phase"] ?></p>
-                            <button class='bonne-pratique-details' data-numbp="<?= $bp["num_bp"] ?>">Voir le détails</button>
-                            <form action="" method="POST">
-                                <input type="hidden" name="delete" value="<?= $bp["num_bp"] ?>" />
-                                <button type="submit">Supprimer</button>
-                            </form>
-                            <input type="checkbox" name="select" value="<?= $bp["num_bp"] ?>">
+                            <div class="action">
+                                <button class='bonne-pratique-details' data-numbp="<?= $bp["num_bp"] ?>">Voir le détails</button>
+                                <form action="" method="POST">
+                                    <input type="hidden" name="delete" value="<?= $bp["num_bp"] ?>" />
+                                    <button type="submit">Supprimer</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 <?php endforeach; ?>

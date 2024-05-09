@@ -24,12 +24,12 @@ body {
 
 .haut {
     display: flex;
-    width: 100%;
-    height: 17%;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .child {
-    flex: 1;
     display: flex;/* Utilisez flex pour aligner les éléments côte à côte */
     padding: 10px;
 }
@@ -39,29 +39,77 @@ body {
     padding: 10px;
 }
 
-.filtre {
+
+.filtre form {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding-top: 1%;
     width: 100%;
-    text-align: center;
     color: rgb(0, 0, 0);
-    height: 100%;
+    height: 150px;
+    background-color: #6b6b6b;
+    padding: 15px;
+    box-sizing: border-box;
 }
 
-.button-filtre {
-    margin-top: 0%;
-    background-color: #6b6b6b;
-    color: rgb(0, 0, 0);
-    text-align: right;
-    text-decoration: none;
-    padding-top: 1%;
+
+.filtre form .dropdowns{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.filtre .dropdown {
+    margin-right: 30px;
+}
+
+.filtre .dropdown select {
+    margin-right: 30px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+}
+
+.filtre .dropdown {
+    margin-right: 30px;
+}
+
+.filtre input[type="text"] {
     width: 100%;
-    text-align: center;
+    padding: 10px;
+    margin: auto;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    box-sizing: border-box;
+}
+
+.filtre .dropdown select {
+    width: 100%;
+}
+
+.filtre label {
     color: rgb(0, 0, 0);
-    height: 100%;
-    flex: 1;
+    text-decoration: none;
+    text-align: left;
+    display: block;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.filtre button {
+    color: rgb(0, 0, 0);
+    display: block;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    width: 40%;
+    padding: 8px;
+    box-sizing: border-box;
+    background-color: #ccc;
+    font-weight: bold;
 }
 
 .rechercher {
@@ -93,9 +141,12 @@ button:hover {
     opacity: 0.8;
 }
 
+h1 {
+    text-align: center;
+}
+
 .content1 {
     margin: auto;
-    margin-top: 1%;
     padding-bottom: 0.5%;
     padding-top: 0.5%;
     align-items: center;
@@ -122,8 +173,7 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 1%;
-    width: 48%;
+    width: 180px;
     text-align: center;
     color: rgb(0, 0, 0);
     height: 100%;
@@ -135,7 +185,6 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 1%;
     text-align: center;
     color: rgb(0, 0, 0);
     width: 48%;
@@ -146,7 +195,6 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 1%;
     text-align: center;
     color: rgb(0, 0, 0);
     height: 100%;
@@ -193,27 +241,22 @@ button:hover {
 }
 
 .container {
-    max-width: 90%;
     background-color: rgb(173, 173, 173);
-    padding: auto;
     padding: 2%;
+    max-width: 90%;
     margin-left: auto;
     margin-right: auto;
     border-radius: 15px;
-    margin-left: 5%;
-    margin-right: 5%;
     margin-top: 2%;
-    height: 70%;
+    min-height: 70%;
     color: white;
     position: relative;
+    box-sizing: border-box;
 }
 
 .valider {
-    position: absolute;
-    bottom: 2%;
-    right: 2%;
-    margin-bottom: 0%;
-    width: 10%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .button-valider {
@@ -222,9 +265,11 @@ button:hover {
     color: rgb(0, 0, 0);
     text-align: right;
     text-decoration: none;
-    width: 100%;
     text-align: center;
     height: 100%;
+    padding: 10px;
+    width: 10%;
+    box-sizing: border-box;
 }
 
 .button-filtre {
@@ -311,8 +356,23 @@ button:hover {
 .bonne-pratique .info-container {
     display: flex;
     justify-content: space-between;
-    width: 80%;
+    width: 100%;
     margin-left: 1%;
+}
+
+.bonne-pratique .info-container .checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.bonne-pratique .info-container .action {
+    display: flex;
+    align-items: center;
+}
+
+.bonne-pratique .info-container button {
+    margin-top: 0;
+    margin-right: 10px;
 }
 
 .bonne-pratique button {

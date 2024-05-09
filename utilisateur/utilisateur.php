@@ -127,6 +127,7 @@
                                 <input type="hidden" name="delete" value="<?= $bp["num_bp"] ?>" />
                                 <button type="submit">Supprimer</button>
                             </form>
+                            <input type="checkbox" name="select" value="<?= $bp["num_bp"] ?>">
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -170,7 +171,19 @@
                 $(".popup").removeClass("show");
                 $('.popup > div').hide();
             });
+
+            $(".button-valider").on("click", function(e) {
+                const selected = $("input[name='select']:checked");
+                const numBpSelected = [];
+
+                selected.toArray().forEach(i => {
+                    numBpSelected.push(i.value);
+                });
+
+                console.log(numBpSelected);
+            });
         });
+
     </script>
 </body>
 </html>

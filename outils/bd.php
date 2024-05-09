@@ -1,6 +1,6 @@
 <?php
-    include_once('config.php');
     function createConnexion() {
+        include_once('config.php');
         try {
             // Establish database connection
             $servername = $bdd["servername"];

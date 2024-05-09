@@ -3,17 +3,16 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     include_once('./outils/bd.php');
-    
     try {
         $bd = createConnexion();
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $login = htmlspecialchars($_POST['login']);
             $mdp = htmlspecialchars($_POST['mdp']);
-            $req = $bd->prepare('SELECT * FROM utilisateur WHERE login_ut = :login AND mdp_ut = :mdp'); // On prépare la requête
-            $req->execute(array('login' => $login, 'mdp' => $mdp)); // On exécute la requête en passant les paramètres
-            $resultat = $req->fetch(); // On récupère le résultat
-            
-            if (!$resultat) {
+            $req = $bd->prepare('SELECT * FROM utilisateur WHERE login_ut = :login'); // On prépare la requête
+            $req->execute(array('login' => $login)); // On exécute la requête en passant les paramètres
+            $user = $req->fetch(); // On récupère le résultat
+
+            if (!password_verify($mdp, $user['mdp_ut'])) {
                 echo 'Mauvais identifiant ou mot de passe !';
                 sleep(2);
                 header('Location: ./index.php');

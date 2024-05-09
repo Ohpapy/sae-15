@@ -3,7 +3,7 @@
     
     try {
         $conn = createConnexion();
-        $sql = "SELECT * FROM BonnesPratique";
+        $sql = "SELECT * FROM bonnespratique";
         $stmt = $conn->query($sql);
 
         $result = $stmt->fetchAll();

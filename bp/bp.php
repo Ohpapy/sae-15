@@ -70,7 +70,10 @@
             </form>
         </div>
         <div class="right">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, voluptates incidunt sunt minima ex laborum laudantium provident similique sit labore aperiam unde atque eaque reprehenderit ab? Aperiam veritatis sit numquam.
+            <h2>
+                liste des programmes
+            </h2>
+
         </div>
     </div>
 </body>

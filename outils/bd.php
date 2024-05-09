@@ -1,11 +1,12 @@
 <?php
+    include_once('config.php');
     function createConnexion() {
         try {
             // Establish database connection
-            $servername = "localhost";
-            $username = "root";
-            $password = "root";
-            $dbname = "RP09";
+            $servername = $bdd["servername"];
+            $username = $bdd["username"];
+            $password = $bdd["password"];
+            $dbname = $bdd["dbname"];
     
             // Create connection
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);

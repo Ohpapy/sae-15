@@ -13,7 +13,8 @@
         FROM appartenance
         JOIN bonnespratique ON appartenance.num_bp = bonnespratique.num_bp
         JOIN programme ON appartenance.num_prog = programme.num_prog
-        JOIN phase ON appartenance.num_phase = phase.num_phase;";
+        JOIN phase ON appartenance.num_phase = phase.num_phase
+        WHERE bonnespratique.utilisation_bp = 1;";
         $stmt = $conn->prepare($sqlGetBP);
         $stmt->execute();
     
@@ -58,6 +59,12 @@
 
     if (isset($_POST['deconnexion'])) {
         include_once('../outils/logout.php');
+    }
+    if (isset($_POST['delete'])){
+        $sqldelete = "UPDATE bonnespratique SET utilisation_bp = 0 WHERE num_bp = ?";
+        $stmt = $conn->prepare($sqldelete);
+        $stmt->execute([$_POST['delete']]);
+        header('Location: ../utilisateur/utilisateur.php');
     }
 ?>
 
@@ -110,11 +117,16 @@
         <div class="BP">
             <?php if (count($bps) > 0) : ?>
                 <?php foreach ($bps as $bp) : ?>
-                    <div class='bonne-pratique' data-numbp="<?= $bp["num_bp"] ?>">
+                    <div class='bonne-pratique'>
                         <div class='info-container'>
                             <p>Test: <?= $bp["test_bp"] ?></p>
                             <p>Programme: <?= $bp["nom_prog"] ?></p>
                             <p>Phase: <?= $bp["nom_phase"] ?></p>
+                            <button class='bonne-pratique-details' data-numbp="<?= $bp["num_bp"] ?>">Voir le détails</button>
+                            <form action="" method="POST">
+                                <input type="hidden" name="delete" value="<?= $bp["num_bp"] ?>" />
+                                <button type="submit">Supprimer</button>
+                            </form>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -148,7 +160,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            $(".bonne-pratique").on("click", function(e) {
+            $(".bonne-pratique-details").on("click", function(e) {
                 $(".popup").addClass("show");
                 const numbp = $(e.currentTarget).data('numbp');
                 $('.popup').find("#numbp_" + numbp).show();

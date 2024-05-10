@@ -1,49 +1,49 @@
 <?php
-    include_once('../outils/bd.php');       // Inclut le fichier de connexion à la base de données
+    include_once('../outils/bd.php');       // Includes the database connection file
 
     try {
-        $conn = createConnexion();          // Crée une connexion à la base de données
+        $conn = createConnexion();          // Creates a connection to the database
 
-        // Insertion d'une nouvelle bonne pratique dans la table 'bonnespratique'
+        // Inserting a new best practice into the 'bonnespratique' table
         $sqlbp = "INSERT INTO bonnespratique (test_bp) VALUES (?)";  
         $stmtbp = $conn->prepare($sqlbp);
         $stmtbp->execute([$_POST['item']]);
-        $num_bp = $conn->lastInsertId();    // Récupère l'ID de la dernière insertion
+        $num_bp = $conn->lastInsertId();    // Retrieves the ID of the last insertion
 
-        // Jointure avec l'appartenance à un programme et une phase dans la table 'appartenance'
+        // Joining with the program and phase ownership in the 'appartenance' table
         $sqlapp = "INSERT INTO appartenance (num_prog, num_phase, num_bp) VALUES (?, ?, ?)";
         $stmtapp = $conn->prepare($sqlapp);
         $stmtapp->execute([$_POST['programme'], $_POST['phase'], $num_bp]);
 
-        $motcles = explode(";", $_POST['motcles']);      // Sépare les mots-clés par ';'
+        $motcles = explode(";", $_POST['motcles']);     // Splits the keywords by ';'
 
-        // Création des mots-clés et jointure des mots-clés dans la table 'motcles' et 'bp_motcles'
+        // Creating keywords and joining keywords in the 'motcles' and 'bp_motcles' tables
         foreach ($motcles as $motcle) {
             $sqlselectmc = "SELECT * FROM motcles WHERE mot = ?";
             $stmtselectmc = $conn->prepare($sqlselectmc);
-            $stmtselectmc->execute([trim($motcle)]);        // Recherche si le mot-clé existe déjà
+            $stmtselectmc->execute([trim($motcle)]);        // Searches if the keyword already exists
             $existemc = $stmtselectmc->fetch();
-            $num_cle = $existemc['num_cles'];           // Récupère l'ID du mot-clé existant
+            $num_cle = $existemc['num_cles'];           // Retrieves the ID of the existing keyword
 
-            if (!$existemc) {               // Si le mot-clé n'existe pas, l'insère dans la table 'motcles'
+            if (!$existemc) {              // If the keyword doesn't exist, inserts it into the 'motcles' table
                 $sqlmc = "INSERT INTO motcles (mot) VALUES (?)";
                 $stmtmc = $conn->prepare($sqlmc);
                 $stmtmc->execute([trim($motcle)]);
-                $num_cle = $conn->lastInsertId();       // Récupère l'ID du nouveau mot-clé
+                $num_cle = $conn->lastInsertId();       // Retrieves the ID of the new keyword
             }
 
-            // Insère la relation entre la bonne pratique et le mot-clé dans la table 'bp_motcles'
+            // Inserts the relationship between the best practice and the keyword in the 'bp_motcles' table
             $sqlbpmc = "INSERT INTO bp_motcles (num_bp,num_cles) VALUES (?,?)";             
             $stmtbpmc = $conn->prepare($sqlbpmc);
             $stmtbpmc->execute([$num_bp, $num_cle]);
         }
 
-        header('Location: ../utilisateur/utilisateur.php');     // Redirige après l'opération réussie
+        header('Location: ../utilisateur/utilisateur.php');     // Redirects after successful operation
     } catch(PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();        // Affiche un message d'erreur en cas d'échec de connexion
+        echo "Connection failed: " . $e->getMessage();        // Displays an error message in case of connection failure
     }
-    
-    // Configuration pour afficher les erreurs (utile lors du développement)
+
+    // Configuration to display errors (useful during development)
     ini_set('display_errors', 1);           
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);

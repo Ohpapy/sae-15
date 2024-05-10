@@ -35,7 +35,7 @@
         $stmt2 = $conn->prepare($sqlDescriptions);
         $stmt2->execute();
 
-        // select all phases
+        // Select all phases
 
         $sqlfiltrephase = "SELECT nom_phase FROM phase";
         $stmt = $conn->prepare($sqlfiltrephase);
@@ -43,7 +43,7 @@
 
         $phases = $stmt->fetchAll();
 
-        // select all programs
+        // Select all programs
 
         $sqlfiltreprog = "SELECT nom_prog FROM programme";
         $stmt = $conn->prepare($sqlfiltreprog);

@@ -1,3 +1,4 @@
+/* Scrollbar styles */
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -10,6 +11,7 @@
     background-color: #424242;
 }
 
+/* Body styles */
 body {
     background-color: #424242;
     font-family: 'Roboto', sans-serif;
@@ -22,6 +24,7 @@ body {
     max-width: 100%;
 }
 
+/* Container for top section */
 .haut {
     display: flex;
     max-width: 90%;
@@ -29,8 +32,9 @@ body {
     margin-right: auto;
 }
 
+/* Child elements within .haut */
 .child {
-    display: flex;/* Utilisez flex pour aligner les éléments côte à côte */
+    display: flex;      /* Use flex to align the elements side by side */
     padding: 10px;
 }
 
@@ -39,7 +43,7 @@ body {
     padding: 10px;
 }
 
-
+/* Filter form styles */
 .filtre form {
     display: flex;
     flex-direction: column;
@@ -54,7 +58,7 @@ body {
     box-sizing: border-box;
 }
 
-
+/* Dropdown styles */
 .filtre form .dropdowns{
     display: flex;
     justify-content: center;
@@ -77,6 +81,7 @@ body {
     margin-right: 30px;
 }
 
+/* Input field styles */
 .filtre input[type="text"] {
     width: 100%;
     padding: 10px;
@@ -99,6 +104,7 @@ body {
     font-size: 16px;
 }
 
+/* Button styles */
 .filtre button {
     color: rgb(0, 0, 0);
     display: block;
@@ -112,6 +118,7 @@ body {
     font-weight: bold;
 }
 
+/* Styles for search section */
 .rechercher {
     margin: auto;
     margin-top: 1%;
@@ -123,6 +130,7 @@ body {
     background-color: #6b6b6b;
 }
 
+/* Styles for input fields */
 input[type="text"] {
     width: 50%;
     padding: 12px 20px;
@@ -131,6 +139,7 @@ input[type="text"] {
     border-radius: 25px;
 }
 
+/* General button styles */
 button {
     cursor: pointer;
     margin-top: 3%;
@@ -141,10 +150,12 @@ button:hover {
     opacity: 0.8;
 }
 
+/* Heading styles */
 h1 {
     text-align: center;
 }
 
+/* Styles for content1 section */
 .content1 {
     margin: auto;
     padding-bottom: 0.5%;
@@ -156,6 +167,7 @@ h1 {
     background-color: #6b6b6b;
 }
 
+/* Styles for button-bp */
 .button-bp {
     margin-top: 0%;
     background-color: #6b6b6b;
@@ -169,6 +181,7 @@ h1 {
     height: 100%;
 }
 
+/* Styles for admin section */
 .admin {
     display: flex;
     justify-content: center;
@@ -181,6 +194,7 @@ h1 {
     padding-right: 2px;
 }
 
+/* Styles for deconnexiondiv section */
 .deconnexiondiv {
     display: flex;
     justify-content: space-between;
@@ -191,6 +205,7 @@ h1 {
     height: 100%;
 }
 
+/* Styles for deconnexion section */
 .deconnexion {
     display: flex;
     justify-content: space-between;
@@ -202,6 +217,7 @@ h1 {
     padding-left: 2px;
 }
 
+/* Styles for button-admin */
 .button-admin {
     margin-top: 0%;
     background-color: #6b6b6b;
@@ -211,11 +227,12 @@ h1 {
     padding-top: 1%;
     text-align: center;
     color: rgb(0, 0, 0);
-    width: 100%; /* Les boutons prennent toute la largeur de leur conteneur parent */
-    height: 100%; /* Les boutons prennent toute la hauteur de leur conteneur parent */
+    width: 100%;        /* The buttons take up the entire width of their parent container */
+    height: 100%;        /* The buttons take up the entire height of their parent container */
 
 }
 
+/* Styles for button-deconnexion */
 .button-deconnexion {
     margin-top: 0%;
     background-color: #6b6b6b;
@@ -226,20 +243,23 @@ h1 {
     font-size: 80%;
     text-align: center;
     color: rgb(0, 0, 0);
-    width: 100%; /* Les boutons prennent toute la largeur de leur conteneur parent */
-    height: 100%; /* Les boutons prennent toute la hauteur de leur conteneur parent */
+    width: 100%;         /* The buttons take up the entire width of their parent container */
+    height: 100%;        /* The buttons take up the entire height of their parent container */
 }
 
+/* Styles for texte-bp */
 .texte-bp {
     color: rgb(0, 0, 0);
     text-align: center;
     text-decoration: none;
 }
 
+/* Styles for connection section */
 .connection {
     margin-top: 5%;
 }
 
+/* Container styles */
 .container {
     background-color: rgb(173, 173, 173);
     padding: 2%;
@@ -254,11 +274,13 @@ h1 {
     box-sizing: border-box;
 }
 
+/* Styles for valider section */
 .valider {
     display: flex;
     justify-content: flex-end;
 }
 
+/* Styles for button-valider */
 .button-valider {
     margin-bottom: 0%;
     background-color: #00be00;
@@ -272,6 +294,7 @@ h1 {
     box-sizing: border-box;
 }
 
+/* Styles for button-filtre */
 .button-filtre {
     background-color: #6b6b6b;
     color: white;
@@ -281,6 +304,7 @@ h1 {
     cursor: pointer;
 }
 
+/* Styles for dropdown-content */
 .dropdown-content {
     display: none;
     position: absolute;
@@ -290,6 +314,7 @@ h1 {
     z-index: 1;
 }
 
+/* Dropdown select styles */
 .dropdown-content select {
     width: 100%;
     padding: 12px 16px;
@@ -298,11 +323,12 @@ h1 {
     background-color: #f1f1f1;
 }
 
+/* Dropdown hover effect */
 .dropdown:hover .dropdown-content {
     display: block;
 }
 
-
+/* Popup styles */
 .popup {
     display: none;
     position: fixed;
@@ -324,10 +350,12 @@ h1 {
     flex-direction: column;
 }
 
+/* Show class for popup */
 .show{
     display: flex;
 }
 
+/* Close button styles */
 .close-button {
     background-color: red;
     color: white;
@@ -341,6 +369,7 @@ h1 {
     cursor: pointer;
 }
 
+/* Styles for bonne-pratique section */
 .bonne-pratique {
     display: flex;
     justify-content: space-between;
@@ -353,6 +382,7 @@ h1 {
 
 }
 
+/* Styles for info-container within bonne-pratique */
 .bonne-pratique .info-container {
     display: flex;
     justify-content: space-between;
@@ -360,11 +390,13 @@ h1 {
     margin-left: 1%;
 }
 
+/* Styles for checkbox within info-container */
 .bonne-pratique .info-container .checkbox {
     display: flex;
     align-items: center;
 }
 
+/* Styles for action within info-container */
 .bonne-pratique .info-container .action {
     display: flex;
     align-items: center;
@@ -375,6 +407,7 @@ h1 {
     margin-right: 10px;
 }
 
+/* Button styles within bonne-pratique */
 .bonne-pratique button {
     padding: 10px;
     margin-top: 10px;

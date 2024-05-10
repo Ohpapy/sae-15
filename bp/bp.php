@@ -1,23 +1,23 @@
 <?php   
-    include_once('../outils/bd.php');
+    include_once('../outils/bd.php');       // Includes the database connection file
 
     try {
-        $conn = createConnexion(); 
+        $conn = createConnexion();          // Creates a connection to the database 
 
-        // chercher tous les prog
+        // Fetch all programs
         $sqlProg = "SELECT * FROM programme";
         $stmtProg = $conn->query($sqlProg);
         $programmes = $stmtProg->fetchAll();
 
-        // chercher toutes les phases
+        // Fetch all phases
         $sqlPhase = "SELECT * FROM phase";
         $stmtPhase = $conn->query($sqlPhase);
         $phases = $stmtPhase->fetchAll();
 
     } catch(PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
+        echo "Connection failed: " . $e->getMessage();     // Displays an error message in case of connection failure
     }
-    ini_set('display_errors', 1);
+    ini_set('display_errors', 1);       // Sets the display error configuration
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 ?>
@@ -25,7 +25,7 @@
 <html lang="fr">
 <head>
     <link rel="stylesheet" href="../css/bp.css">
-    <?php include_once('../outils/header.php'); ?>
+    <?php include_once('../outils/header.php'); ?>    <!-- Includes the header file -->
     <title>Bonne Pratique</title>
 </head>
 <body>

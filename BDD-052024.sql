@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
--- Hôte:                         localhost
--- Version du serveur:           5.7.24 - MySQL Community Server (GPL)
--- SE du serveur:                Win64
+-- Host:                         localhost
+-- Server version:               5.7.24 - MySQL Community Server (GPL)
+-- Server OS:                    Win64
 -- HeidiSQL Version:             12.6.0.6765
 -- --------------------------------------------------------
 
@@ -15,12 +15,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Listage de la structure de la base pour rp09
+-- Listing the structure of the database for rp09
 DROP DATABASE IF EXISTS `rp09`;
 CREATE DATABASE IF NOT EXISTS `rp09` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `rp09`;
 
--- Listage de la structure de la table rp09. appartenance
+-- Listing the structure of the table rp09.appartenance
 DROP TABLE IF EXISTS `appartenance`;
 CREATE TABLE IF NOT EXISTS `appartenance` (
   `num_app` int(11) NOT NULL AUTO_INCREMENT,
@@ -36,11 +36,11 @@ CREATE TABLE IF NOT EXISTS `appartenance` (
   CONSTRAINT `FK_appartenance_programme` FOREIGN KEY (`num_prog`) REFERENCES `programme` (`num_prog`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Listage des données de la table rp09.appartenance : ~0 rows (environ)
+-- Listing data for the table rp09.appartenance: ~0 rows (approximately)
 INSERT INTO `appartenance` (`num_app`, `num_prog`, `num_phase`, `num_bp`) VALUES
 	(1, 1, 1, 1);
 
--- Listage de la structure de la table rp09. bonnespratique
+-- Listing the structure of the table rp09.bonnespratique
 DROP TABLE IF EXISTS `bonnespratique`;
 CREATE TABLE IF NOT EXISTS `bonnespratique` (
   `num_bp` int(11) NOT NULL AUTO_INCREMENT,
@@ -49,12 +49,12 @@ CREATE TABLE IF NOT EXISTS `bonnespratique` (
   PRIMARY KEY (`num_bp`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
--- Listage des données de la table rp09.bonnespratique : ~2 rows (environ)
+-- Listing data for the table rp09.bonnespratique: ~2 rows (approximately)
 INSERT INTO `bonnespratique` (`num_bp`, `test_bp`, `utilisation_bp`) VALUES
 	(1, 'test', 1),
 	(2, 'test2', 1);
 
--- Listage de la structure de la table rp09. bp_motcles
+-- Listing the structure of the table rp09.bp_motcles
 DROP TABLE IF EXISTS `bp_motcles`;
 CREATE TABLE IF NOT EXISTS `bp_motcles` (
   `num_bpmotcles` int(11) NOT NULL AUTO_INCREMENT,
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `bp_motcles` (
   CONSTRAINT `FK__motcles` FOREIGN KEY (`num_cles`) REFERENCES `motcles` (`num_cles`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Listage de la structure de la table rp09. motcles
+-- Listing the structure of the table rp09.motcles
 DROP TABLE IF EXISTS `motcles`;
 CREATE TABLE IF NOT EXISTS `motcles` (
   `num_cles` int(11) NOT NULL AUTO_INCREMENT,
@@ -75,13 +75,13 @@ CREATE TABLE IF NOT EXISTS `motcles` (
   PRIMARY KEY (`num_cles`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
--- Listage des données de la table rp09.motcles : ~3 rows (environ)
+-- Listing data for the table rp09.motcles: ~3 rows (approximately)
 INSERT INTO `motcles` (`num_cles`, `mot`) VALUES
 	(1, 'mathis'),
 	(2, 'hello'),
 	(3, 'bye');
 
--- Listage de la structure de la table rp09. phase
+-- Listing the structure of the table rp09.phase
 DROP TABLE IF EXISTS `phase`;
 CREATE TABLE IF NOT EXISTS `phase` (
   `num_phase` int(11) NOT NULL AUTO_INCREMENT,
@@ -89,11 +89,11 @@ CREATE TABLE IF NOT EXISTS `phase` (
   PRIMARY KEY (`num_phase`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Listage des données de la table rp09.phase : ~0 rows (environ)
+-- Listing data for the table rp09.phase: ~0 rows (approximately)
 INSERT INTO `phase` (`num_phase`, `nom_phase`) VALUES
 	(1, 'test\r\n');
 
--- Listage de la structure de la table rp09. programme
+-- Listing the structure of the table rp09.programme
 DROP TABLE IF EXISTS `programme`;
 CREATE TABLE IF NOT EXISTS `programme` (
   `num_prog` int(11) NOT NULL AUTO_INCREMENT,
@@ -101,11 +101,11 @@ CREATE TABLE IF NOT EXISTS `programme` (
   PRIMARY KEY (`num_prog`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Listage des données de la table rp09.programme : ~0 rows (environ)
+-- Listing data for the table rp09.programme: ~0 rows (approximately)
 INSERT INTO `programme` (`num_prog`, `nom_prog`) VALUES
 	(1, 'test');
 
--- Listage de la structure de la table rp09. utilisateur
+-- Listing the structure of the table rp09.utilisateur
 DROP TABLE IF EXISTS `utilisateur`;
 CREATE TABLE IF NOT EXISTS `utilisateur` (
   `num_ut` int(11) NOT NULL AUTO_INCREMENT,
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   PRIMARY KEY (`num_ut`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Listage des données de la table rp09.utilisateur : ~1 rows (environ)
+-- Listing data for the table rp09.utilisateur: ~1 rows (approximately)
 INSERT INTO `utilisateur` (`num_ut`, `login_ut`, `nom_ut`, `mdp_ut`, `acces_ut`, `bloque_ut`, `tentative_ut`, `presence_ut`) VALUES
 	(1, 'admin', 'Mathis', '$2y$10$.OE6z63KaYqRGzpt5uGGcebJTajPVhnU1JE7wGkpZgNyIfxVNO9xS', 15, 0, 0, 0);
 

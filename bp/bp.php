@@ -31,7 +31,9 @@
 <body>
     <div class="main">
         <div class="left">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi error laborum, provident molestiae praesentium nisi exercitationem nesciunt aut quis nostrum, doloribus corporis placeat accusamus fuga, esse maxime aspernatur natus cupiditate.
+            <h2>
+                Ajouter une Bonne Pratique
+            </h2>
         </div>
         <div class="center">
             <form action="bp_creation.php" method="post">
@@ -70,9 +72,8 @@
         </div>
         <div class="right">
             <h2>
-                liste des programmes
+                liste des programmes :
             </h2>
-
         </div>
     </div>
 </body>

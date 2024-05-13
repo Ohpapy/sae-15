@@ -91,7 +91,13 @@ CREATE TABLE IF NOT EXISTS `phase` (
 
 -- Listing data for the table rp09.phase: ~0 rows (approximately)
 INSERT INTO `phase` (`num_phase`, `nom_phase`) VALUES
-	(1, 'test\r\n');
+	(1, 'analyse');
+INSERT INTO `phase` (`num_phase`, `nom_phase`) VALUES
+	(2, 'execution');
+INSERT INTO `phase` (`num_phase`, `nom_phase`) VALUES
+	(3, 'programmation');
+INSERT INTO `phase` (`num_phase`, `nom_phase`) VALUES
+	(4, 'codage');
 
 -- Listing the structure of the table rp09.programme
 DROP TABLE IF EXISTS `programme`;
@@ -103,7 +109,11 @@ CREATE TABLE IF NOT EXISTS `programme` (
 
 -- Listing data for the table rp09.programme: ~0 rows (approximately)
 INSERT INTO `programme` (`num_prog`, `nom_prog`) VALUES
-	(1, 'test');
+	(1, 'PROG_1');
+INSERT INTO `programme` (`num_prog`, `nom_prog`) VALUES
+	(2, 'PROG_2');
+INSERT INTO `programme` (`num_prog`, `nom_prog`) VALUES
+	(3, 'GENERIQUE');
 
 -- Listing the structure of the table rp09.utilisateur
 DROP TABLE IF EXISTS `utilisateur`;

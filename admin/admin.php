@@ -42,6 +42,20 @@
             </form>
         </div>
         <div class="box">
+            <form action="user_update.php" method="post">
+                <h2>
+                    Modifier mot de passe
+                </h2>
+                <h3>Identifient </h3>
+                <input type="text" name="login_ut">
+                <h3>Mot de passe</h3>
+                <input type="text" name="mdp_ut" id="mdp_ut" required>
+                <div class="valider">
+                    <button type="submit" class="button-valider">VALIDER</button>
+                </div>
+            </form>
+        </div>
+        <div class="box">
             <h2>Ajouter des programmes</h2>
             <form action="prog_creation.php" method="post">
                 <div>

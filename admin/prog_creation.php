@@ -2,13 +2,20 @@
     include_once('../outils/bd.php');       // Includes the database connection file
     try {
         $conn = createConnexion();          // Creates a connection to the database
-
+        $sqlGetprog = "SELECT nom_prog FROM programme";
+        $stmt = $conn->prepare($sqlGetprog);
+        $stmt->execute();
+        $progs = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
         // Inserting a new best practice into the 'bonnespratique' table
-        $sqlbp = "INSERT INTO programme (nom_prog) VALUES (?)";  
-        $stmtbp = $conn->prepare($sqlbp);
-        $stmtbp->execute([$_POST['nom_prog']]);
-        $num_bp = $conn->lastInsertId();    // Retrieves the ID of the last insertion
-        header('Location: ../admin/admin.php');     // Redirects after successful operation
+        if (in_array($_POST['nom_prog'], $progs)) {     
+            header('Location: ../admin/admin.php');     // Redirects if the best practice already exists
+        } else {
+            $sqlbp = "INSERT INTO programme (nom_prog) VALUES (?)";  
+            $stmtbp = $conn->prepare($sqlbp);
+            $stmtbp->execute([$_POST['nom_prog']]);
+            $num_bp = $conn->lastInsertId();    // Retrieves the ID of the last insertion
+            header('Location: ../admin/admin.php');     // Redirects after successful operation
+        }
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();        // Displays an error message in case of connection failure
     }

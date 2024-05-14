@@ -19,10 +19,10 @@
     <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
-<div class="main">
-        <div class="left">
+<div class="all-box">
+        <div class="box">
             <h2>
-                Ajouter Un utilisateur :
+                Ajouter un utilisateur :
             </h2>
             <h3>NOM : </h3>
             <input type="text" name="nom" id="nom" required>
@@ -33,25 +33,20 @@
             
             <h4>PRIVILEGE :</h4>
             
-            <select name="privilege" id="privilege" required>
+            <select name="privilege" id="privilege" required> 
+                <option value="1">Utilisateur</option>
+                <option value="15">Administrateur</option>
+            </select>
         </div>
-        <div class="center">
-            <h2>Ajouter des programmes :</h2>
-            <form action="add_programme.php" method="post">
+        <div class="box">
+            <h2>Ajouter des programmes</h2>
+            <form action="prog_creation.php" method="post">
                 <div>
                     <label for="nom_prog">Nom du programme:</label>
                     <input type="text" id="nom_prog" name="nom_prog" required>
-                <div>
-                    <label for="item">Bonne Pratique:</label>
-                    <input type="text" id="item" name="item" required>
                 </div>
-                <hr>
-                <div>
-                    <label for="motcles">Mots clés:</label>
-                    <input type="text" id="motcles" name="motcles" required><br>
-                    <small>Separer les mots clés par des ";"</small>
-                </div>
-                <hr>
+                <div class="valider">
+                    <button type="submit" class="button-valider">VALIDER</button>
                 </div>
             </form>
         </div>

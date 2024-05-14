@@ -38,7 +38,7 @@
         <div class="center">
             <form action="bp_creation.php" method="post">
                 <div>
-                    <label for="item">Item:</label>
+                    <label for="item">Bonne Pratique:</label>
                     <input type="text" id="item" name="item" required>
                 </div>
                 <hr>

@@ -110,6 +110,7 @@
     
         $bps = $stmt->fetchAll();
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -204,7 +205,7 @@
                             <div class="checkbox">
                                 <input type="checkbox" name="select" value="<?= $bp["num_bp"] ?>">
                             </div>
-                            <p>Test: <?= $bp["test_bp"] ?></p>
+                            <p>Bonne Pratique: <?= $bp["test_bp"] ?></p>
                             <p>Programme: <?= $bp["nom_prog"] ?></p>
                             <p>Phase: <?= $bp["nom_phase"] ?></p>
                             <div class="action">
@@ -224,6 +225,7 @@
         <!-- Button for validation -->
         <div class="valider">
             <button class="button-valider"><H2>valider</H2></button>
+            
         </div>
     </div>
     <div class="popup">
@@ -231,7 +233,7 @@
             <?php foreach ($descriptions as $desc) : ?>
                 <div id="numbp_<?= $desc["num_bp"] ?>" style="display: none">
                     <h2><?= $desc["num_bp"] ?></h2>
-                    <p>Test: <?= $desc["test_bp"] ?></p>
+                    <p>Bonne Pratique: <?= $desc["test_bp"] ?></p>
                     <!-- Displaying utilization status -->
                     <p>Utilisation: <?= $desc["utilisation_bp"] === 1 ? "oui" : "non" ?></p>
                     <p>Programme: <?= $desc["nom_prog"] ?></p>

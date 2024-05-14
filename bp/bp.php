@@ -32,11 +32,19 @@
     <div class="main">
         <div class="left">
             <h2>
-                Ajouter une Bonne Pratique
+                Liste des Phases
             </h2>
+            <ul>
+                <?php foreach ($phases as $row) : ?>
+                    <li><?= $row['nom_phase'] ?></li>
+                <?php endforeach; ?>
+            </ul>
         </div>
         <div class="center">
             <form action="bp_creation.php" method="post">
+                <h2>
+                    Ajouter une Bonne Pratique
+                </h2>
                 <div>
                     <label for="item">Bonne Pratique:</label>
                     <input type="text" id="item" name="item" required>
@@ -72,8 +80,13 @@
         </div>
         <div class="right">
             <h2>
-                liste des programmes :
+                Liste des Programmes
             </h2>
+            <ul>
+                <?php foreach ($programmes as $row) : ?>
+                    <li><?= $row['nom_prog'] ?></li>
+                <?php endforeach; ?>
+            </ul>
         </div>
     </div>
 </body>

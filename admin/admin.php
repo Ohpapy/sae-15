@@ -2,12 +2,21 @@
     // Démarrez la session au début de votre fichier
     session_start(); 
     // Ensuite, sur la page admin, vous pouvez vérifier cette variable de session avant d'afficher le contenu
+    include_once('../outils/bd.php');
     if ($_SESSION['acces_ut'] != 15) {
         // Si l'utilisateur n'a pas le niveau d'accès requis, redirigez-le vers une autre page
         header('Location: ../utilisateur/utilisateur.php');
         exit();
     }
-    // Si l'utilisateur a le niveau d'accès requis, vous pouvez continuer à afficher le contenu de la page
+    try {
+        $conn = createConnexion();  
+        $sqlbp = "SELECT * FROM bonnespratique WHERE utilisation_bp = 0";
+        $resultbp = $conn->prepare($sqlbp);
+        $resultbp->execute();
+        $bps = $resultbp->fetchAll(); 
+    } catch(PDOException $e) {
+        echo "Connection failed: " . $e->getMessage();        // Displays an error message in case of connection failure
+    }
  ?>
 
 <!DOCTYPE html>
@@ -61,6 +70,21 @@
                 <div>
                     <label for="nom_prog">Nom du programme:</label>
                     <input type="text" id="nom_prog" name="nom_prog" required>
+                </div>
+                <div class="valider">
+                    <button type="submit" class="button-valider">VALIDER</button>
+                </div>
+            </form>
+        </div>
+        <div class="box">
+            <h2>Supprimer Bonne Pratique</h2>
+            <form action="bp_sup.php" method="post">
+                <div>
+                    <select name="num_bp" id="num_bp">
+                        <?php foreach ($bps as $bp) { ?>
+                            <option value="<?php echo $bp['num_bp']; ?>"><?php echo $bp['nom_bp']; ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
                 <div class="valider">
                     <button type="submit" class="button-valider">VALIDER</button>

@@ -185,7 +185,7 @@
         </div>
         <div class="child">
             <!-- Form for admin actions -->
-            <form action="" method="post" class="admin">
+            <form action="../admin/admin.php" method="post" class="admin">
                 <button type="submit" name="admin" class="button-admin"><h2>ADMIN</h2></button>
             </form>
             <!-- Form for logout action -->

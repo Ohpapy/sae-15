@@ -1,5 +1,6 @@
 <?php
     // Set error reporting
+    session_start();
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
@@ -45,6 +46,7 @@
                     session_start();
                     $_SESSION['id'] = $resultat['id'];
                     $_SESSION['login'] = $login;
+                    $_SESSION['acces_ut'] = $user['acces_ut'];
                     header('Location: ./utilisateur/utilisateur.php');
 
                     // Reset login attempts in the database

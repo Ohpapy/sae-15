@@ -1,3 +1,15 @@
+<?php
+    // Démarrez la session au début de votre fichier
+    session_start(); 
+    // Ensuite, sur la page admin, vous pouvez vérifier cette variable de session avant d'afficher le contenu
+    if ($_SESSION['acces_ut'] != 15) {
+        // Si l'utilisateur n'a pas le niveau d'accès requis, redirigez-le vers une autre page
+        header('Location: ../utilisateur/utilisateur.php');
+        exit();
+    }
+    // Si l'utilisateur a le niveau d'accès requis, vous pouvez continuer à afficher le contenu de la page
+ ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

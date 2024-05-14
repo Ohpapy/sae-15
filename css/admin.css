@@ -43,7 +43,7 @@ body {
     color: rgb(0, 0, 0);      /* Text color */
     text-align: right;      /* Text alignment */
     text-decoration: none;    /* Text decoration */
-    width: 100%;    /* Full width */
+    width: 50%;    /* mid width */
     text-align: center;   /* Text alignment */
     height: 100%;    /* Full height */
 }

@@ -1,12 +1,13 @@
 <?php
     include_once('../outils/bd.php');       // Includes the database connection file
+
     try {
         $conn = createConnexion();          // Creates a connection to the database
-
+        $password = password_hash($_POST['mdp_ut'], PASSWORD_DEFAULT);    // Hashes the password
         // Inserting a new best practice into the 'bonnespratique' table
-        $sqlbp = "INSERT INTO programme (nom_prog) VALUES (?)";  
-        $stmtbp = $conn->prepare($sqlbp);
-        $stmtbp->execute([$_POST['nom_prog']]);
+        $sqluser = "INSERT INTO utilisateur (login_ut, nom_ut, mdp_ut, acces_ut, bloque_ut, tentative_ut, presence_ut) VALUES (?,?,?,?,0,0,0)";  
+        $stmtbp = $conn->prepare($sqluser);
+        $stmtbp->execute([$_POST['login_ut'], $_POST['nom_ut'], $password, $_POST['acces_ut']]);
         $num_bp = $conn->lastInsertId();    // Retrieves the ID of the last insertion
         header('Location: ../admin/admin.php');     // Redirects after successful operation
     } catch(PDOException $e) {

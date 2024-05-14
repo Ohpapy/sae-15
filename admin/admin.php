@@ -21,22 +21,25 @@
 <body>
 <div class="all-box">
         <div class="box">
-            <h2>
-                Ajouter un utilisateur :
-            </h2>
-            <h3>NOM : </h3>
-            <input type="text" name="nom" id="nom" required>
-
-            <h3>MOT DE PASSE : </h3>
-            
-            <input type="text" name="mot-de-passe" id="mdp" required>
-            
-            <h4>PRIVILEGE :</h4>
-            
-            <select name="privilege" id="privilege" required> 
-                <option value="1">Utilisateur</option>
-                <option value="15">Administrateur</option>
-            </select>
+            <form action="user_creation.php" method="post">
+                <h2>
+                    Ajouter un utilisateur :
+                </h2>
+                <h3>Nom</h3>
+                <input type="text" name="nom_ut" id="nom_ut" required>
+                <h3>Identifient </h3>
+                <input type="text" name="login_ut">
+                <h3>Mot de passe</h3>
+                <input type="text" name="mdp_ut" id="mdp_ut" required>
+                <h4>Privilège</h4>
+                <select name="acces_ut" id="acces_ut" required> 
+                    <option value="1">Utilisateur</option>
+                    <option value="15">Administrateur</option>
+                </select>
+                <div class="valider">
+                    <button type="submit" class="button-valider">VALIDER</button>
+                </div>
+            </form>
         </div>
         <div class="box">
             <h2>Ajouter des programmes</h2>

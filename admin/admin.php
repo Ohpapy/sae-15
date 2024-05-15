@@ -3,11 +3,6 @@
     session_start(); 
     // Ensuite, sur la page admin, vous pouvez vérifier cette variable de session avant d'afficher le contenu
     include_once('../outils/bd.php');
-    if ($_SESSION['acces_ut'] != 15) {
-        // Si l'utilisateur n'a pas le niveau d'accès requis, redirigez-le vers une autre page
-        header('Location: ../utilisateur/utilisateur.php');
-        exit();
-    }
     try {
         $conn = createConnexion();  
         $sqlbp = "SELECT * FROM bonnespratique WHERE utilisation_bp = 0";
@@ -16,6 +11,11 @@
         $bps = $resultbp->fetchAll(); 
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();        // Displays an error message in case of connection failure
+    }
+    if ($_SESSION['acces_ut'] != 15) {
+        // Si l'utilisateur n'a pas le niveau d'accès requis, redirigez-le vers une autre page
+        header('Location: ../utilisateur/utilisateur.php');
+        exit();
     }
  ?>
 
@@ -81,10 +81,18 @@
             <form action="bp_sup.php" method="post">
                 <div>
                     <select name="num_bp" id="num_bp">
-                        <?php foreach ($bps as $bp) { ?>
-                            <option value="<?php echo $bp['num_bp']; ?>"><?php echo $bp['nom_bp']; ?></option>
-                        <?php } ?>
+                        <?php if (count($bps) > 0) : ?>
+                            <?php foreach ($bps as $bp) : ?>
+                                <option value="<?= $bp["num_bp"] ?>"><?= $bp["test_bp"] ?></option>
+                            <?php endforeach; ?>
+                        <?php endif ?>
                     </select>
+                </div>
+                <div>
+                    <input type="radio" name="demo2" class="demo2 demoyes" id="demo2-a" checked>
+                    <label for="demo2-a">Oui</label>
+                    <input type="radio" name="demo2" class="demo2 demono" id="demo2-b" >
+                    <label for="demo2-b">Non</label>
                 </div>
                 <div class="valider">
                     <button type="submit" class="button-valider">VALIDER</button>

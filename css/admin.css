@@ -47,3 +47,7 @@ body {
     text-align: center;   /* Text alignment */
     height: 100%;    /* Full height */
 }
+
+.text-place{
+    border-radius: 15%;
+}

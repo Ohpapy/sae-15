@@ -35,11 +35,11 @@
                     Ajouter un utilisateur 
                 </h2>
                 <h3>Nom</h3>
-                <input type="text" name="nom_ut" id="nom_ut" required>
+                <input type="text" name="nom_ut" id="nom_ut" required class="text-place">
                 <h3>Identifiant: </h3>
-                <input type="text" name="login_ut">
+                <input type="text" name="login_ut" class="text-place">
                 <h3>Mot de passe</h3>
-                <input type="text" name="mdp_ut" id="mdp_ut" required>
+                <input type="text" name="mdp_ut" id="mdp_ut" required class="text-place">
                 <h4>Privilège</h4>
                 <select name="acces_ut" id="acces_ut" required> 
                     <option value="1">Utilisateur</option>
@@ -56,9 +56,9 @@
                     Modifier mot de passe
                 </h2>
                 <h3>Identifiant </h3>
-                <input type="text" name="login_ut">
+                <input type="text" name="login_ut" class="text-place">
                 <h3>Mot de passe</h3>
-                <input type="text" name="mdp_ut" id="mdp_ut" required>
+                <input type="text" name="mdp_ut" id="mdp_ut" required class="text-place">
                 <div class="valider">
                     <button type="submit" class="button-valider">VALIDER</button>
                 </div>
@@ -69,7 +69,7 @@
             <form action="prog_creation.php" method="post">
                 <div>
                     <label for="nom_prog">Nom du programme:</label>
-                    <input type="text" id="nom_prog" name="nom_prog" required>
+                    <input type="text" id="nom_prog" name="nom_prog" required class="text-place">
                 </div>
                 <div class="valider">
                     <button type="submit" class="button-valider">VALIDER</button>

@@ -277,23 +277,20 @@ h1 {
 /* Styles for valider section */
 .valider {
     display: flex;
-    justify-content: flex-end;
-}
-
-/* Styles for button-valider */
-.button-valider {
-    margin-bottom: 0%;
-    background-color: #00be00;
-    color: rgb(0, 0, 0);
-    text-align: right;
-    text-decoration: none;
-    text-align: center;
-    height: 100%;
     padding: 10px;
-    width: 10%;
-    box-sizing: border-box;
+    flex-direction: row-reverse; /* Espacement entre les boutons et le bord du conteneur */
 }
 
+.button-pdf,
+.button-excel {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    margin-left: 10px;
+    background-color: #4CAF50;
+}
 /* Styles for button-filtre */
 .button-filtre {
     background-color: #6b6b6b;

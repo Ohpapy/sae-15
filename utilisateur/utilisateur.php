@@ -224,7 +224,8 @@
         </div>
         <!-- Button for validation -->
         <div class="valider">
-            <button class="button-valider"><H2>valider</H2></button>
+            <button class="button-pdf"><H2>PDF</H2></button>
+            <button class="button-excel"><H2>EXCEL</H2></button>
             
         </div>
     </div>

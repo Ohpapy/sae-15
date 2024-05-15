@@ -32,11 +32,11 @@
         <div class="box">
             <form action="user_creation.php" method="post">
                 <h2>
-                    Ajouter un utilisateur :
+                    Ajouter un utilisateur 
                 </h2>
                 <h3>Nom</h3>
                 <input type="text" name="nom_ut" id="nom_ut" required>
-                <h3>Identifient </h3>
+                <h3>Identifiant: </h3>
                 <input type="text" name="login_ut">
                 <h3>Mot de passe</h3>
                 <input type="text" name="mdp_ut" id="mdp_ut" required>
@@ -55,7 +55,7 @@
                 <h2>
                     Modifier mot de passe
                 </h2>
-                <h3>Identifient </h3>
+                <h3>Identifiant </h3>
                 <input type="text" name="login_ut">
                 <h3>Mot de passe</h3>
                 <input type="text" name="mdp_ut" id="mdp_ut" required>

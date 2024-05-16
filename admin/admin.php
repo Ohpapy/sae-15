@@ -83,7 +83,7 @@
                 <div>
                     <p>Attention si vous supprimer un programme toute les bonnes pratique assosier le seront aussi</p>
                     <div>
-                        <select name="num_bp" id="num_bp">
+                        <select name="num_prog" id="num_prog">
                             <?php if (count($progs) > 0) : ?>
                                 <?php foreach ($progs as $prog) : ?>
                                     <option value="<?= $prog["num_prog"] ?>"><?= $prog["nom_prog"] ?></option>
@@ -92,7 +92,7 @@
                         </select>
                     </div>
                     <h4>Supprimer</h4>
-                    <input type="checkbox" name="delete" id="delete">
+                    <input type="checkbox" name="delete" id="delete" checked>
                     <label for="delete">Oui</label>
                 </div>
                 <div class="valider">

@@ -9,6 +9,10 @@
         $resultbp = $conn->prepare($sqlbp);
         $resultbp->execute();
         $bps = $resultbp->fetchAll(); 
+        $sqlprog = "SELECT * FROM programme";
+        $resultprog = $conn->prepare($sqlprog);
+        $resultprog->execute();
+        $progs = $resultprog->fetchAll();
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();        // Displays an error message in case of connection failure
     }
@@ -75,6 +79,26 @@
                     <button type="submit" class="button-valider">VALIDER</button>
                 </div>
             </form>
+            <form action="prog_supp.php" method="post">
+                <div>
+                    <p>Attention si vous supprimer un programme toute les bonnes pratique assosier le seront aussi</p>
+                    <div>
+                        <select name="num_bp" id="num_bp">
+                            <?php if (count($progs) > 0) : ?>
+                                <?php foreach ($progs as $prog) : ?>
+                                    <option value="<?= $prog["num_prog"] ?>"><?= $prog["nom_prog"] ?></option>
+                                <?php endforeach; ?>
+                            <?php endif ?>
+                        </select>
+                    </div>
+                    <h4>Supprimer</h4>
+                    <input type="checkbox" name="delete" id="delete">
+                    <label for="delete">Oui</label>
+                </div>
+                <div class="valider">
+                    <button type="submit" class="button-valider">VALIDER</button>
+                </div>
+            </form>
         </div>
         <div class="box">
             <h2>Supprimer Bonne Pratique</h2>
@@ -89,10 +113,9 @@
                     </select>
                 </div>
                 <div>
-                    <input type="radio" name="demo2" class="demo2 demoyes" id="demo2-a" checked>
-                    <label for="demo2-a">Oui</label>
-                    <input type="radio" name="demo2" class="demo2 demono" id="demo2-b" >
-                    <label for="demo2-b">Non</label>
+                    <h4>Supprimer</h4>
+                    <input type="checkbox" name="delete" id="delete">
+                    <label for="delete">Oui</label>
                 </div>
                 <div class="valider">
                     <button type="submit" class="button-valider">VALIDER</button>

@@ -14,7 +14,7 @@
             $stmtbp = $conn->prepare($sqlbp);
             $stmtbp->execute([$_POST['nom_prog']]);
             $num_bp = $conn->lastInsertId();    // Retrieves the ID of the last insertion
-            header('Location: ../admin/admin.php');     // Redirects after successful operation
+            header('Location: ../admin/admin.php');     // Redirects after successful operation         
         }
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();        // Displays an error message in case of connection failure

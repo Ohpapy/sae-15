@@ -1,7 +1,7 @@
 <?php
-    // Démarrez la session au début de votre fichier
+    // Start the session at the beginning of your file
     session_start(); 
-    // Ensuite, sur la page admin, vous pouvez vérifier cette variable de session avant d'afficher le contenu
+    // Then, on the admin page, you can check this session variable before displaying the content
     include_once('../outils/bd.php');
     try {
         $conn = createConnexion();  
@@ -14,10 +14,10 @@
         $resultprog->execute();
         $progs = $resultprog->fetchAll();
     } catch(PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();        // Displays an error message in case of connection failure
+        echo "Connection failed: " . $e->getMessage();   // Displays an error message in case of connection failure
     }
     if ($_SESSION['acces_ut'] != 15) {
-        // Si l'utilisateur n'a pas le niveau d'accès requis, redirigez-le vers une autre page
+        // If the user does not have the required access level, redirect them to another page
         header('Location: ../utilisateur/utilisateur.php');
         exit();
     }

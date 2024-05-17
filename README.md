@@ -13,8 +13,8 @@ Dupliquer le fichier "outils/config.dist.php" et le nommer "config.php" et rempl
 
 ## Nom
 
-Ohpapy = Mathis Boschian
-mohaesh = Mohamed Droussi
-matrt06 = Mathieu Borghi
-M4tRiX987 = Maxime Robbe
-Mamoudou DJIGO = Mamoudou Djigo
+Ohpapy = Mathis Boschian        ||
+mohaesh = Mohamed Droussi       ||
+matrt06 = Mathieu Borghi        ||
+M4tRiX987 = Maxime Robbe        ||
+Mamoudou DJIGO = Mamoudou Djigo         ||

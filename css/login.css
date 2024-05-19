@@ -46,26 +46,26 @@ input[type="password"] {
 .button-connection {
     background-color: #ffffff;    /* Background color */
     color: rgb(0, 0, 0);     /* Text color */
-    text-decoration: none;    /* Text decoration */
-    width: 80%;     /* Width */
-    text-align: center;     /* Text alignment */
-    height: 10%;     /* Height */
+    text-decoration: none;  
+    width: 80%;  
+    text-align: center;  
+    height: 10%;     
 }
 
 /* Connection section styles */
 .connection {
-    margin-top: 5%;    /* Margin from the top */
+    margin-top: 5%;  
 }
 
 /* Scrollbar styles */
 ::-webkit-scrollbar {
-    width: 10px;     /* Scrollbar width */
+    width: 10px;     
 }
 
 ::-webkit-scrollbar-track {
-    background-color: black;      /* Scrollbar track background color */
+    background-color: black;   
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #424242;    /* Scrollbar thumb background color */
+    background-color: #424242;    
 }

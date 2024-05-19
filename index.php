@@ -67,12 +67,12 @@
 ?>
 
 <?php
-#$month = "[" .date("d")."/". date("m")."/". date("Y")."]"; #variable qui nous affiche la date à laquelle on s'est connecté
-#$hour = "[" .date("H").":". date("i").":". date("s")."]"; #variable qui nous affiche l'heure à laquelle on s'est connecté
-#$url = $_SERVER['REMOTE_ADDR']."connect to" .$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']; #Nous affiche qui s'est connecté à notre site, à quelle heure et quand 
-#$fp = fopen("log.txt", "a"); #On ouvre le fichier log.txt en mode ajout
-#fputs($fp, $month." ".$hour." ".$url."\n"); #On écrit dans le fichier log.txt
-#fclose($fp); #On ferme le fichier log.txt
+#$month = "[" .date("d")."/". date("m")."/". date("Y")."]"; #variable which shows us the date on which we logged in
+#$hour = "[" .date("H").":". date("i").":". date("s")."]"; #variable which shows us the time at which we logged on
+#$url = $_SERVER['REMOTE_ADDR']."connect to" .$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']; #Shows who logged on to our site, at what time and when 
+#$fp = fopen("log.txt", "a"); #Open the log.txt file in add mode
+#fputs($fp, $month." ".$hour." ".$url."\n"); #We write to the log.txt file
+#fclose($fp); #Close the log.txt file
 ?>
 
 <!DOCTYPE html>

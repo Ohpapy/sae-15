@@ -279,7 +279,7 @@
                 console.log(numBpSelected);
             });
         });
-
+        
     </script>
 </body>
 </html>

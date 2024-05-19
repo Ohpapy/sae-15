@@ -13,15 +13,15 @@
 
 /* Body styles */
 body {
-    background-color: #424242;    /* Background color */
-    font-family: 'Roboto', sans-serif;   /* Font family */
+    background-color: #424242;    
+    font-family: 'Roboto', sans-serif;   
     margin: 0;
     padding: 0;
     justify-content: center;
     align-items: center;
-    height: 100vh;      /* Full height */
-    overflow-x: hidden;   /* Hide horizontal overflow */
-    max-width: 100%;    /* Maximum width */
+    height: 100vh;      
+    overflow-x: hidden;  
+    max-width: 100%;  
 }
 
 /* Main container styles */
@@ -29,52 +29,52 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;      /* Full height */
+    height: 100vh;     
     max-width: 100%;
 }
 
 /* Left panel styles */
 .left {
-    background-color: rgb(173, 173, 173);   /* Background color */
-    border-radius: 15px;    /* Border radius */
+    background-color: rgb(173, 173, 173);   
+    border-radius: 15px;   
     padding: 10px;
-    height: 80vh;       /* 80% of the viewport height */
-    width: 20%;         /* 20% of the viewport width */
+    height: 80vh;      
+    width: 20%;        
     margin-left: 15px;
-    margin-right: 15%;  /* Margin */
-    align-items: center;     /* Align items */
+    margin-right: 15%;  
+    align-items: center;     
 }
 
 /* Center panel styles */
 .center {
-    background-color: rgb(173, 173, 173);   /* Background color */
-    border-radius: 15px;    /* Border radius */
+    background-color: rgb(173, 173, 173);   
+    border-radius: 15px;   
     padding: 10px;
-    height: 80vh;   /* 80% of the viewport height */
-    width: 33%;     /* 33% of the viewport width */
+    height: 80vh;   
+    width: 33%;     
     display: flex;
-    flex-direction: column;     /* Flex direction */
-    justify-content: space-between;      /* Space between content */
+    flex-direction: column;    
+    justify-content: space-between;      
 }
 
 /* Right panel styles */
 .right {
-    background-color: rgb(173, 173, 173);    /* Background color */
-    border-radius: 15px;   /* Border radius */
+    background-color: rgb(173, 173, 173);   
+    border-radius: 15px;  
     padding: 10px;
-    height: 80vh;   /* 80% of the viewport height */
-    width: 20%;     /* 20% of the viewport width */
+    height: 80vh;   
+    width: 20%;     
     margin-right: 15px;
-    margin-left: 10%;   /* Margin */
+    margin-left: 10%;   
 }
 
 /* Button styles */
 .button-valider {
-    background-color: #00be00;   /* Background color */
-    color: rgb(0, 0, 0);      /* Text color */
-    text-align: right;      /* Text alignment */
-    text-decoration: none;    /* Text decoration */
-    width: 100%;    /* Full width */
-    text-align: center;   /* Text alignment */
-    height: 100%;    /* Full height */
+    background-color: #00be00; 
+    color: rgb(0, 0, 0);      
+    text-align: right;      
+    text-decoration: none;  
+    width: 100%;    
+    text-align: center;  
+    height: 100%;    
 }

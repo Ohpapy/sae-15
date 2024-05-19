@@ -203,7 +203,7 @@
                     <div class='bonne-pratique'>
                         <div class='info-container'>
                             <div class="checkbox">
-                                <input type="checkbox" name="select" value="<?= $bp["num_bp"] ?>">
+                                <input type="checkbox" name="select" value="<?= $bp["num_bp"] ?>" checked>
                             </div>
                             <p>Bonne Pratique: <?= $bp["test_bp"] ?></p>
                             <p>Programme: <?= $bp["nom_prog"] ?></p>

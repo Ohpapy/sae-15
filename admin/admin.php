@@ -127,6 +127,7 @@
             <form method="post" action="logs.php">
                 <button type="submit" class="button-valider">Générer Logs</button>
             </form>
+            Voir les logs: <a href="logs.php">ici</a>
         </div>
     </div>
 </body>

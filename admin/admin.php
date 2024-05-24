@@ -129,6 +129,7 @@
             </form>
             Voir les logs: <a href="logs.php">ici</a>
         </div>
+        <a href="../utilisateur/utilisateur.php">Retour</a>
     </div>
 </body>
 </html>

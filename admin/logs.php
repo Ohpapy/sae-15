@@ -27,9 +27,7 @@
         <div class="BP">
             <h2>Logs</h2>
         </div>
-        <div class="back">
-    <button class="back-button" onclick="history.back()">Revenir</button>
-        </div>
+        <a href="../utilisateur/utilisateur.php">Retour</a>
     </div>
 </body>
 </html>

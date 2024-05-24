@@ -1,11 +1,11 @@
 <?php
     include_once('../outils/bd.php');
     try {
-        $conn = createConnexion();  
+        $conn = createConnection();  
         if (isset($_POST['delete'])){
             // Delete the corresponding rows from 'bp_motcles' first
-            $sqlDeleteMotCles = "DELETE FROM bp_motcles WHERE num_bp = ?";
-            $stmtDeleteMotCles = $conn->prepare($sqlDeleteMotCles);
+            $sqlDeleteKeywords = "DELETE FROM bp_motcles WHERE num_bp = ?";
+            $stmtDeleteMotCles = $conn->prepare($sqlDeleteKeywords);
             $stmtDeleteMotCles->execute([$_POST['num_bp']]);
             
             // Then delete the corresponding rows from 'appartenance'

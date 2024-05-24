@@ -77,6 +77,7 @@
                     <button type="submit" class="button-valider">VALIDER</button>
                 </div>
             </form>
+            <a href="../utilisateur/utilisateur.php">Retour</a> 
         </div>
         <div class="right">
             <h2>

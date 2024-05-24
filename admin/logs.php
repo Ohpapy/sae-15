@@ -25,8 +25,9 @@
 <body>
     <div class="container">
         <div class="BP">
-
+            <h2>Logs</h2>
         </div>
+        <a href="../utilisateur/utilisateur.php">Retour</a>
     </div>
 </body>
 </html>

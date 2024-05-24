@@ -4,7 +4,7 @@
     
     try {
         // Create database connection
-        $conn = createConnexion();
+        $conn = createConnection();
     } catch(PDOException $e) {
         // Display error message if connection fails
         echo "Connection failed: " . $e->getMessage();

@@ -2,7 +2,7 @@
     include_once('../outils/bd.php');       // Includes the database connection file
 
     try {
-        $conn = createConnexion();          // Creates a connection to the database
+        $conn = createConnection();          // Creates a connection to the database
         $password = password_hash($_POST['mdp_ut'], PASSWORD_DEFAULT);    // Hashes the password
         // Inserting a new best practice into the 'bonnespratique' table
         $sqluser = "UPDATE utilisateur SET mdp_ut = ? WHERE login_ut = ?";  

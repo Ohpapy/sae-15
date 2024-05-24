@@ -2,7 +2,7 @@
     include_once('../outils/bd.php');       // Includes the database connection file
 
     try {
-        $conn = createConnexion();          // Creates a connection to the database 
+        $conn = createConnection();          // Creates a connection to the database 
 
         // Fetch all programs
         $sqlProg = "SELECT * FROM programme";

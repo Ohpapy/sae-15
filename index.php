@@ -9,7 +9,7 @@
     include_once('./outils/bd.php');
     try {
         // Create database connection
-        $bd = createConnexion();
+        $bd = createConnection();
 
         // Check if the form is submitted
         if ($_SERVER["REQUEST_METHOD"] == "POST") {

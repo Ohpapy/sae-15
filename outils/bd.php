@@ -1,6 +1,6 @@
 <?php
     // Function to create database connection
-    function createConnexion() {
+    function createConnection() {
         // Include database configuration
         include_once('config.php');
         try {

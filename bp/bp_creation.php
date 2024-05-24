@@ -2,7 +2,7 @@
     include_once('../outils/bd.php');       // Includes the database connection file
 
     try {
-        $conn = createConnexion();          // Creates a connection to the database
+        $conn = createConnection();          // Creates a connection to the database
 
         // Inserting a new best practice into the 'bonnespratique' table
         $sqlbp = "INSERT INTO bonnespratique (test_bp) VALUES (?)";  

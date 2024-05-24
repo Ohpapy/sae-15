@@ -4,7 +4,7 @@
     
     try {
         // Create database connection
-        $conn = createConnexion();
+        $conn = createConnection();
 
         // Select all records from bonnespratique table
         $sql = "SELECT * FROM bonnespratique";

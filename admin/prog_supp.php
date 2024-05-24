@@ -1,7 +1,7 @@
 <?php
     include_once('../outils/bd.php');       // Includes the database connection file
     try {
-        $conn = createConnexion();          // Creates a connection to the database
+        $conn = createConnection();          // Creates a connection to the database
         $sqlGetprog = "SELECT * FROM programme";
         $stmt = $conn->prepare($sqlGetprog);
         $stmt->execute();

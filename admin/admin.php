@@ -4,7 +4,7 @@
     // Then, on the admin page, you can check this session variable before displaying the content
     include_once('../outils/bd.php');
     try {
-        $conn = createConnexion();  
+        $conn = createConnection();  
         $sqlbp = "SELECT * FROM bonnespratique WHERE utilisation_bp = 0";
         $resultbp = $conn->prepare($sqlbp);
         $resultbp->execute();

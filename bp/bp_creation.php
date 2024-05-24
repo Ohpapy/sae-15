@@ -15,20 +15,20 @@
         $stmtapp = $conn->prepare($sqlapp);
         $stmtapp->execute([$_POST['programme'], $_POST['phase'], $num_bp]);
 
-        $motcles = explode(";", $_POST['motcles']);     // Splits the keywords by ';'
+        $keywords = explode(";", $_POST['motcles']);     // Splits the keywords by ';'
 
         // Creating keywords and joining keywords in the 'motcles' and 'bp_motcles' tables
-        foreach ($motcles as $motcle) {
+        foreach ($keywords as $keyword) {
             $sqlselectmc = "SELECT * FROM motcles WHERE mot = ?";
             $stmtselectmc = $conn->prepare($sqlselectmc);
-            $stmtselectmc->execute([trim($motcle)]);        // Searches if the keyword already exists
+            $stmtselectmc->execute([trim($keyword)]);        // Searches if the keyword already exists
             $existemc = $stmtselectmc->fetch();
             $num_cle = $existemc['num_cles'];           // Retrieves the ID of the existing keyword
 
             if (!$existemc) {              // If the keyword doesn't exist, inserts it into the 'motcles' table
                 $sqlmc = "INSERT INTO motcles (mot) VALUES (?)";
                 $stmtmc = $conn->prepare($sqlmc);
-                $stmtmc->execute([trim($motcle)]);
+                $stmtmc->execute([trim($keyword)]);
                 $num_cle = $conn->lastInsertId();       // Retrieves the ID of the new keyword
             }
 

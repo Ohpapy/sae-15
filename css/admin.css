@@ -51,3 +51,23 @@ body {
 .text-place{
     border-radius: 15%;
 }
+
+.my-link {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #333;
+    color: green;
+    width: 300px; /* ajustez la largeur selon vos besoins */
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.my-link a {
+    color: green;
+    text-decoration: none;
+}
+
+.my-link a:hover {
+    text-decoration: underline;
+}

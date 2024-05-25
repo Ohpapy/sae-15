@@ -27,7 +27,7 @@
         <div class="BP">
             <h2>Logs</h2>
         </div>
-        <a href="../utilisateur/utilisateur.php">Retour</a>
+        <a href="../admin/admin.php" class="logs-container">Retour</a>
     </div>
 </body>
 </html>

@@ -125,11 +125,11 @@
         <div class="box">
             <h2>Télécharger Logs</h2>
             <form method="post" action="logs.php">
-                <button type="submit" class="button-valider">Générer Logs</button>
+                <button type="submit" class="button-valider">Voir Logs</button>
             </form>
-            Voir les logs: <a href="logs.php">ici</a>
         </div>
-        <a href="../utilisateur/utilisateur.php">Retour</a>
-    </div>
+        <a href="../utilisateur/utilisateur.php">Accueil</a>
+        </div>
+    
 </body>
 </html>

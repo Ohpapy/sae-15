@@ -28,12 +28,12 @@
             <h2>Logs</h2>
             <?php
                 date_default_timezone_set('Europe/Paris');
-                $adresseIP = $_SERVER['REMOTE_ADDR'];
-                $adresseIPv4 = inet_ntop(inet_pton($adresseIP));
-                $heureActivite = date('Y-m-d H:i:s');
-                $action = "Utilisateur connecté";
-                $messageLog = "Adresse IP : $adresseIP - Heure d'activité : $heureActivite - Action : $action\n";
-                echo($messageLog);  
+                $adresseIP = $_SERVER['REMOTE_ADDR']; // Get the IP address of the user
+                $adresseIPv4 = inet_ntop(inet_pton($adresseIP)); // Convert an IPv6 address to an IPv4 address
+                $heureActivite = date('Y-m-d H:i:s'); // Get the date and time of the user's activity
+                $action = "Utilisateur connecté"; // Action performed by the user
+                $messageLog = "Adresse IP : $adresseIP - Heure d'activité : $heureActivite - Action : $action\n";// Log message
+                echo($messageLog); // Display log message
             ?>
         </div>
         <a href="../admin/admin.php" class="logs-container">Retour</a>

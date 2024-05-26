@@ -26,6 +26,15 @@
     <div class="container">
         <div class="BP">
             <h2>Logs</h2>
+            <?php
+                date_default_timezone_set('Europe/Paris');
+                $adresseIP = $_SERVER['REMOTE_ADDR'];
+                $adresseIPv4 = inet_ntop(inet_pton($adresseIP));
+                $heureActivite = date('Y-m-d H:i:s');
+                $action = "Utilisateur connecté";
+                $messageLog = "Adresse IP : $adresseIP - Heure d'activité : $heureActivite - Action : $action\n";
+                echo($messageLog);  
+            ?>
         </div>
         <a href="../admin/admin.php" class="logs-container">Retour</a>
     </div>

@@ -67,6 +67,19 @@
                     <button type="submit" class="button-valider">VALIDER</button>
                 </div>
             </form>
+            <br>
+            <br>
+            <br>
+            <form action="unlock.php" method="post">
+                <h2>
+                    Débloquer un utilisateur
+                </h2>
+                <h3>Identifiant </h3>
+                <input type="text" name="login_ut" class="text-place">
+                <div class="valider">
+                    <button type="submit" class="button-valider">Débloqué</button>
+                </div>
+            </form>
         </div>
         <div class="box">
             <h2>Ajouter des programmes</h2>
@@ -128,7 +141,7 @@
                 <button type="submit" class="button-valider">Voir Logs</button>
             </form>
         </div>
-        <a href="../utilisateur/utilisateur.php">Accueil</a>
+            <a href="../utilisateur/utilisateur.php">Accueil</a>
         </div>
     
 </body>

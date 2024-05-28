@@ -27,10 +27,11 @@
                 // Verify password
                 if (!password_verify($mdp, $user['mdp_ut'])) {
                     // Display error message for wrong credentials
-                    echo 'Mauvais identifiant ou mot de passe !';
+                    echo 'Mauvais identifiant ou mot de passe ! Vous serez redirigé dans 3 secondes.';
+                    header('Refresh: 3; URL=./index.php');
 
                     // Increment login attempts and update database
-                    sleep(2);
+                    sleep(1);
                     $tentative = $user['tentative_ut'] + 1;
                     $sqltentative = $bd->prepare('UPDATE utilisateur SET tentative_ut = :tentative WHERE login_ut = :login');
                     $sqltentative->execute(array('tentative' => $tentative, 'login' => $login));
@@ -53,6 +54,11 @@
                     $sqlclean = $bd->prepare('UPDATE utilisateur SET tentative_ut = 0 WHERE login_ut = :login');
                     $sqlclean->execute(array('login' => $login));
                 }
+            }
+            else {
+                // Display error message for blocked account
+                echo 'Compte bloqué ! Vous serez redirigé dans 3 secondes.';
+                header('Refresh: 3; URL=./index.php');
             }
 
             // Close database connection and exit

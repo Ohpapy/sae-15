@@ -1,6 +1,6 @@
 <?php
     include_once('../outils/bd.php');       // Includes the database connection file
-
+    include('../outils/log.php');
     try {
         $conn = createConnection();          // Creates a connection to the database
         $password = password_hash($_POST['mdp_ut'], PASSWORD_DEFAULT);    // Hashes the password
@@ -9,6 +9,8 @@
         $stmtbp = $conn->prepare($sqluser);
         $stmtbp->execute([$password, $_POST['login_ut']]);
         $num_bp = $conn->lastInsertId();    // Retrieves the ID of the last insertion
+        $mess ='Un utilisateur a été mis à jour avec ce login: ' . $_POST['login_ut'];
+        logMessage($conn, $mess, 'MISE À JOUR UTILISATEUR');
         header('Location: ../admin/admin.php');     // Redirects after successful operation
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();        // Displays an error message in case of connection failure

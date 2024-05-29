@@ -1,5 +1,6 @@
 <?php
     include_once('../outils/bd.php');       // Includes the database connection file
+    include('../outils/log.php');
 
     try {
         $conn = createConnection();          // Creates a connection to the database
@@ -9,6 +10,8 @@
         $stmtbp = $conn->prepare($sqluser);
         $stmtbp->execute([$_POST['login_ut'], $_POST['nom_ut'], $password, $_POST['acces_ut']]);
         $num_bp = $conn->lastInsertId();    // Retrieves the ID of the last insertion
+        $mess ='Un nouvel utilisateur a été créé avec cet ID: ' . $num_bp. ' son login est: ' . $_POST['login_ut'];
+        logMessage($conn, $mess, 'CRÉATION UTILISATEUR');
         header('Location: ../admin/admin.php');     // Redirects after successful operation
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();        // Displays an error message in case of connection failure

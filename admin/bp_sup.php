@@ -1,5 +1,6 @@
 <?php
     include_once('../outils/bd.php');
+    include('../outils/log.php'); 
     try {
         $conn = createConnection();  
         if (isset($_POST['delete'])){
@@ -18,12 +19,16 @@
             $stmtsupp = $conn->prepare($sqlsupp);
             $stmtsupp->execute([$_POST['num_bp']]);
             
+            $mess ='Une bp a été supprimée avec cet ID: ' . $_POST['num_bp'];
+            logMessage($conn, $mess, 'SUPPRESSION BP');
             header('Location: ../admin/admin.php');
         }
         else {
             $sqlUpdateBP = "UPDATE bonnespratique SET utilisation_bp = 1 WHERE num_bp = ?";
             $stmtUpdateBP = $conn->prepare($sqlUpdateBP);
             $stmtUpdateBP->execute([$_POST['num_bp']]);
+            $mess ='Une bp a été remise en utilisation avec cet ID: ' . $_POST['num_bp'];
+            logMessage($conn, $mess, 'REMISE EN UTILISATION BP');
             header('Location: ../admin/admin.php');
         }   
     } catch(PDOException $e) {

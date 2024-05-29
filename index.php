@@ -7,6 +7,7 @@
 
     // Include database connection
     include_once('./outils/bd.php');
+    include('../outils/log.php');
     try {
         // Create database connection
         $bd = createConnection();
@@ -48,6 +49,8 @@
                     $_SESSION['id'] = $resultat['id'];
                     $_SESSION['login'] = $login;
                     $_SESSION['acces_ut'] = $user['acces_ut'];
+                    $mess = 'Un utilisateur a été connecté avec ce login: ' . $login . ' à ce moment: ' . date("d/m/Y H:i:s");
+                    logMessage($conn, $mess, 'CONNEXION UTILISATEUR');
                     header('Location: ./utilisateur/utilisateur.php');
 
                     // Reset login attempts in the database

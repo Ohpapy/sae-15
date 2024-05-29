@@ -1,5 +1,6 @@
 <?php
     include_once('../outils/bd.php');       // Includes the database connection file
+    include('../outils/log.php');
     try {
         $conn = createConnection();          // Creates a connection to the database
         $sqlGetprog = "SELECT * FROM programme";
@@ -16,6 +17,8 @@
             $sqlDelete = "DELETE FROM programme WHERE num_prog = ?";
             $stmt = $conn->prepare($sqlDelete);
             $stmt->execute([$_POST['num_prog']]);
+            $mess ='Un programme a été supprimé son nom est: ' . $_POST['nom_prog'];
+            logMessage($conn, $mess, 'SUPPRESION PROGRAMME');
             header('Location: ../admin/admin.php');
         }
     } catch(PDOException $e) {

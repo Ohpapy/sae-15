@@ -1,5 +1,6 @@
 <?php
-    include_once('../outils/bd.php');       // Includes the database connection file
+    include('../outils/bd.php');       // Includes the database connection file
+    include('../outils/log.php');      // Includes the log file
     try {
         $conn = createConnection();          // Creates a connection to the database
         $sqlGetprog = "SELECT nom_prog FROM programme";
@@ -14,6 +15,8 @@
             $stmtbp = $conn->prepare($sqlbp);
             $stmtbp->execute([$_POST['nom_prog']]);
             $num_bp = $conn->lastInsertId();    // Retrieves the ID of the last insertion
+            $mess ='Un nouveau programme a été créée avec cet ID: ' . $num_bp. ' son nom est: ' . $_POST['nom_prog'];
+            logMessage($conn, $mess, 'CRÉATION PROGRAMME');
             header('Location: ../admin/admin.php');     // Redirects after successful operation         
         }
     } catch(PDOException $e) {

@@ -29,7 +29,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90VH;     
+    height: 90vh;     
     max-width: 100%;
 }
 
@@ -89,7 +89,6 @@ body {
 
 }
 .home {
-    background-color: ;
     color: white;
     text-align: center;
     text-decoration: none;

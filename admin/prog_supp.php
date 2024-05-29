@@ -17,7 +17,7 @@
             $sqlDelete = "DELETE FROM programme WHERE num_prog = ?";
             $stmt = $conn->prepare($sqlDelete);
             $stmt->execute([$_POST['num_prog']]);
-            $mess ='Un programme a été supprimé son nom est: ' . $_POST['nom_prog'];
+            $mess ='Un programme a été supprimé son num est: ' . $_POST['num_prog'];
             logMessage($conn, $mess, 'SUPPRESION PROGRAMME');
             header('Location: ../admin/admin.php');
         }

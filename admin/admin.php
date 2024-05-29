@@ -136,7 +136,7 @@
                 </form>
             </div>
             <div class="box">
-                <h2>Télécharger Logs</h2>
+                <h2>Voir les logs</h2>
                 <form method="post" action="logs.php">
                     <button type="submit" class="button-valider">Voir Logs</button>
                 </form>

@@ -1,6 +1,9 @@
 <?php
     // Start the session at the beginning of your file
     session_start(); 
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
     // Then, on the admin page, you can check this session variable before displaying the content
     include_once('../outils/bd.php');
     try {
@@ -20,6 +23,12 @@
         // If the user does not have the required access level, redirect them to another page
         header('Location: ../utilisateur/utilisateur.php');
         exit();
+    }
+    if (isset($_POST['suprimerlogs'])) { 
+        $sqldeletelog = "DELETE FROM logs;";
+        $stmtlogs = $conn->prepare($sqldeletelog);
+        $stmtlogs->execute();
+        header('Location: admin.php');
     }
  ?>
 
@@ -151,6 +160,12 @@
                 <h2>Voir les logs</h2>
                 <form method="post" action="logs.php">
                     <button type="submit" class="button-valider">Voir Logs</button>
+                </form>
+                <br>
+                <br>
+                <br>
+                <form action="" method="post">
+                    <input type="submit" name="suprimerlogs" value="supprimerlog" class="button-valider">
                 </form>
             </div>
         </div>

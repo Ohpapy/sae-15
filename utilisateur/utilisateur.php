@@ -1,6 +1,7 @@
 <?php 
     // Include database connection script
     include_once('../outils/bd.php');
+    include_once('../outils/log.php');
     
     try {
         // Create database connection
@@ -63,7 +64,9 @@
     error_reporting(E_ALL);
 
     // Handle logout
-    if (isset($_POST['deconnexion'])) {
+    if (isset($_POST['deconnexion'])) { 
+        $mess ='Déconnexion de ' . $_SESSION['nom_ut'];
+        logMessage($conn, $mess, 'SUPPRESSION UTILISATEUR');
         include_once('../outils/logout.php');
     }
 

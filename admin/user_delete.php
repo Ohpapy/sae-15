@@ -6,12 +6,12 @@
         $conn = createConnection();          // Creates a connection to the database
         $password = password_hash($_POST['mdp_ut'], PASSWORD_DEFAULT);    // Hashes the password
         // Inserting a new best practice into the 'bonnespratique' table
-        $sqluser = "INSERT INTO utilisateur (login_ut, nom_ut, mdp_ut, acces_ut, bloque_ut, tentative_ut, presence_ut) VALUES (?,?,?,?,0,0,0)";  
+        $sqluser = "DELETE FROM utilisateur WHERE login_ut = ?";  
         $stmtuser = $conn->prepare($sqluser);
-        $stmtuser->execute([$_POST['login_ut'], $_POST['nom_ut'], $password, $_POST['acces_ut']]);
+        $stmtuser->execute([$_POST['login_ut']]);
         $num_user = $conn->lastInsertId();    // Retrieves the ID of the last insertion
-        $mess ='Un nouvel utilisateur a été créé avec cet ID: ' . $num_user. ' son login est: ' . $_POST['login_ut'];
-        logMessage($conn, $mess, 'CRÉATION UTILISATEUR');
+        $mess ='Un utilisateur a été supprimé avec cet ID: ' . $num_user. ' son login était: ' . $_POST['login_ut'];
+        logMessage($conn, $mess, 'SUPPRESSION UTILISATEUR');
         header('Location: ../admin/admin.php');     // Redirects after successful operation
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();        // Displays an error message in case of connection failure

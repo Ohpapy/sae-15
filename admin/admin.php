@@ -53,6 +53,18 @@
                         <button type="submit" class="button-valider">VALIDER</button>
                     </div>
                 </form>
+                <br>
+                <br>
+                <form action="user_delete.php" method="post">
+                    <h2>
+                        Supprimer un utilisateur 
+                    </h2>
+                    <h3>Identifiant: </h3>
+                    <input type="text" name="login_ut" class="text-place">
+                    <div class="valider">
+                        <button type="submit" class="button-valider">VALIDER</button>
+                    </div>
+                </form>
             </div>
             <div class="box">
                 <form action="user_update.php" method="post">

@@ -48,6 +48,7 @@
                     $_SESSION['id'] = $resultat['id'];
                     $_SESSION['login'] = $login;
                     $_SESSION['acces_ut'] = $user['acces_ut'];
+                    $_SESSION['nom_ut'] = $user['nom_ut'];
                     header('Location: ./utilisateur/utilisateur.php');
 
                     // Reset login attempts in the database

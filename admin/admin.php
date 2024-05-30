@@ -113,9 +113,12 @@
                         <button type="submit" class="button-valider">VALIDER</button>
                     </div>
                 </form>
+                <br>
+                <br>
+                <br>
                 <form action="prog_supp.php" method="post">
                     <div>
-                        <p>Attention si vous supprimer un programme toute les bonnes pratique assosier le seront aussi</p>
+                        <label for="nom_prog">Supprimer un programme:</label>
                         <div>
                             <select name="num_prog" id="num_prog">
                                 <?php if (count($progs) > 0) : ?>
@@ -132,6 +135,7 @@
                     <div class="valider">
                         <button type="submit" class="button-valider">VALIDER</button>
                     </div>
+                    <p>Attention si vous supprimer un programme toute les bonnes pratique assosier le seront aussi</p>
                 </form>
             </div>
             <div class="box">
@@ -157,15 +161,15 @@
                 </form>
             </div>
             <div class="box">
-                <h2>Voir les logs</h2>
+                <h2>Logs</h2>
                 <form method="post" action="logs.php">
-                    <button type="submit" class="button-valider">Voir Logs</button>
+                    <button type="submit" class="button-valider">Voir les logs</button>
                 </form>
                 <br>
                 <br>
                 <br>
                 <form action="" method="post">
-                    <input type="submit" name="suprimerlogs" value="supprimerlog" class="button-valider">
+                    <input type="submit" name="suprimerlogs" value="supprimer log" class="button-valider">
                 </form>
             </div>
         </div>

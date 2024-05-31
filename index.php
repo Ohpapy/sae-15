@@ -75,15 +75,6 @@
     }
 ?>
 
-<?php
-#$month = "[" .date("d")."/". date("m")."/". date("Y")."]"; #variable which shows us the date on which we logged in
-#$hour = "[" .date("H").":". date("i").":". date("s")."]"; #variable which shows us the time at which we logged on
-#$url = $_SERVER['REMOTE_ADDR']."connect to" .$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']; #Shows who logged on to our site, at what time and when 
-#$fp = fopen("log.txt", "a"); #Open the log.txt file in add mode
-#fputs($fp, $month." ".$hour." ".$url."\n"); #We write to the log.txt file
-#fclose($fp); #Close the log.txt file
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>

@@ -29,15 +29,16 @@
     <div class="container">
         <div class="BP">
             <h2>Logs</h2>
+            
             <?php
                 echo "<table style='width:100%;'>";
                 echo "<tr><th>Date</th><th>Nom</th><th>Message</th><th>Type</th></tr>";
                 foreach ($logs as $log) {
                     echo "<tr>";
-                    echo "<td style='width:15%; overflow-x: auto; text-align: center;'>" . $log['date'] . "</td>";
-                    echo "<td style='width:15%; overflow-x: auto; text-align: center;'>" . $log['nom'] . "</td>";
-                    echo "<td style='width:55%; overflow-x:auto; text-align: center;'>" . $log['message'] . "</td>";
-                    echo "<td style='width:15%; overflow-x: auto; text-align: center;'>" . $log['type'] . "</td>";
+                    echo "<td style='width:20%; overflow-x: auto; text-align: center;'>" . $log['date'] . "</td>";
+                    echo "<td style='width:20%; overflow-x: auto; text-align: center;'>" . $log['nom'] . "</td>";
+                    echo "<td style='width:40%; overflow-x:auto; text-align: center;'>" . $log['message'] . "</td>";
+                    echo "<td style='width:20%; overflow-x: auto; text-align: center;'>" . $log['type'] . "</td>";
                     echo "</tr>";
                 }   
                 echo "</table>";

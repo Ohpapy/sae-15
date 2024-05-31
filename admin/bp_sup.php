@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include_once('../outils/bd.php');
     include('../outils/log.php'); 
     try {

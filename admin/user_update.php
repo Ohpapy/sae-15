@@ -21,4 +21,3 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 ?>
-UPDATE bonnespratique SET utilisation_bp = 0 WHERE num_bp = ?"

@@ -1,4 +1,5 @@
 <?php
+    include_once('../outils/bd.php');
     // Check if a session is not already started, then start a session
     if (session_status() == PHP_SESSION_NONE) {
         session_start();

@@ -1,6 +1,9 @@
 <?php
     // Start the session at the beginning of your file
     session_start(); 
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
     // Then, on the admin page, you can check this session variable before displaying the content
     include_once('../outils/bd.php');
     try {
@@ -20,6 +23,12 @@
         // If the user does not have the required access level, redirect them to another page
         header('Location: ../utilisateur/utilisateur.php');
         exit();
+    }
+    if (isset($_POST['suprimerlogs'])) { 
+        $sqldeletelog = "DELETE FROM logs;";
+        $stmtlogs = $conn->prepare($sqldeletelog);
+        $stmtlogs->execute();
+        header('Location: admin.php');
     }
  ?>
 
@@ -49,6 +58,18 @@
                         <option value="1">Utilisateur</option>
                         <option value="15">Administrateur</option>
                     </select>
+                    <div class="valider">
+                        <button type="submit" class="button-valider">VALIDER</button>
+                    </div>
+                </form>
+                <br>
+                <br>
+                <form action="user_delete.php" method="post">
+                    <h2>
+                        Supprimer un utilisateur 
+                    </h2>
+                    <h3>Identifiant: </h3>
+                    <input type="text" name="login_ut" class="text-place">
                     <div class="valider">
                         <button type="submit" class="button-valider">VALIDER</button>
                     </div>
@@ -92,9 +113,12 @@
                         <button type="submit" class="button-valider">VALIDER</button>
                     </div>
                 </form>
+                <br>
+                <br>
+                <br>
                 <form action="prog_supp.php" method="post">
                     <div>
-                        <p>Attention si vous supprimer un programme toute les bonnes pratique assosier le seront aussi</p>
+                        <label for="nom_prog">Supprimer un programme:</label>
                         <div>
                             <select name="num_prog" id="num_prog">
                                 <?php if (count($progs) > 0) : ?>
@@ -111,6 +135,7 @@
                     <div class="valider">
                         <button type="submit" class="button-valider">VALIDER</button>
                     </div>
+                    <p>Attention si vous supprimer un programme toute les bonnes pratique assosier le seront aussi</p>
                 </form>
             </div>
             <div class="box">
@@ -136,9 +161,15 @@
                 </form>
             </div>
             <div class="box">
-                <h2>Voir les logs</h2>
+                <h2>Logs</h2>
                 <form method="post" action="logs.php">
-                    <button type="submit" class="button-valider">Voir Logs</button>
+                    <button type="submit" class="button-valider">Voir les logs</button>
+                </form>
+                <br>
+                <br>
+                <br>
+                <form action="" method="post">
+                    <input type="submit" name="suprimerlogs" value="supprimer log" class="button-valider">
                 </form>
             </div>
         </div>

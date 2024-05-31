@@ -15,7 +15,7 @@
             $stmtbp = $conn->prepare($sqlbp);
             $stmtbp->execute([$_POST['nom_prog']]);
             $num_bp = $conn->lastInsertId();    // Retrieves the ID of the last insertion
-            $mess ='Un nouveau programme a été créée avec cet ID: ' . $num_bp. ' son nom est: ' . $_POST['nom_prog'];
+            $mess ='Un nouveau programme a été créée avec cet ID' . $num_bp. ' son nom est: ' . $_POST['nom_prog'];
             logMessage($conn, $mess, 'CRÉATION PROGRAMME');
             header('Location: ../admin/admin.php');     // Redirects after successful operation         
         }

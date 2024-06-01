@@ -18,9 +18,9 @@
             $mdp = htmlspecialchars($_POST['mdp']);
 
             // Prepare and execute SQL query to fetch user data
-            $req = $conn->prepare('SELECT * FROM utilisateur WHERE login_ut = :login'); // On prépare la requête
-            $req->execute(array('login' => $login)); // On exécute la requête en passant les paramètres
-            $user = $req->fetch(); // On récupère le résultat
+            $req = $conn->prepare('SELECT * FROM utilisateur WHERE login_ut = :login'); // We prepare the request
+            $req->execute(array('login' => $login)); // We execute the request with the login parameter
+            $user = $req->fetch(); // We fetch the result
 
             // Check if the user is not blocked
             if ($user["bloque_ut"] != 1) {

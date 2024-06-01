@@ -227,7 +227,6 @@
         </div>
         <!-- Button for validation -->
         <div class="valider">
-            <button class="button-pdf"><H2>PDF</H2></button>
             <form action="PDF.py" method="POST">
                 <button class="button-pdf" type="submit"><h2>PDF</h2></button>
             </form>

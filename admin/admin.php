@@ -172,6 +172,57 @@
                     <input type="submit" name="suprimerlogs" value="supprimer log" class="button-valider">
                 </form>
             </div>
+            <div class="box">
+                <h2>Forme d'un mot de passe</h2>
+                <form method="post" action="mdpstyle.php">
+                    <h3>Nombre de caractère</h3>
+                    <input type="text" name="caractere">
+                    <h3>Nombre de chiffre</h3>
+                    <select name="chiffre" id="chiffre">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select>
+                    <h3>Nombre de majuscule</h3>
+                    <select name="majuscule" id="majuscule">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select>
+                    <h3>Nombre de minuscule</h3>
+                    <select name="minuscule" id="minuscule">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select>
+                    <h3>Caractères spéciaux</h3>
+                    <input type="checkbox" name="carac" checked>
+                    <br>
+                    <br>
+                    <button type="submit" class="button-valider">valider</button>
+                </form>
+            </div>
         </div>
     </div>
     <div class="bas">

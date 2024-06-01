@@ -99,7 +99,16 @@ CREATE TABLE IF NOT EXISTS `appartenance` (
   CONSTRAINT `FK_appartenance_programme` FOREIGN KEY (`num_prog`) REFERENCES `programme` (`num_prog`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
-
+DROP TABLE IF EXISTS `mdp`;
+CREATE TABLE IF NOT EXISTS `mdp` (
+    'num_car' INT AUTO_INCREMENT PRIMARY KEY,
+    'caractere' INT NOT NULL,
+    'chiffre' INT NOT NULL,
+    'majuscule' INT NOT NULL,
+    'minuscule' INT NOT NULL,
+    'carac' BOOLEAN NOT NULL,
+    ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+  
 INSERT INTO `motcles` (`num_cles`, `mot`) VALUES
 	(1, 'mathis'),
 	(2, 'hello'),

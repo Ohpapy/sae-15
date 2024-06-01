@@ -33,8 +33,9 @@
     
         if (!validatePassword($password, $conn)) {
             echo "Le mot de passe ne respecte pas les exigences de sécurité.";
-            sleep(3); // Wait for 3 seconds
-            header('Location: admin.php'); // Redirect to admin.php
+            $mess ='Erreur pour la création utilisateur le mot de passe ne convien pas';
+            logMessage($conn, $mess, 'ERREUR CREATION UTILISATEUR');
+            header('Refresh: 3; URL=./admin.php'); // Redirect to admin.php
         }
         else {        
             $password = password_hash($password, PASSWORD_DEFAULT);    // Hashes the password

@@ -233,8 +233,7 @@
             </form>
             <form action="EXCEL.py" method="POST"> 
                 <button class="button-excel" type="submit"><h2>EXCEL</h2></button>
-            </form>
-            
+            </form> 
         </div>
     </div>
     <div class="popup">
@@ -287,7 +286,6 @@
                 console.log(numBpSelected);
             });
         });
-        
     </script>
 </body>
 </html>

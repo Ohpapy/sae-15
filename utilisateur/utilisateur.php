@@ -228,7 +228,12 @@
         <!-- Button for validation -->
         <div class="valider">
             <button class="button-pdf"><H2>PDF</H2></button>
-            <button class="button-excel"><H2>EXCEL</H2></button>
+            <form action="PDF.py" method="POST">
+                <button class="button-pdf" type="submit"><h2>PDF</h2></button>
+            </form>
+            <form action="EXCEL.py" method="POST"> 
+                <button class="button-excel" type="submit"><h2>EXCEL</h2></button>
+            </form>
             
         </div>
     </div>

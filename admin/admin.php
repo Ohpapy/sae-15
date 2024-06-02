@@ -138,13 +138,13 @@
                 <h2>Supprimer Bonne Pratique</h2>
                 <form action="bp_sup.php" method="post">
                     <div>
-                        <select name="num_bp" id="num_bp">
-                            <?php if (count($bps) > 0) : ?>
-                                <?php foreach ($bps as $bp) : ?>
-                                    <option value="<?= $bp["num_bp"] ?>"><?= $bp["test_bp"] ?></option>
-                                <?php endforeach; ?>
-                            <?php endif ?>
-                        </select>
+                    <select name="num_bp" id="num_bp" style="width: 200px; text-overflow: ellipsis;">
+                        <?php if (count($bps) > 0) : ?>
+                            <?php foreach ($bps as $bp) : ?>
+                                <option value="<?= $bp["num_bp"] ?>" title="<?= $bp["test_bp"] ?>"><?= $bp["test_bp"] ?></option>
+                            <?php endforeach; ?>
+                        <?php endif ?>
+                    </select>
                     </div>
                     <div>
                         <h4>Supprimer</h4>

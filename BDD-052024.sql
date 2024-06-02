@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `mdp` (
     'chiffre' INT NOT NULL,
     'majuscule' INT NOT NULL,
     'minuscule' INT NOT NULL,
-    'carac' BOOLEAN NOT NULL,
+    'carac' BOOLEAN NOT NULL
     ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
   
 INSERT INTO `motcles` (`num_cles`, `mot`) VALUES

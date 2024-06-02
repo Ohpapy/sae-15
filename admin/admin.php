@@ -62,8 +62,6 @@
                         <button type="submit" class="button-valider">VALIDER</button>
                     </div>
                 </form>
-                <br>
-                <br>
                 <form action="user_delete.php" method="post">
                     <h2>
                         Supprimer un utilisateur 
@@ -88,8 +86,6 @@
                         <button type="submit" class="button-valider">VALIDER</button>
                     </div>
                 </form>
-                <br>
-                <br>
                 <br>
                 <form action="unlock.php" method="post">
                     <h2>

@@ -281,8 +281,7 @@ h1 {
     flex-direction: row-reverse; /* Espacement entre les boutons et le bord du conteneur */
 }
 
-.button-pdf,
-.button-excel {
+.button-valider {
     padding: 10px;
     border: none;
     border-radius: 5px;

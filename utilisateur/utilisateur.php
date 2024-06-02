@@ -227,12 +227,8 @@
         </div>
         <!-- Button for validation -->
         <div class="valider">
-            <form action="PDF.py" method="POST">
-                <button class="button-pdf" type="submit"><h2>PDF</h2></button>
-            </form>
-            <form action="EXCEL.py" method="POST"> 
-                <button class="button-excel" type="submit"><h2>EXCEL</h2></button>
-            </form> 
+            <button class="button-valider"><H2>PDF</H2></button>
+            <button class="button-valider"><H2>EXCEL</H2></button>
         </div>
     </div>
     <div class="popup">
@@ -256,9 +252,13 @@
             Fermer
         </button>
     </div>
-    <!-- Including jQuery library -->
+    <?php
+        $numBpSelected = $_POST['numBpSelected'];
+        $numBpSelected = array(1, 2, 3);
+        $numBpSelected_str = implode(",", $numBpSelected);
+        exec("python PDF.py $numBpSelected_str", $output);
+    ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Script for handling popup and validation button -->
     <script>
         $(document).ready(function() {
             $(".bonne-pratique-details").on("click", function(e) {
@@ -281,8 +281,17 @@
                 selected.toArray().forEach(i => {
                     numBpSelected.push(i.value);
                 });
-
                 console.log(numBpSelected);
+
+                $.ajax({
+                    url: 'utilisation.php',  // replace with the path to your PHP script
+                    method: 'POST',
+                    data: { 'numBpSelected': numBpSelected },
+                    success: function(response) {
+                        // Handle the response from the PHP script
+                        console.log(response);
+                    }
+                });
             });
         });
     </script>

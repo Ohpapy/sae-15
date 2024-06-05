@@ -37,6 +37,7 @@ body {
     background-color: #6b6b6b;
     border-radius: 15px;
 }
+/* Button Styles */
 .button-valider {
     background-color: #00be00;
     color: rgb(0, 0, 0);  
@@ -46,11 +47,11 @@ body {
     text-align: center;   
     height: 100%;    
 }
-
+/* Text Input Styles */
 .text-place{
     border-radius: 15%;
 }
-
+/* Bottom Section Styles */
 .bas {
     position: fixed;
     bottom: 0;
@@ -63,7 +64,7 @@ body {
     height: 4%;
     border-radius: 15px;
 }
-
+/* Home Link Styles */
 .home {
     color: white;
     text-align: center;
@@ -74,15 +75,14 @@ body {
     display: block;
     border-radius: 15px;
 }
-
-
+/* My Link Styles */
 .my-link {
     position: absolute;
     bottom: 0;
     right: 0;
     background-color: #333;
     color: green;
-    width: 300px; /* ajustez la largeur selon vos besoins */
+    width: 300px;
     padding: 20px;
     border-radius: 8px;
 }

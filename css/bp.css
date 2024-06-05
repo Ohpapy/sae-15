@@ -78,6 +78,7 @@ body {
     text-align: center;  
     height: 100%;    
 }
+/* Bottom Section Styles */
 .bas {
     position: fixed;
     bottom: 0;
@@ -90,7 +91,7 @@ body {
     height: 4%;
     border-radius: 15px;
 }
-
+/* Home Link Styles */
 .home {
     color: white;
     text-align: center;

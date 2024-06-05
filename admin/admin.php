@@ -58,6 +58,8 @@
                         <option value="1">Utilisateur</option>
                         <option value="15">Administrateur</option>
                     </select>
+                    <br>
+                    <br>
                     <div class="valider">
                         <button type="submit" class="button-valider">VALIDER</button>
                     </div>
@@ -82,6 +84,8 @@
                     <input type="text" name="login_ut" class="text-place">
                     <h3>Mot de passe</h3>
                     <input type="text" name="mdp_ut" id="mdp_ut" required class="text-place">
+                    <br>
+                    <br>
                     <div class="valider">
                         <button type="submit" class="button-valider">VALIDER</button>
                     </div>
@@ -93,6 +97,8 @@
                     </h2>
                     <h3>Identifiant </h3>
                     <input type="text" name="login_ut" class="text-place">
+                    <br>
+                    <br>
                     <div class="valider">
                         <button type="submit" class="button-valider">Débloqué</button>
                     </div>
@@ -105,6 +111,7 @@
                         <label for="nom_prog">Nom du programme:</label>
                         <input type="text" id="nom_prog" name="nom_prog" required class="text-place">
                     </div>
+                    <br>
                     <div class="valider">
                         <button type="submit" class="button-valider">VALIDER</button>
                     </div>
@@ -128,6 +135,7 @@
                         <input type="checkbox" name="delete" id="delete" checked>
                         <label for="delete">Oui</label>
                     </div>
+                    <br>
                     <div class="valider">
                         <button type="submit" class="button-valider">VALIDER</button>
                     </div>
@@ -151,6 +159,7 @@
                         <input type="checkbox" name="delete" id="delete">
                         <label for="delete">Oui</label>
                     </div>
+                    <br>
                     <div class="valider">
                         <button type="submit" class="button-valider">VALIDER</button>
                     </div>

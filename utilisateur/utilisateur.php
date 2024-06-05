@@ -208,9 +208,9 @@
                             <div class="checkbox">
                                 <input type="checkbox" name="select" value="<?= $bp["num_bp"] ?>" checked>
                             </div>
-                            <p>Bonne Pratique: <?= $bp["test_bp"] ?></p>
-                            <p>Programme: <?= $bp["nom_prog"] ?></p>
-                            <p>Phase: <?= $bp["nom_phase"] ?></p>
+                            <p style="width: 50%; text-overflow: ellipsis;">Bonne Pratique: <?= $bp["test_bp"] ?></p>
+                            <p style="width: 15%; text-overflow: ellipsis;">Programme: <?= $bp["nom_prog"] ?></p>
+                            <p style="width: 15%; text-overflow: ellipsis;">Phase: <?= $bp["nom_phase"] ?></p>
                             <div class="action">
                                 <button class='bonne-pratique-details' data-numbp="<?= $bp["num_bp"] ?>">Voir le détails</button>
                                 <form action="" method="POST">
@@ -226,10 +226,10 @@
             <?php endif ?>
         </div>
         <!-- Button for validation -->
-        <div class="valider">
-            <button class="button-valider"><H2>PDF</H2></button>
-            <button class="button-valider"><H2>EXCEL</H2></button>
-        </div>
+    </div>
+    <div class="valider">
+        <button class="button-valider"><H2>PDF</H2></button>
+        <button class="button-valider"><H2>EXCEL</H2></button>
     </div>
     <div class="popup">
         <?php if (count($descriptions) > 0) : ?>

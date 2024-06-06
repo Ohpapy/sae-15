@@ -27,8 +27,9 @@
                 // Verify password
                 if (!password_verify($mdp, $user['mdp_ut'])) {
                     // Display error message for wrong credentials
-                    echo 'Mauvais identifiant ou mot de passe ! Vous serez redirigé dans 3 secondes.';
-                    header('Refresh: 3; URL=./index.php');
+                    $mess ='l\' utilisateur s\'est trompé: ' . $user['nom_ut'];
+                    logMessage($conn, $mess, 'MOT DE PASSE INCORRECT');
+                    header('location: index.php?ErreurConnexion');
 
                     // Increment login attempts and update database
                     sleep(1);
@@ -42,7 +43,7 @@
                         $sqlblock->execute(array('login' => $login));
                         $mess ='Un utilisateur est bloqué' . $login;
                         logMessage($conn, $mess, 'BLOCAGE UTILISATEUR');
-                        echo 'Compte bloqué !';
+                        header('Refresh: 3; URL=./index.php?blocked');
                     }
                 } else {
                     // Start session and redirect to user page on successful login
@@ -59,9 +60,9 @@
                 }
             }
             else {
-                // Display error message for blocked account
-                echo 'Compte bloqué ! Vous serez redirigé dans 3 secondes.';
-                header('Refresh: 3; URL=./index.php');
+                $mess ='Un utilisateur essaye de ce connecter avec un compet bloqué: ';
+                logMessage($conn, $mess, 'TENTATIVE DE CONNEXION');
+                header('location: index.php?blocked');
             }
 
             // Close database connection and exit
@@ -86,7 +87,15 @@
 <body>
     <!-- Page title -->
     <h1>Bienvenue !</h1>
-
+    <?php
+        // Display error message for blocked account
+        if (isset($_GET['blocked'])) {
+            echo '<h3 style="text-align: center;">Compte bloqué !</h3>';
+        }
+        if (isset($_GET['ErreurConnexion'])) {
+            echo '<h3 style="text-align: center;">Mauvais identifiant ou mot de passe !</h3>';
+        }
+    ?>
     <!-- Login form -->
     <div class="container">
         <form method="post" action="index.php">            

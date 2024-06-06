@@ -32,10 +32,9 @@
         $password = $_POST['mdp_ut'];
     
         if (!validatePassword($password, $conn)) {
-            echo "Le mot de passe ne respecte pas les exigences de sécurité.";
             $mess ='Erreur pour la création utilisateur le mot de passe ne convien pas';
             logMessage($conn, $mess, 'ERREUR CREATION UTILISATEUR');
-            header('Refresh: 3; URL=./admin.php'); // Redirect to admin.php
+            header('Location: admin.php?erreur'); // Redirect to admin.php
         }
         else {        
             $password = password_hash($password, PASSWORD_DEFAULT);    // Hashes the password

@@ -12,10 +12,22 @@
         $resultbp = $conn->prepare($sqlbp);
         $resultbp->execute();
         $bps = $resultbp->fetchAll(); 
+
         $sqlprog = "SELECT * FROM programme";
         $resultprog = $conn->prepare($sqlprog);
         $resultprog->execute();
         $progs = $resultprog->fetchAll();
+
+        $sqlgetuser = "SELECT * FROM utilisateur";
+        $stmtgetuser = $conn->prepare($sqlgetuser);
+        $stmtgetuser->execute();
+        $users = $stmtgetuser->fetchAll();
+
+        $sqlgetuserbloqued = "SELECT * FROM utilisateur WHERE bloque_ut = 1";
+        $stmtgetuserbloqued = $conn->prepare($sqlgetuserbloqued);
+        $stmtgetuserbloqued->execute();
+        $usersbloqued = $stmtgetuserbloqued->fetchAll();
+
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();   // Displays an error message in case of connection failure
     }
@@ -47,6 +59,9 @@
                     <h2>
                         Ajouter un utilisateur 
                     </h2>
+                    <?php if (isset($_GET['erreur'])) : ?>
+                        <h3>Erreur pour la création utilisateur le mot de passe ne convient pas</h3>
+                    <?php endif ?>
                     <h3>Nom</h3>
                     <input type="text" name="nom_ut" id="nom_ut" required class="text-place">
                     <h3>Identifiant: </h3>
@@ -69,7 +84,13 @@
                         Supprimer un utilisateur 
                     </h2>
                     <h3>Identifiant: </h3>
-                    <input type="text" name="login_ut" class="text-place">
+                    <select name="usersupp" id="usersupp" style="width: 200px; text-overflow: ellipsis; text-align: center;">
+                        <?php if (count($users) > 0) : ?>
+                            <?php foreach ($users as $user) : ?>
+                                <option value="<?= $user["login_ut"] ?>"><?= $user["login_ut"] ?></option>
+                            <?php endforeach; ?>
+                        <?php endif ?>
+                    </select>
                     <div class="valider">
                         <button type="submit" class="button-valider">VALIDER</button>
                     </div>
@@ -81,7 +102,13 @@
                         Modifier mot de passe
                     </h2>
                     <h3>Identifiant </h3>
-                    <input type="text" name="login_ut" class="text-place">
+                    <select name="usermodif" id="usermodif" style="width: 200px; text-overflow: ellipsis; text-align: center;">
+                        <?php if (count($users) > 0) : ?>
+                            <?php foreach ($users as $user) : ?>
+                                <option value="<?= $user["login_ut"] ?>"><?= $user["login_ut"] ?></option>
+                            <?php endforeach; ?>
+                        <?php endif ?>
+                    </select>
                     <h3>Mot de passe</h3>
                     <input type="text" name="mdp_ut" id="mdp_ut" required class="text-place">
                     <br>
@@ -96,7 +123,13 @@
                         Débloquer un utilisateur
                     </h2>
                     <h3>Identifiant </h3>
-                    <input type="text" name="login_ut" class="text-place">
+                    <select name="userdebloq" id="userdebloq" style="width: 200px; text-overflow: ellipsis; text-align: center;">
+                        <?php if (count($usersbloqued) > 0) : ?>
+                            <?php foreach ($usersbloqued as $userbloqued) : ?>
+                                <option value="<?= $userbloqued["login_ut"] ?>"><?= $userbloqued["login_ut"] ?></option>
+                            <?php endforeach; ?>
+                        <?php endif ?>
+                    </select>
                     <br>
                     <br>
                     <div class="valider">
@@ -132,8 +165,8 @@
                             </select>
                         </div>
                         <h4>Supprimer</h4>
+                        <label for="delete">es-tu sûr ?</label>
                         <input type="checkbox" name="delete" id="delete" checked>
-                        <label for="delete">Oui</label>
                     </div>
                     <br>
                     <div class="valider">
@@ -155,7 +188,7 @@
                     </select>
                     </div>
                     <div>
-                        <h4>Supprimer</h4>
+                        <h4>Cocher pour supprimer. Si tu ne coche pas elle redeviennent visible pour tous</h4>
                         <input type="checkbox" name="delete" id="delete">
                         <label for="delete">Oui</label>
                     </div>

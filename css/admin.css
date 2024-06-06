@@ -49,7 +49,9 @@ body {
 }
 /* Text Input Styles */
 .text-place{
-    border-radius: 15%;
+    width: 200px;
+    text-overflow: ellipsis;
+    text-align: center;
 }
 /* Bottom Section Styles */
 .bas {
@@ -95,3 +97,4 @@ body {
 .my-link a:hover {
     text-decoration: underline;
 }
+

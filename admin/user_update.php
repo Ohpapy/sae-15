@@ -7,7 +7,7 @@
         // Inserting a new best practice into the 'bonnespratique' table
         $sqluser = "UPDATE utilisateur SET mdp_ut = ? WHERE login_ut = ?";  
         $stmtbp = $conn->prepare($sqluser);
-        $stmtbp->execute([$password, $_POST['login_ut']]);
+        $stmtbp->execute([$password, $_POST['usermodif']]);
         $num_bp = $conn->lastInsertId();    // Retrieves the ID of the last insertion
         $mess ='Un utilisateur a été mis à jour avec ce login: ' . $_POST['login_ut'];
         logMessage($conn, $mess, 'MISE À JOUR UTILISATEUR');

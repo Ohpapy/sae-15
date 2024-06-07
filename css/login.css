@@ -1,51 +1,51 @@
 /* Body styles */
 body {
-    background-color: #424242;    /* Background color */
-    font-family: 'Roboto', sans-serif;    /* Font family */
-    margin: 0;    /* Margin reset */
-    padding: 0;   /* Padding reset */
-    justify-content: center;     /* Center content horizontally */
-    align-items: center;       /* Center content vertically */
-    height: 100vh;     /* Full viewport height */
+    background-color: #424242;    
+    font-family: 'Roboto', sans-serif;  
+    margin: 0;    
+    padding: 0;   
+    justify-content: center;     
+    align-items: center;       
+    height: 100vh;    
 }
 
 /* Heading styles */
 h1 {
-    color: white;   /* Text color */
-    font-size: 400%;    /* Font size */
-    text-align: center;   /* Text alignment */
-    margin-top: 10%;     /* Margin from the top */
+    color: white;   
+    font-size: 400%;  
+    text-align: center;   
+    margin-top: 10%;   
 }
 
 /* Container styles */
 .container {
-    max-width: 20%;     /* Maximum width */
-    background-color: black;     /* Background color */
-    padding: 2%;     /* Padding */
-    margin-left: auto;    /* Auto left margin */
-    margin-right: auto;   /* Auto right margin */
-    border-radius: 25px;    /* Border radius */
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);    /* Box shadow */
-    color: white;    /* Text color */
-    text-align: center;    /* Text alignment */
+    max-width: 20%;     
+    background-color: black;    
+    padding: 2%;   
+    margin-left: auto;    
+    margin-right: auto;   
+    border-radius: 25px;   
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);  
+    color: white; 
+    text-align: center;   
 }
 
 /* Input field styles */
 input[type="text"],
 input[type="password"] {
-    width: 100%;     /* Full width */
-    padding: 12px 20px;    /* Padding */
-    margin: 8px 0;    /* Margin */
-    display: inline-block;      /* Display inline block */
-    border: 1px solid #ccc;    /* Border */
-    box-sizing: border-box;     /* Box sizing */
-    border-radius: 25px;    /* Border radius */
+    width: 100%;     
+    padding: 12px 20px;    
+    margin: 8px 0;  
+    display: inline-block;      
+    border: 1px solid #ccc;   
+    box-sizing: border-box;     
+    border-radius: 25px;    
 }
 
 /* Button styles */
 .button-connection {
-    background-color: #ffffff;    /* Background color */
-    color: rgb(0, 0, 0);     /* Text color */
+    background-color: #ffffff;   
+    color: rgb(0, 0, 0);     
     text-decoration: none;  
     width: 80%;  
     text-align: center;  

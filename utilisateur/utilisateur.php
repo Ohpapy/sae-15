@@ -113,6 +113,12 @@
     
         $bps = $stmt->fetchAll();
     }
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $numBpSelected = $_POST['numBpSelected'];
+        $numBpSelected = explode(",", $numBpSelected);
+        $numBpSelected_str = implode(",", $numBpSelected);
+        exec("python PDF.py $numBpSelected_str", $output);
+    }
 
 ?>
 
@@ -228,7 +234,10 @@
         <!-- Button for validation -->
     </div>
     <div class="valider">
-        <button class="button-valider"><H2>PDF</H2></button>
+        <form method="post" action="utilisateur.php">
+            <input type="hidden" name="numBpSelected" value="1,2,3">
+            <button type="submit" class="button-valider"><H2>PDF</H2></button>
+        </form>
         <button class="button-valider"><H2>EXCEL</H2></button>
     </div>
     <div class="popup">
@@ -252,12 +261,6 @@
             Fermer
         </button>
     </div>
-    <?php
-        $numBpSelected = $_POST['numBpSelected'];
-        $numBpSelected = array(1, 2, 3);
-        $numBpSelected_str = implode(",", $numBpSelected);
-        exec("python PDF.py $numBpSelected_str", $output);
-    ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {

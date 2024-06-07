@@ -1,5 +1,6 @@
 <?php
     include_once('../outils/bd.php');       // Includes the database connection file
+    include('../outils/log.php');
 
     try {
         $conn = createConnection();          // Creates a connection to the database
@@ -9,6 +10,8 @@
         $stmtbp = $conn->prepare($sqlbp);
         $stmtbp->execute([$_POST['item']]);
         $num_bp = $conn->lastInsertId();    // Retrieves the ID of the last insertion
+        $mess ='Une bonne pratique a été créée avec cet ID: ' . $num_bp;
+        logMessage($conn, $mess, 'CRÉATION BONNE PRATIQUE');
 
         // Joining with the program and phase ownership in the 'appartenance' table
         $sqlapp = "INSERT INTO appartenance (num_prog, num_phase, num_bp) VALUES (?, ?, ?)";

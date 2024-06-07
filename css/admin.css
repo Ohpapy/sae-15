@@ -98,3 +98,8 @@ body {
     text-decoration: underline;
 }
 
+.center {
+    width: 50px; 
+    text-overflow: ellipsis; 
+    text-align: center;
+}

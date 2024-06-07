@@ -45,7 +45,7 @@
             $num_user = $conn->lastInsertId();    // Retrieves the ID of the last insertion
             $mess ='Un nouvel utilisateur a été créé avec cet ID: ' . $num_user. ' son login est: ' . $_POST['login_ut'];
             logMessage($conn, $mess, 'CRÉATION UTILISATEUR');
-            header('Location: ../admin/admin.php');
+            header('Location: admin.php');
         }
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();        // Displays an error message in case of connection failure

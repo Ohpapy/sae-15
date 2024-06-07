@@ -28,6 +28,15 @@
         $stmtgetuserbloqued->execute();
         $usersbloqued = $stmtgetuserbloqued->fetchAll();
 
+        $sqlgetformmdp = "SELECT caractere, chiffre, majuscule, minuscule, carac FROM mdp LIMIT 1";
+        $stmtgetformmdp = $conn->prepare($sqlgetformmdp);
+        $stmtgetformmdp->execute();
+        $formmdp = $stmtgetformmdp->fetch();
+        $default_caractere = $formmdp['caractere'];
+        $default_chiffre = $formmdp['chiffre'];
+        $default_majuscule = $formmdp['majuscule'];
+        $default_minuscule = $formmdp['minuscule'];
+        $default_carac = $formmdp['carac'];
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();   // Displays an error message in case of connection failure
     }
@@ -91,6 +100,8 @@
                             <?php endforeach; ?>
                         <?php endif ?>
                     </select>
+                    <br>
+                    <br>
                     <div class="valider">
                         <button type="submit" class="button-valider">VALIDER</button>
                     </div>
@@ -101,6 +112,9 @@
                     <h2>
                         Modifier mot de passe
                     </h2>
+                    <?php if (isset($_GET['erreurmodif'])) : ?>
+                        <h3>Erreur pour la création utilisateur le mot de passe ne convient pas</h3>
+                    <?php endif ?>
                     <h3>Identifiant </h3>
                     <select name="usermodif" id="usermodif" style="width: 200px; text-overflow: ellipsis; text-align: center;">
                         <?php if (count($users) > 0) : ?>
@@ -214,48 +228,15 @@
                 <h2>Forme d'un mot de passe</h2>
                 <form method="post" action="mdpstyle.php">
                     <h3>Nombre de caractère</h3>
-                    <input type="text" name="caractere">
+                    <input type="number" name="caractere" min="1" max="30" value="<?php echo $default_caractere; ?>" class="center">
                     <h3>Nombre de chiffre</h3>
-                    <select name="chiffre" id="chiffre">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                    </select>
+                    <input type="number" name="chiffre" value="<?php echo $default_chiffre; ?>" class="center">
                     <h3>Nombre de majuscule</h3>
-                    <select name="majuscule" id="majuscule">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                    </select>
+                    <input type="number" name="majuscule" value="<?php echo $default_majuscule; ?>" class="center">
                     <h3>Nombre de minuscule</h3>
-                    <select name="minuscule" id="minuscule">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                    </select>
+                    <input type="number" name="minuscule" value="<?php echo $default_minuscule; ?>" class="center">
                     <h3>Caractères spéciaux</h3>
-                    <input type="checkbox" name="carac" checked>
+                    <input type="checkbox" name="carac" <?php if ($default_carac == 1) echo 'checked'; ?>>
                     <br>
                     <br>
                     <button type="submit" class="button-valider">valider</button>

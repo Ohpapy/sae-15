@@ -32,6 +32,10 @@
             <?php
                 echo "<table style='width:100%;'>";
                 echo "<tr><th>Date</th><th>Nom</th><th>Message</th><th>Type</th></tr>";
+                usort($logs, function($a, $b) {
+                    return strtotime($b['date']) - strtotime($a['date']);
+                });
+                
                 foreach ($logs as $log) {
                     echo "<tr>";
                     echo "<td style='width:20%; overflow-x: auto; text-align: center;'>" . $log['date'] . "</td>";
@@ -39,7 +43,7 @@
                     echo "<td style='width:40%; overflow-x:auto; text-align: center;'>" . $log['message'] . "</td>";
                     echo "<td style='width:20%; overflow-x: auto; text-align: center;'>" . $log['type'] . "</td>";
                     echo "</tr>";
-                }   
+                }
                 echo "</table>";
             ?>
         </div>

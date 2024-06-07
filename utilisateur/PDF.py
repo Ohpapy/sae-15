@@ -14,9 +14,9 @@ db = mysql.connector.connect(
 
 
 cursor = db.cursor()
+args = sys.argv[1:]
 
-
-cursor.execute("""
+cursor.execute(f"""
     SELECT
         bp.num_bp,
         bp.test_bp,
@@ -30,6 +30,7 @@ cursor.execute("""
         programme p ON a.num_prog = p.num_prog
     INNER JOIN
         phase ph ON a.num_phase = ph.num_phase
+    WHERE bp.num_bp = {args}
 """)
 
 
@@ -39,7 +40,7 @@ data = cursor.fetchall()
 cursor.close()
 db.close()
 
-args = sys.argv[1:]
+
 
 
 for arg in args:

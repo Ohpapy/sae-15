@@ -117,7 +117,7 @@
         $numBpSelected = $_POST['numBpSelected'];
         $numBpSelected = explode(",", $numBpSelected);
         $numBpSelected_str = implode(",", $numBpSelected);
-        exec("python PDF.py $numBpSelected_str", $output);
+        exec("C:\Users\bosch\AppData\Local\Programs\Python\Python312\python.exe PDF.py $numBpSelected_str", $output);
     }
 
 ?>

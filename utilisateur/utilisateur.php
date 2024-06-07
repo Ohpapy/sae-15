@@ -114,10 +114,12 @@
         $bps = $stmt->fetchAll();
     }
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $numBpSelected = $_POST['numBpSelected'];
-        $numBpSelected = explode(",", $numBpSelected);
-        $numBpSelected_str = implode(",", $numBpSelected);
-        exec("C:\Users\bosch\AppData\Local\Programs\Python\Python312\python.exe PDF.py $numBpSelected_str", $output);
+        if (isset($_POST['numBpSelected'])) {
+            $numBpSelected = $_POST['numBpSelected'];
+            $numBpSelected = explode(",", $numBpSelected);
+            $numBpSelected_str = implode(",", $numBpSelected);
+            exec("C:\Users\bosch\AppData\Local\Programs\Python\Python312\python.exe PDF.py $numBpSelected_str", $output);
+        }
     }
 
 ?>

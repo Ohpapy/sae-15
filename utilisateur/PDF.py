@@ -17,21 +17,14 @@ cursor = db.cursor()
 args = sys.argv[1:]
 
 cursor.execute(f"""
-    SELECT
-        bp.num_bp,
-        bp.test_bp,
-        p.nom_prog,
-        ph.nom_phase
-    FROM
-        bonnespratique bp
-    INNER JOIN
-        appartenance a ON bp.num_bp = a.num_bp
-    INNER JOIN
-        programme p ON a.num_prog = p.num_prog
-    INNER JOIN
-        phase ph ON a.num_phase = ph.num_phase
-    WHERE bp.num_bp = {args}
-""")
+    SELECT DISTINCT appartenance.num_bp, bonnespratique.test_bp, bonnespratique.utilisation_bp, programme.nom_prog, phase.nom_phase
+        FROM appartenance
+        JOIN bonnespratique ON appartenance.num_bp = bonnespratique.num_bp
+        JOIN programme ON appartenance.num_prog = programme.num_prog
+        JOIN phase ON appartenance.num_phase = phase.num_phase
+        JOIN bp_motcles ON appartenance.num_bp = bp_motcles.num_bp
+        JOIN motcles ON bp_motcles.num_cles = motcles.num_cles WHERE 1=1
+    """)
 
 
 data = cursor.fetchall()

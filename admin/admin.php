@@ -71,11 +71,11 @@
                     <?php if (isset($_GET['erreur'])) : ?>
                         <h3>Erreur pour la création utilisateur le mot de passe ne convient pas</h3>
                     <?php endif ?>
-                    <h3>Nom</h3>
+                    <h3>Nom:</h3>
                     <input type="text" name="nom_ut" id="nom_ut" required class="text-place">
                     <h3>Identifiant: </h3>
                     <input type="text" name="login_ut" class="text-place">
-                    <h3>Mot de passe</h3>
+                    <h3>Mot de passe:</h3>
                     <input type="text" name="mdp_ut" id="mdp_ut" required class="text-place">
                     <h4>Privilège</h4>
                     <select name="acces_ut" id="acces_ut" required> 
@@ -168,7 +168,7 @@
                 <br>
                 <form action="prog_supp.php" method="post">
                     <div>
-                        <label for="nom_prog">Supprimer un programme:</label>
+                        <label for="nom_prog"><b>Supprimer un programme:</b></label>
                         <div>
                             <select name="num_prog" id="num_prog">
                                 <?php if (count($progs) > 0) : ?>
@@ -178,15 +178,15 @@
                                 <?php endif ?>
                             </select>
                         </div>
-                        <h4>Supprimer</h4>
-                        <label for="delete">es-tu sûr ?</label>
+                        <br>
+                        <label for="delete">Es-tu sûr ?</label>
                         <input type="checkbox" name="delete" id="delete" checked>
                     </div>
                     <br>
                     <div class="valider">
                         <button type="submit" class="button-valider">VALIDER</button>
                     </div>
-                    <p>Attention si vous supprimer un programme toute les bonnes pratique assosier le seront aussi</p>
+                    <p>Attention si vous supprimez un programme toutes les bonnes pratiques associées le seront aussi</p>
                 </form>
             </div>
             <div class="box">
@@ -202,7 +202,7 @@
                     </select>
                     </div>
                     <div>
-                        <h4>Cocher pour supprimer. Si tu ne coche pas elle redeviennent visible pour tous</h4>
+                        <h4>Cocher pour supprimer. Si tu ne coche pas elles redeviennent visible pour tous</h4>
                         <input type="checkbox" name="delete" id="delete">
                         <label for="delete">Oui</label>
                     </div>

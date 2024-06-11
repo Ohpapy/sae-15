@@ -3,6 +3,9 @@
     include_once('../outils/bd.php');
     include_once('../outils/log.php');
     
+    session_start(); // Assurez-vous que la session est démarrée
+     // Récupérer le nom de l'utilisateur depuis la session
+
     try {
         // Create database connection
         $conn = createConnection();
@@ -37,19 +40,15 @@
         $stmt2->execute();
 
         // Select all phases
-
         $sqlfiltrephase = "SELECT nom_phase FROM phase";
         $stmt = $conn->prepare($sqlfiltrephase);
         $stmt->execute();
-
         $phases = $stmt->fetchAll();
 
         // Select all programs
-
         $sqlfiltreprog = "SELECT nom_prog FROM programme";
         $stmt = $conn->prepare($sqlfiltreprog);
         $stmt->execute();
-
         $progs = $stmt->fetchAll();
 
         $descriptions = $stmt2->fetchAll();
@@ -113,15 +112,28 @@
     
         $bps = $stmt->fetchAll();
     }
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST['numBpSelected'])) {
             $numBpSelected = $_POST['numBpSelected'];
             $numBpSelected = explode(",", $numBpSelected);
-            $numBpSelected_str = implode(",", $numBpSelected);
-            exec("C:\Users\bosch\AppData\Local\Programs\Python\Python312\python.exe PDF.py $numBpSelected_str", $output);
+            $numBpSelected_str = implode(" ", $numBpSelected);
+            $username = $_SESSION['nom_ut'];
+    
+            $pythonExecutable = "C:\\Users\\Freddo\\anaconda3\\python.exe";
+    
+            if (isset($_POST['generate_pdf'])) {
+                exec("$pythonExecutable C:\\MAMP\\htdocs\\sae-15\\utilisateur\\PDF.py $numBpSelected_str $username", $output);
+                header("Location: bonnes_pratiques.pdf");
+                exit();
+            } elseif (isset($_POST['generate_excel'])) {
+                exec("$pythonExecutable C:\\MAMP\\htdocs\\sae-15\\utilisateur\\EXCEL.py $numBpSelected_str $username", $output);
+                header("Location: bonnes_pratiques.xlsx");
+                exit();
+            }
         }
     }
-
+      
 ?>
 
 <!DOCTYPE html>
@@ -236,11 +248,11 @@
         <!-- Button for validation -->
     </div>
     <div class="valider">
-        <form method="post" action="utilisateur.php">
-            <input type="hidden" name="numBpSelected" value="1,2,3">
-            <button type="submit" class="button-valider"><H2>PDF</H2></button>
+        <form method="post" action="utilisateur.php" id="pdfForm">
+            <input type="hidden" name="numBpSelected" id="numBpSelected" value="">
+            <button type="submit" name="generate_pdf" class="button-valider"><H2>PDF</H2></button>
+            <button type="submit" name="generate_excel" class="button-valider"><H2>EXCEL</H2></button>
         </form>
-        <button class="button-valider"><H2>EXCEL</H2></button>
     </div>
     <div class="popup">
         <?php if (count($descriptions) > 0) : ?>
@@ -279,26 +291,19 @@
                 $('.popup > div').hide();
             });
 
-            $(".button-valider").on("click", function(e) {
+            $("#pdfForm").on("submit", function(e) {
                 const selected = $("input[name='select']:checked");
                 const numBpSelected = [];
 
                 selected.toArray().forEach(i => {
                     numBpSelected.push(i.value);
                 });
-                console.log(numBpSelected);
 
-                $.ajax({
-                    url: 'utilisation.php',  // replace with the path to your PHP script
-                    method: 'POST',
-                    data: { 'numBpSelected': numBpSelected },
-                    success: function(response) {
-                        // Handle the response from the PHP script
-                        console.log(response);
-                    }
-                });
+                $("#numBpSelected").val(numBpSelected.join(","));
             });
         });
     </script>
 </body>
 </html>
+
+

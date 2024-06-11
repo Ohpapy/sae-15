@@ -90,10 +90,10 @@
     <?php
         // Display error message for blocked account
         if (isset($_GET['blocked'])) {
-            echo '<h3 style="text-align: center;">Compte bloqué !</h3>';
+            echo '<h3 style="text-align: center;color: white;">Compte bloqué !</h3>';
         }
         if (isset($_GET['ErreurConnexion'])) {
-            echo '<h3 style="text-align: center;">Mauvais identifiant ou mot de passe !</h3>';
+            echo '<h3 style="text-align: center;color: white;">Mauvais identifiant ou mot de passe !</h3>';
         }
     ?>
     <!-- Login form -->

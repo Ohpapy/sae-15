@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : dim. 09 juin 2024 à 17:47
+-- Généré le : mer. 12 juin 2024 à 13:58
 -- Version du serveur : 5.7.24
 -- Version de PHP : 8.3.1
 
@@ -39,7 +39,6 @@ CREATE TABLE `appartenance` (
 --
 
 INSERT INTO `appartenance` (`num_app`, `num_prog`, `num_phase`, `num_bp`) VALUES
-(3, 3, 1, 3),
 (4, 3, 1, 4),
 (5, 3, 3, 5),
 (6, 2, 3, 6),
@@ -54,12 +53,7 @@ INSERT INTO `appartenance` (`num_app`, `num_prog`, `num_phase`, `num_bp`) VALUES
 (19, 1, 1, 19),
 (20, 1, 1, 20),
 (21, 1, 1, 21),
-(22, 1, 1, 22),
-(23, 1, 1, 23),
-(24, 1, 1, 24),
-(25, 1, 1, 25),
-(26, 1, 1, 26),
-(27, 1, 1, 27);
+(22, 1, 1, 22);
 
 -- --------------------------------------------------------
 
@@ -79,7 +73,6 @@ CREATE TABLE `bonnespratique` (
 
 INSERT INTO `bonnespratique` (`num_bp`, `test_bp`, `utilisation_bp`) VALUES
 (2, 'oui', 1),
-(3, 'retest', 1),
 (4, 'décollage d\'un avion', 1),
 (5, 'decollage', 1),
 (6, 'vol long utiliser 1 ou 2', 1),
@@ -94,12 +87,7 @@ INSERT INTO `bonnespratique` (`num_bp`, `test_bp`, `utilisation_bp`) VALUES
 (19, 'Vérifier que outputs et outputs_ctx sont accessibles en écriture', 1),
 (20, 'Vérifier la présence du fichier de configuration du simulateur 1553 dans le répertoire input (fichier tvw.155) si cette fonction est utilisée', 1),
 (21, 'Vérifier que l\'alimentation du DHU est ON', 1),
-(22, 'ana_fonc <test> -c -v', 1),
-(23, 'bou', 1),
-(24, 'eac', 1),
-(25, 'eac', 1),
-(26, 'zeaceaceav', 1),
-(27, 'aéecfaeaeazeazcea', 1);
+(22, 'ana_fonc <test> -c -v', 1);
 
 -- --------------------------------------------------------
 
@@ -122,8 +110,6 @@ INSERT INTO `bp_motcles` (`num_bpmotcles`, `num_bp`, `num_cles`) VALUES
 (5, 2, 3),
 (6, 2, 5),
 (7, 2, 1),
-(8, 3, 2),
-(9, 3, 5),
 (10, 4, 6),
 (11, 4, 7),
 (12, 4, 8),
@@ -150,10 +136,7 @@ INSERT INTO `bp_motcles` (`num_bpmotcles`, `num_bp`, `num_cles`) VALUES
 (43, 19, 15),
 (44, 20, 18),
 (45, 21, 15),
-(46, 22, 15),
-(47, 23, 22),
-(48, 26, 23),
-(49, 27, 24);
+(46, 22, 15);
 
 -- --------------------------------------------------------
 
@@ -174,10 +157,40 @@ CREATE TABLE `logs` (
 --
 
 INSERT INTO `logs` (`num_log`, `message`, `type`, `date`, `nom`) VALUES
-(66, 'Un utilisateur est connecté: Mathis', 'UTILISATEUR CONNECTÉ', '2024-06-07 08:29:20', 'Mathis'),
-(67, 'Un utilisateur est connecté: Mathis', 'UTILISATEUR CONNECTÉ', '2024-06-07 08:47:17', 'Mathis'),
-(68, 'Un utilisateur est connecté: Mathis', 'UTILISATEUR CONNECTÉ', '2024-06-07 08:52:43', 'Mathis'),
-(69, 'Un utilisateur est connecté: Mathis', 'UTILISATEUR CONNECTÉ', '2024-06-09 17:47:01', 'Mathis');
+(83, 'Déconnexion de Mathis', 'SUPPRESSION UTILISATEUR', '2024-06-11 08:37:50', 'Mathis'),
+(84, 'l\' utilisateur s\'est trompé: Mathis', 'MOT DE PASSE INCORRECT', '2024-06-11 08:37:54', NULL),
+(85, 'Un utilisateur est connecté: Mathis', 'UTILISATEUR CONNECTÉ', '2024-06-12 08:07:47', 'Mathis'),
+(86, 'Un utilisateur est connecté: Mathis', 'UTILISATEUR CONNECTÉ', '2024-06-12 11:01:51', 'Mathis'),
+(87, 'Un utilisateur est connecté: Mathis', 'UTILISATEUR CONNECTÉ', '2024-06-12 11:11:29', 'Mathis'),
+(88, 'Un utilisateur est connecté: Mathis', 'UTILISATEUR CONNECTÉ', '2024-06-12 11:20:00', 'Mathis'),
+(89, 'Un utilisateur est connecté: Mathis', 'UTILISATEUR CONNECTÉ', '2024-06-12 11:36:21', 'Mathis'),
+(90, 'Un utilisateur est connecté: Mathis', 'UTILISATEUR CONNECTÉ', '2024-06-12 11:44:35', 'Mathis'),
+(91, 'Un utilisateur est connecté: Mathis', 'UTILISATEUR CONNECTÉ', '2024-06-12 13:27:47', 'Mathis'),
+(92, 'Un utilisateur est connecté: Mathis', 'UTILISATEUR CONNECTÉ', '2024-06-12 13:42:04', 'Mathis'),
+(93, 'Une bonne pratique a été créée avec cet ID: 28', 'CRÉATION BONNE PRATIQUE', '2024-06-12 13:49:18', 'Mathis'),
+(94, 'Une bp a été supprimée avec cet ID: 3', 'SUPPRESSION BP', '2024-06-12 13:49:48', 'Mathis'),
+(95, 'Une bp a été supprimée avec cet ID: 23', 'SUPPRESSION BP', '2024-06-12 13:49:50', 'Mathis'),
+(96, 'Une bp a été supprimée avec cet ID: 24', 'SUPPRESSION BP', '2024-06-12 13:49:51', 'Mathis'),
+(97, 'Une bp a été remise en utilisation avec cet ID: 25', 'REMISE EN UTILISATION BP', '2024-06-12 13:49:52', 'Mathis'),
+(98, 'Une bp a été supprimée avec cet ID: 26', 'SUPPRESSION BP', '2024-06-12 13:49:53', 'Mathis'),
+(99, 'Une bp a été supprimée avec cet ID: 27', 'SUPPRESSION BP', '2024-06-12 13:49:55', 'Mathis'),
+(100, 'Une bp a été supprimée avec cet ID: 28', 'SUPPRESSION BP', '2024-06-12 13:49:56', 'Mathis'),
+(101, 'Une bp a été supprimée avec cet ID: 25', 'SUPPRESSION BP', '2024-06-12 13:50:07', 'Mathis'),
+(102, 'Un nouvel utilisateur a été créé avec cet ID: 4 son login est: create', 'CRÉATION UTILISATEUR', '2024-06-12 13:50:59', 'Mathis'),
+(103, 'Un nouvel utilisateur a été créé avec cet ID: 5 son login est: supp', 'CRÉATION UTILISATEUR', '2024-06-12 13:51:26', 'Mathis'),
+(104, 'Un utilisateur a été supprimé avec cet ID: 0 son login était: ', 'SUPPRESSION UTILISATEUR', '2024-06-12 13:51:31', 'Mathis'),
+(105, 'Un nouvel utilisateur a été créé avec cet ID: 6 son login est: modif', 'CRÉATION UTILISATEUR', '2024-06-12 13:51:49', 'Mathis'),
+(106, 'Un utilisateur a été mis à jour avec ce login: ', 'MISE À JOUR UTILISATEUR', '2024-06-12 13:52:01', 'Mathis'),
+(107, 'Un nouveau programme a été créée avec cet ID4 son nom est: fff', 'CRÉATION PROGRAMME', '2024-06-12 13:52:07', 'Mathis'),
+(108, 'Un programme a été supprimé son num est: 4', 'SUPPRESION PROGRAMME', '2024-06-12 13:52:11', 'Mathis'),
+(109, 'La forme des mots de passe a été changée', 'MODIFICATION FORME MOT DE PASSE', '2024-06-12 13:52:54', 'Mathis'),
+(110, 'Erreur pour la création utilisateur le mot de passe ne convien pas', 'ERREUR CREATION UTILISATEUR', '2024-06-12 13:54:14', 'Mathis'),
+(111, 'La forme des mots de passe a été changée', 'MODIFICATION FORME MOT DE PASSE', '2024-06-12 13:54:20', 'Mathis'),
+(112, 'Erreur pour la création utilisateur le mot de passe ne convien pas', 'ERREUR CREATION UTILISATEUR', '2024-06-12 13:54:36', 'Mathis'),
+(113, 'La forme des mots de passe a été changée', 'MODIFICATION FORME MOT DE PASSE', '2024-06-12 13:54:47', 'Mathis'),
+(114, 'Un nouvel utilisateur a été créé avec cet ID: 7 son login est: bloque', 'CRÉATION UTILISATEUR', '2024-06-12 13:54:59', 'Mathis'),
+(115, 'Un nouvel utilisateur a été créé avec cet ID: 8 son login est: supp', 'CRÉATION UTILISATEUR', '2024-06-12 13:55:28', 'Mathis'),
+(116, 'Un nouveau programme a été créée avec cet ID5 son nom est: Nouveau', 'CRÉATION PROGRAMME', '2024-06-12 13:55:45', 'Mathis');
 
 -- --------------------------------------------------------
 
@@ -199,7 +212,7 @@ CREATE TABLE `mdp` (
 --
 
 INSERT INTO `mdp` (`num_car`, `caractere`, `chiffre`, `majuscule`, `minuscule`, `carac`) VALUES
-(1, 5, 1, 0, 5, 0);
+(1, 5, 0, 0, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -240,7 +253,8 @@ INSERT INTO `motcles` (`num_cles`, `mot`) VALUES
 (21, 'MeO'),
 (22, 'bou'),
 (23, 'azdcazcea'),
-(24, 'azecazeazecace');
+(24, 'azecazeazecace'),
+(25, 'bonnepartique');
 
 -- --------------------------------------------------------
 
@@ -281,7 +295,8 @@ CREATE TABLE `programme` (
 INSERT INTO `programme` (`num_prog`, `nom_prog`) VALUES
 (1, 'PROG_1'),
 (2, 'PROG_2'),
-(3, 'GENERIQUE');
+(3, 'GENERIQUE'),
+(5, 'Nouveau');
 
 -- --------------------------------------------------------
 
@@ -306,7 +321,11 @@ CREATE TABLE `utilisateur` (
 
 INSERT INTO `utilisateur` (`num_ut`, `login_ut`, `nom_ut`, `mdp_ut`, `acces_ut`, `bloque_ut`, `tentative_ut`, `presence_ut`) VALUES
 (1, 'admin', 'Mathis', '$2y$10$.OE6z63KaYqRGzpt5uGGcebJTajPVhnU1JE7wGkpZgNyIfxVNO9xS', 15, 0, 0, 0),
-(3, 'user', 'user', '$2y$10$LckjQW4yfRoCCQ.bua0iDO6.zCFoLDf9Dm3JL8VRphlQGh36s3edq', 1, 0, 0, 0);
+(3, 'user', 'user', '$2y$10$LckjQW4yfRoCCQ.bua0iDO6.zCFoLDf9Dm3JL8VRphlQGh36s3edq', 1, 0, 0, 0),
+(4, 'create', 'Creation', '$2y$10$zD8KrvF.nV/nf6tPagG8zuG/UZI.RaNYIDLGDJX.5nRh2fIgEZtI2', 15, 0, 0, 0),
+(6, 'modif', 'modifier', '$2y$10$2H8M6YFz1UdJjPaAAPqD8uyGxNumb.y2a7cpUAXc26738O/9/gJXq', 15, 0, 0, 0),
+(7, 'bloque', 'bloque', '$2y$10$uvJCSsdNLepQB1E67PyI..bEaHt9S7yuuYZqDxCpeTDA/flVcGx5G', 15, 0, 0, 0),
+(8, 'supp', 'supp', '$2y$10$BorcSdh3eOek6HtPS0ug0.2Cs4ARVXFVBxW2mS4oDkvwAxnUPPwiG', 15, 0, 0, 0);
 
 --
 -- Index pour les tables déchargées
@@ -379,25 +398,25 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `appartenance`
 --
 ALTER TABLE `appartenance`
-  MODIFY `num_app` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `num_app` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT pour la table `bonnespratique`
 --
 ALTER TABLE `bonnespratique`
-  MODIFY `num_bp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `num_bp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT pour la table `bp_motcles`
 --
 ALTER TABLE `bp_motcles`
-  MODIFY `num_bpmotcles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `num_bpmotcles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT pour la table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `num_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `num_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
 -- AUTO_INCREMENT pour la table `mdp`
@@ -409,7 +428,7 @@ ALTER TABLE `mdp`
 -- AUTO_INCREMENT pour la table `motcles`
 --
 ALTER TABLE `motcles`
-  MODIFY `num_cles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `num_cles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT pour la table `phase`
@@ -421,13 +440,13 @@ ALTER TABLE `phase`
 -- AUTO_INCREMENT pour la table `programme`
 --
 ALTER TABLE `programme`
-  MODIFY `num_prog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `num_prog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `num_ut` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `num_ut` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Contraintes pour les tables déchargées

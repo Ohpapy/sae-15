@@ -119,7 +119,6 @@
             $numBpSelected = explode(",", $numBpSelected);
             $numBpSelected_str = implode(" ", $numBpSelected);
             $username = $_SESSION['nom_ut'];
-            $date = date("Y-m-d H:i:s");
     
             $pythonExecutable = "C:\Users\bosch\AppData\Local\Programs\Python\Python312\python.exe";
     

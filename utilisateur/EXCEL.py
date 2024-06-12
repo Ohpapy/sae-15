@@ -2,6 +2,7 @@ import openpyxl
 import mysql.connector
 import sys
 import textwrap
+from datetime import datetime
 
 # Connexion à la base de données
 db = mysql.connector.connect(
@@ -62,8 +63,10 @@ def export_to_excel(liste_bp, creator_name):
         ws.column_dimensions[column].width = adjusted_width
 
     # Ajout du texte en bas du fichier
+    creation_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     ws.append([])  # Ajout d'une ligne vide
     ws.append([f"Créé par: {creator_name}"])
+    ws.append([f"Date de création: {creation_date}"])
 
     # Enregistrement du fichier Excel
     wb.save("bonnes_pratiques.xlsx")

@@ -2,6 +2,7 @@ import fpdf
 import mysql.connector
 import sys
 import textwrap
+import datetime
 
 # Connexion à la base de données
 db = mysql.connector.connect(
@@ -16,6 +17,8 @@ cursor = db.cursor(dictionary=True)  # Utilisation du curseur avec dictionnaire 
 
 # Récupération des arguments de la ligne de commande
 args = sys.argv[1:]
+username = args[-1]
+now = datetime.datetime.now()
 
 for arg in args:
     cursor.execute("""
@@ -36,7 +39,6 @@ def export_to_pdf(liste_bp, creator_name):
     pdf = fpdf.FPDF()
     pdf.add_page()
     pdf.set_font("Arial", size=12)
-
     pdf.cell(0, 7, "Bonnes pratiques", 1, 1, "C")
     pdf.ln(10)
 
@@ -44,7 +46,7 @@ def export_to_pdf(liste_bp, creator_name):
     pdf.cell(50, 7, "Nom de la bonne pratique", 1, 0, "C")
     pdf.cell(30, 7, "Programme", 1, 0, "C")
     pdf.cell(30, 7, "Phase", 1, 0, "C")
-    pdf.cell(50, 7, "Coché", 1, 1, "C")  # Ajout de la colonne "Coché"
+    pdf.cell(50, 7, "A Coché", 1, 1, "C")  # Ajout de la colonne "Coché"
     pdf.ln(10)
 
     for bp in liste_bp:
@@ -54,7 +56,7 @@ def export_to_pdf(liste_bp, creator_name):
         pdf.cell(50, 10, shortened_test_bp, 1, 0, "C")
         pdf.cell(30, 10, bp['nom_prog'], 1, 0, "C")
         pdf.cell(30, 10, bp['nom_phase'], 1, 0, "C")
-        pdf.cell(50, 10, "Coché", 1, 1, "C")
+        pdf.cell(50, 10, " ", 1, 1, "C")
         pdf.ln(10)
 
     # Ajout du texte en bas du fichier
@@ -66,7 +68,7 @@ def export_to_pdf(liste_bp, creator_name):
     print("PDF généré avec succès !")
 
 # Nom du créateur (à remplacer par le nom réel)
-creator_name = "Mathis"
+creator_name = username, " le ", now.strftime("%d-%m-%Y"), " à ", now.strftime("%H:%M:%S")
 
 export_to_pdf(liste_bp, creator_name)
 

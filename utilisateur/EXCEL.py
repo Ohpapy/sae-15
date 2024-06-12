@@ -45,8 +45,9 @@ def export_to_excel(liste_bp, creator_name):
 
     # Ajout des données
     for bp in liste_bp:
-        wrapped_test_bp = textwrap.fill(bp['test_bp'], width=50)  # Ajustez la largeur si nécessaire
-        row = [bp['num_bp'], wrapped_test_bp, bp['nom_prog'], bp['nom_phase'], "Coché"]
+        #wrapped_test_bp = textwrap.fill(bp['test_bp'], width=50)  # Ajustez la largeur si nécessaire
+        wrapped_test_bp = bp['test_bp']
+        row = [bp['num_bp'], wrapped_test_bp, bp['nom_prog'], bp['nom_phase'], " "]
         ws.append(row)
 
     # Ajustement de la largeur des colonnes pour mieux afficher les données
@@ -59,7 +60,7 @@ def export_to_excel(liste_bp, creator_name):
                     max_length = len(cell.value)
             except:
                 pass
-        adjusted_width = (max_length + 2)
+        adjusted_width = (max_length + 1)
         ws.column_dimensions[column].width = adjusted_width
 
     # Ajout du texte en bas du fichier

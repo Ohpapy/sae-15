@@ -1,7 +1,7 @@
 import openpyxl
+from openpyxl.styles import Alignment
 import mysql.connector
 import sys
-import textwrap
 from datetime import datetime
 
 # Connexion à la base de données
@@ -39,35 +39,53 @@ def export_to_excel(liste_bp, creator_name):
     ws = wb.active
     ws.title = "Bonnes pratiques"
 
+    # Nombre de colonnes vides à ajouter pour centrer les données
+    empty_columns_each_side = 10
+
+    # Indice de départ pour les données réelles
+    data_start_col = empty_columns_each_side + 1
+
     # Création de l'en-tête
     headers = ["ID", "Nom de la bonne pratique", "Programme", "Phase", "Coché"]
-    ws.append(headers)
+    for i, header in enumerate(headers):
+        cell = ws.cell(row=1, column=data_start_col + i)
+        cell.value = header
+        cell.alignment = Alignment(horizontal='center', vertical='center')
 
     # Ajout des données
-    for bp in liste_bp:
-        #wrapped_test_bp = textwrap.fill(bp['test_bp'], width=50)  # Ajustez la largeur si nécessaire
+    for row_index, bp in enumerate(liste_bp, start=2):
         wrapped_test_bp = bp['test_bp']
         row = [bp['num_bp'], wrapped_test_bp, bp['nom_prog'], bp['nom_phase'], " "]
-        ws.append(row)
+        for col_index, cell_value in enumerate(row):
+            cell = ws.cell(row=row_index, column=data_start_col + col_index)
+            cell.value = cell_value
+            cell.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
 
     # Ajustement de la largeur des colonnes pour mieux afficher les données
-    for col in ws.columns:
-        max_length = 0
-        column = col[0].column_letter  # Get the column name
-        for cell in col:
-            try:
-                if len(str(cell.value)) > max_length:
-                    max_length = len(cell.value)
-            except:
-                pass
-        adjusted_width = (max_length + 1)
-        ws.column_dimensions[column].width = adjusted_width
+    for i in range(len(headers)):
+        ws.column_dimensions[openpyxl.utils.get_column_letter(data_start_col + i)].width = 30
+
+    # Ajuster automatiquement la hauteur des lignes pour afficher tout le texte
+    for row in ws.iter_rows(min_row=2, max_row=ws.max_row):
+        max_height = 0
+        for cell in row:
+            if cell.value:
+                lines = str(cell.value).split('\n')
+                max_height = max(max_height, len(lines) * 15)  # Ajuster la taille selon le texte
+        ws.row_dimensions[row[0].row].height = max_height
 
     # Ajout du texte en bas du fichier
     creation_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    ws.append([])  # Ajout d'une ligne vide
-    ws.append([f"Créé par: {creator_name}"])
-    ws.append([f"Date de création: {creation_date}"])
+    footer_row1 = [f"Créé par: {creator_name}"] + [""] * (len(headers) - 1)
+    footer_row2 = [f"Date de création: {creation_date}"] + [""] * (len(headers) - 1)
+    ws.append([""] * (empty_columns_each_side + len(headers)))  # Ligne vide
+    ws.append(footer_row1)
+    ws.append(footer_row2)
+
+    # Centrer le contenu des cellules du pied de page
+    for row in ws.iter_rows(min_row=ws.max_row - 1, max_row=ws.max_row, min_col=data_start_col, max_col=data_start_col + len(headers) - 1):
+        for cell in row:
+            cell.alignment = Alignment(horizontal='center', vertical='center')
 
     # Enregistrement du fichier Excel
     wb.save("bonnes_pratiques.xlsx")
@@ -77,3 +95,12 @@ def export_to_excel(liste_bp, creator_name):
 creator_name = "Mathis"
 
 export_to_excel(liste_bp, creator_name)
+
+
+
+
+
+
+
+
+

@@ -5,14 +5,14 @@
         $conn = createConnection();          // Creates a connection to the database 
 
         // Fetch all programs
-        $sqlProg = "SELECT * FROM programme";
-        $stmtProg = $conn->query($sqlProg);
-        $programs = $stmtProg->fetchAll();
+        $sqlprog = "SELECT * FROM programme";
+        $stmtprog = $conn->query($sqlprog);
+        $programs = $stmtprog->fetchAll();
 
         // Fetch all phases
-        $sqlPhase = "SELECT * FROM phase";
-        $stmtPhase = $conn->query($sqlPhase);
-        $phases = $stmtPhase->fetchAll();
+        $sqlphase = "SELECT * FROM phase";
+        $stmtphase = $conn->query($sqlphase);
+        $phases = $stmtphase->fetchAll();
 
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();     // Displays an error message in case of connection failure

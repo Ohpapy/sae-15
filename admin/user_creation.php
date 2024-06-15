@@ -4,10 +4,10 @@
 
     function validatePassword($password, $conn) {
         // Fetch password requirements from the 'mdp' table
-        $sqlGETpwd = "SELECT * FROM mdp WHERE num_car = 1";
-        $stmtGETpwd = $conn->prepare($sqlGETpwd);
-        $stmtGETpwd->execute();
-        $requirements = $stmtGETpwd->fetch(PDO::FETCH_ASSOC);
+        $sqlgetpwd = "SELECT * FROM mdp WHERE num_car = 1";
+        $stmtgetpwd = $conn->prepare($sqlgetpwd);
+        $stmtgetpwd->execute();
+        $requirements = $stmtgetpwd->fetch(PDO::FETCH_ASSOC);
     
         // Check if the password meets the requirements
         $length = strlen($password);

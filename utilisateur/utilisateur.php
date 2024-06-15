@@ -3,8 +3,8 @@
     include_once('../outils/bd.php');
     include_once('../outils/log.php');
     
-    session_start(); // Assurez-vous que la session est démarrée
-     // Récupérer le nom de l'utilisateur depuis la session
+    session_start(); // Make sure the session is started
+     // Recover the user name from the session
 
     try {
         // Create database connection
@@ -16,19 +16,19 @@
         $result = $stmt->fetchAll();
 
         // Select bonnes pratiques with usage flag set to 1
-        $sqlGetBP = "SELECT bonnespratique.num_bp, bonnespratique.test_bp, programme.nom_prog, phase.nom_phase
+        $sqlgetbp = "SELECT bonnespratique.num_bp, bonnespratique.test_bp, programme.nom_prog, phase.nom_phase
         FROM appartenance
         JOIN bonnespratique ON appartenance.num_bp = bonnespratique.num_bp
         JOIN programme ON appartenance.num_prog = programme.num_prog
         JOIN phase ON appartenance.num_phase = phase.num_phase
         WHERE bonnespratique.utilisation_bp = 1;";
-        $stmt = $conn->prepare($sqlGetBP);
+        $stmt = $conn->prepare($sqlgetbp);
         $stmt->execute();
     
         $bps = $stmt->fetchAll();
     
         // Select descriptions of bonnes pratiques
-        $sqlDescriptions = "SELECT appartenance.num_bp, bonnespratique.test_bp, bonnespratique.utilisation_bp, programme.nom_prog, phase.nom_phase, GROUP_CONCAT(motcles.mot SEPARATOR ' - ') AS motcles
+        $sqldescriptions = "SELECT appartenance.num_bp, bonnespratique.test_bp, bonnespratique.utilisation_bp, programme.nom_prog, phase.nom_phase, GROUP_CONCAT(motcles.mot SEPARATOR ' - ') AS motcles
         FROM appartenance
         JOIN bonnespratique ON appartenance.num_bp = bonnespratique.num_bp
         JOIN programme ON appartenance.num_prog = programme.num_prog
@@ -36,7 +36,7 @@
         JOIN bp_motcles ON appartenance.num_bp = bp_motcles.num_bp
         JOIN motcles ON bp_motcles.num_cles = motcles.num_cles
         GROUP BY appartenance.num_bp, bonnespratique.test_bp, bonnespratique.utilisation_bp, programme.nom_prog, phase.nom_phase;";
-        $stmt2 = $conn->prepare($sqlDescriptions);
+        $stmt2 = $conn->prepare($sqldescriptions);
         $stmt2->execute();
 
         // Select all phases
@@ -115,19 +115,19 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST['numBpSelected'])) {
-            $numBpSelected = $_POST['numBpSelected'];
-            $numBpSelected = explode(",", $numBpSelected);
-            $numBpSelected_str = implode(" ", $numBpSelected);
+            $numbpselected = $_POST['numBpSelected'];
+            $numbpselected = explode(",", $numbpselected);
+            $numbpselected_str = implode(" ", $numbpselected);
             $username = $_SESSION['nom_ut'];
     
-            $pythonExecutable = "C:\Users\bosch\AppData\Local\Programs\Python\Python312\python.exe";
+            $executable_python = "C:\Users\bosch\AppData\Local\Programs\Python\Python312\python.exe";
     
             if (isset($_POST['generate_pdf'])) {
-                exec("$pythonExecutable C:\\MAMP\\htdocs\\sae-15\\utilisateur\\PDF.py $numBpSelected_str $username", $output);
+                exec("$executable_python C:\\MAMP\\htdocs\\sae-15\\utilisateur\\PDF.py $numbpselected_str $username", $output);
                 header("Location: bonnes_pratiques.pdf");
                 exit();
             } elseif (isset($_POST['generate_excel'])) {
-                exec("$pythonExecutable C:\\MAMP\\htdocs\\sae-15\\utilisateur\\EXCEL.py $numBpSelected_str $username", $output);
+                exec("$executable_python C:\\MAMP\\htdocs\\sae-15\\utilisateur\\EXCEL.py $numbpselected_str $username", $output);
                 header("Location: bonnes_pratiques.xlsx");
                 exit();
             }

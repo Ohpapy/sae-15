@@ -23,20 +23,20 @@
         $stmtgetuser->execute();
         $users = $stmtgetuser->fetchAll();
 
-        $sqlgetuserbloqued = "SELECT * FROM utilisateur WHERE bloque_ut = 1";
-        $stmtgetuserbloqued = $conn->prepare($sqlgetuserbloqued);
-        $stmtgetuserbloqued->execute();
-        $usersbloqued = $stmtgetuserbloqued->fetchAll();
+        $sqlgetuserblocked = "SELECT * FROM utilisateur WHERE bloque_ut = 1";
+        $stmtgetuserblocked = $conn->prepare($sqlgetuserblocked);
+        $stmtgetuserblocked->execute();
+        $usersblocked = $stmtgetuserblocked->fetchAll();
 
-        $sqlgetformmdp = "SELECT caractere, chiffre, majuscule, minuscule, carac FROM mdp LIMIT 1";
-        $stmtgetformmdp = $conn->prepare($sqlgetformmdp);
-        $stmtgetformmdp->execute();
-        $formmdp = $stmtgetformmdp->fetch();
-        $default_caractere = $formmdp['caractere'];
-        $default_chiffre = $formmdp['chiffre'];
-        $default_majuscule = $formmdp['majuscule'];
-        $default_minuscule = $formmdp['minuscule'];
-        $default_carac = $formmdp['carac'];
+        $sqlgetpwdform = "SELECT caractere, chiffre, majuscule, minuscule, carac FROM mdp LIMIT 1";
+        $stmtgetpwdform = $conn->prepare($sqlgetpwdform);
+        $stmtgetpwdform->execute();
+        $pwdform = $stmtgetpwdform->fetch();
+        $default_character = $pwdform['caractere'];
+        $default_number = $pwdform['chiffre'];
+        $default_capital = $pwdform['majuscule'];
+        $default_minuscule = $pwdform['minuscule'];
+        $default_charac = $pwdform['carac'];
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();   // Displays an error message in case of connection failure
     }
@@ -95,6 +95,7 @@
                     <h3>Identifiant: </h3>
                     <select name="usersupp" id="usersupp" style="width: 200px; text-overflow: ellipsis; text-align: center;">
                         <?php if (count($users) > 0) : ?>
+                            <!-- Deleting a user from a drop-down menu -->
                             <?php foreach ($users as $user) : ?>
                                 <option value="<?= $user["login_ut"] ?>"><?= $user["login_ut"] ?></option>
                             <?php endforeach; ?>
@@ -118,6 +119,7 @@
                     <h3>Identifiant </h3>
                     <select name="usermodif" id="usermodif" style="width: 200px; text-overflow: ellipsis; text-align: center;">
                         <?php if (count($users) > 0) : ?>
+                            <!--Change your password from a drop-down menu-->
                             <?php foreach ($users as $user) : ?>
                                 <option value="<?= $user["login_ut"] ?>"><?= $user["login_ut"] ?></option>
                             <?php endforeach; ?>
@@ -138,9 +140,10 @@
                     </h2>
                     <h3>Identifiant </h3>
                     <select name="userdebloq" id="userdebloq" style="width: 200px; text-overflow: ellipsis; text-align: center;">
-                        <?php if (count($usersbloqued) > 0) : ?>
-                            <?php foreach ($usersbloqued as $userbloqued) : ?>
-                                <option value="<?= $userbloqued["login_ut"] ?>"><?= $userbloqued["login_ut"] ?></option>
+                        <?php if (count($usersblocked) > 0) : ?>
+                            <!-- unblock a user from a drop-down menu -->
+                            <?php foreach ($usersblocked as $userblocked) : ?>
+                                <option value="<?= $userblocked["login_ut"] ?>"><?= $userblocked["login_ut"] ?></option>
                             <?php endforeach; ?>
                         <?php endif ?>
                     </select>
@@ -172,6 +175,7 @@
                         <div>
                             <select name="num_prog" id="num_prog">
                                 <?php if (count($progs) > 0) : ?>
+                                     <!-- Delete a program from a drop-down menu -->
                                     <?php foreach ($progs as $prog) : ?>
                                         <option value="<?= $prog["num_prog"] ?>"><?= $prog["nom_prog"] ?></option>
                                     <?php endforeach; ?>
@@ -195,6 +199,7 @@
                     <div>
                     <select name="num_bp" id="num_bp" style="width: 200px; text-overflow: ellipsis;">
                         <?php if (count($bps) > 0) : ?>
+                             <!-- Delete bp from a drop-down menu -->
                             <?php foreach ($bps as $bp) : ?>
                                 <option value="<?= $bp["num_bp"] ?>" title="<?= $bp["test_bp"] ?>"><?= $bp["test_bp"] ?></option>
                             <?php endforeach; ?>
@@ -228,15 +233,15 @@
                 <h2>Forme d'un mot de passe</h2>
                 <form method="post" action="mdpstyle.php">
                     <h3>Nombre de caractère</h3>
-                    <input type="number" name="caractere" min="1" max="30" value="<?php echo $default_caractere; ?>" class="center">
+                    <input type="number" name="caractere" min="1" max="30" value="<?php echo $default_character; ?>" class="center">
                     <h3>Nombre de chiffre</h3>
-                    <input type="number" name="chiffre" value="<?php echo $default_chiffre; ?>" class="center">
+                    <input type="number" name="chiffre" value="<?php echo $default_number; ?>" class="center">
                     <h3>Nombre de majuscule</h3>
-                    <input type="number" name="majuscule" value="<?php echo $default_majuscule; ?>" class="center">
+                    <input type="number" name="majuscule" value="<?php echo $default_capital; ?>" class="center">
                     <h3>Nombre de minuscule</h3>
                     <input type="number" name="minuscule" value="<?php echo $default_minuscule; ?>" class="center">
                     <h3>Caractères spéciaux</h3>
-                    <input type="checkbox" name="carac" <?php if ($default_carac == 1) echo 'checked'; ?>>
+                    <input type="checkbox" name="carac" <?php if ($default_charac == 1) echo 'checked'; ?>>
                     <br>
                     <br>
                     <button type="submit" class="button-valider">valider</button>

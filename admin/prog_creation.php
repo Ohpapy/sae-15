@@ -3,8 +3,8 @@
     include('../outils/log.php');      // Includes the log file
     try {
         $conn = createConnection();          // Creates a connection to the database
-        $sqlGetprog = "SELECT nom_prog FROM programme";
-        $stmt = $conn->prepare($sqlGetprog);
+        $sqlgetprog = "SELECT nom_prog FROM programme";
+        $stmt = $conn->prepare($sqlgetprog);
         $stmt->execute();
         $progs = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
         // Inserting a new best practice into the 'bonnespratique' table

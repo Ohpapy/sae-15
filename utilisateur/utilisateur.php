@@ -115,19 +115,19 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST['numBpSelected'])) {
-            $numbpselected = $_POST['numBpSelected'];
-            $numbpselected = explode(",", $numbpselected);
-            $numbpselected_str = implode(" ", $numbpselected);
+            $numBpSelected = $_POST['numBpSelected'];
+            $numBpSelected = explode(",", $numBpSelected);
+            $numBpSelected_str = implode(" ", $numBpSelected);
             $username = $_SESSION['nom_ut'];
     
             $executable_python = "C:\Users\bosch\AppData\Local\Programs\Python\Python312\python.exe";
     
             if (isset($_POST['generate_pdf'])) {
-                exec("$executable_python C:\\MAMP\\htdocs\\sae-15\\utilisateur\\PDF.py $numbpselected_str $username", $output);
+                exec("$executable_python C:\\MAMP\\htdocs\\sae-15\\utilisateur\\PDF.py $numBpSelected_str $username", $output);
                 header("Location: bonnes_pratiques.pdf");
                 exit();
             } elseif (isset($_POST['generate_excel'])) {
-                exec("$executable_python C:\\MAMP\\htdocs\\sae-15\\utilisateur\\EXCEL.py $numbpselected_str $username", $output);
+                exec("$executable_python C:\\MAMP\\htdocs\\sae-15\\utilisateur\\EXCEL.py $numBpSelected_str $username", $output);
                 header("Location: bonnes_pratiques.xlsx");
                 exit();
             }

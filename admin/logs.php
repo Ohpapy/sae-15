@@ -35,7 +35,7 @@
                 usort($logs, function($a, $b) {
                     return strtotime($b['date']) - strtotime($a['date']);
                 });
-                
+                // Loop through each log and display its details in a table row
                 foreach ($logs as $log) {
                     echo "<tr>";
                     echo "<td style='width:20%; overflow-x: auto; text-align: center;'>" . $log['date'] . "</td>";

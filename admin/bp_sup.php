@@ -6,14 +6,14 @@
         $conn = createConnection();  
         if (isset($_POST['delete'])){
             // Delete the corresponding rows from 'bp_motcles' first
-            $sqlDeleteKeywords = "DELETE FROM bp_motcles WHERE num_bp = ?";
-            $stmtDeleteKeywords = $conn->prepare($sqlDeleteKeywords);
-            $stmtDeleteKeywords->execute([$_POST['num_bp']]);
+            $sqldelete_keywords = "DELETE FROM bp_motcles WHERE num_bp = ?";
+            $stmtdelete_keywords = $conn->prepare($sqldelete_keywords);
+            $stmtdelete_keywords->execute([$_POST['num_bp']]);
             
             // Then delete the corresponding rows from 'appartenance'
-            $sqlDeleteAppartenance = "DELETE FROM appartenance WHERE num_bp = ?";
-            $stmtDeleteAppartenance = $conn->prepare($sqlDeleteAppartenance);
-            $stmtDeleteAppartenance->execute([$_POST['num_bp']]);
+            $sqldelete_appartenance = "DELETE FROM appartenance WHERE num_bp = ?";
+            $stmtdelete_appartenance = $conn->prepare($sqldelete_appartenance);
+            $stmtdelete_appartenance->execute([$_POST['num_bp']]);
             
             // Now delete the row from 'bonnespratique'
             $sqlsupp = "DELETE FROM bonnespratique WHERE num_bp = ?";
@@ -25,9 +25,9 @@
             header('Location: ../admin/admin.php');
         }
         else {
-            $sqlUpdateBP = "UPDATE bonnespratique SET utilisation_bp = 1 WHERE num_bp = ?";
-            $stmtUpdateBP = $conn->prepare($sqlUpdateBP);
-            $stmtUpdateBP->execute([$_POST['num_bp']]);
+            $sqlupdatebp = "UPDATE bonnespratique SET utilisation_bp = 1 WHERE num_bp = ?";
+            $stmtupdatebp = $conn->prepare($sqlupdatebp);
+            $stmtudatebp->execute([$_POST['num_bp']]);
             $mess ='Une bp a été remise en utilisation avec cet ID: ' . $_POST['num_bp'];
             logMessage($conn, $mess, 'REMISE EN UTILISATION BP');
             header('Location: ../admin/admin.php');

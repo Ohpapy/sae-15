@@ -33,12 +33,12 @@
 
                     // Increment login attempts and update database
                     sleep(1);
-                    $tentative = $user['tentative_ut'] + 1;
-                    $sqltentative = $conn->prepare('UPDATE utilisateur SET tentative_ut = :tentative WHERE login_ut = :login');
-                    $sqltentative->execute(array('tentative' => $tentative, 'login' => $login));
+                    $attempt = $user['tentative_ut'] + 1;
+                    $sqlattempt = $conn->prepare('UPDATE utilisateur SET tentative_ut = :tentative WHERE login_ut = :login');
+                    $sqlattempt->execute(array('tentative' => $attempt, 'login' => $login));
 
                     // Block account if login attempts exceed 3
-                    if ($tentative >= 3) {
+                    if ($attempt >= 3) {
                         $sqlblock = $conn->prepare('UPDATE utilisateur SET bloque_ut = 1 WHERE login_ut = :login');
                         $sqlblock->execute(array('login' => $login));
                         $mess ='Un utilisateur est bloqué' . $login;

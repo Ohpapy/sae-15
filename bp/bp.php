@@ -7,7 +7,7 @@
         // Fetch all programs
         $sqlProg = "SELECT * FROM programme";
         $stmtProg = $conn->query($sqlProg);
-        $programmes = $stmtProg->fetchAll();
+        $programs = $stmtProg->fetchAll();
 
         // Fetch all phases
         $sqlPhase = "SELECT * FROM phase";
@@ -35,6 +35,7 @@
                 Liste des Phases
             </h2>
             <ul>
+                <!--displaying the list of phases-->
                 <?php foreach ($phases as $row) : ?>
                     <li><?= $row['nom_phase'] ?></li>
                 <?php endforeach; ?>
@@ -59,7 +60,8 @@
                 <div>
                     <label for="programme">Programme:</label>
                     <select id="programme" name="programme" required>
-                        <?php foreach ($programmes as $row) : ?>
+                        <!--choice of program to be created-->
+                        <?php foreach ($programs as $row) : ?>
                             <option value="<?= $row['num_prog'] ?>"><?= $row['nom_prog'] ?></option>
                         <?php endforeach; ?>
                     </select>
@@ -68,6 +70,7 @@
                 <div>
                     <label for="phase">Phase:</label>
                     <select id="phase" name="phase" required>
+                        <!--choice of phase to be created-->
                         <?php foreach ($phases as $row) : ?>
                             <option value="<?= $row['num_phase'] ?>"><?= $row['nom_phase'] ?></option>
                         <?php endforeach; ?>
@@ -83,7 +86,8 @@
                 Liste des Programmes
             </h2>
             <ul>
-                <?php foreach ($programmes as $row) : ?>
+                <!--displaying the list of programs-->
+                <?php foreach ($programs as $row) : ?>
                     <li><?= $row['nom_prog'] ?></li>
                 <?php endforeach; ?>
             </ul>

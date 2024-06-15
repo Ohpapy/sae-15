@@ -6,15 +6,12 @@ resetTimeout()
 
 // Function triggered when user becomes inactive
 function onUserInactivity() {
-      // Redirect user to logout.php page
    window.location.href = "../outils/logout.php"
 }
 
 // Function to reset the inactivity timer
 function resetTimeout() {
-      // Clear any existing inactivity timeout
    clearTimeout(inactivityTimeout)
-      // Set a new inactivity timeout for 5 minutes (300 seconds)
    inactivityTimeout = setTimeout(onUserInactivity, 1000 * 300)
 }
 

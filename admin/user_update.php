@@ -14,13 +14,13 @@
         $uppercase = preg_match('@[A-Z]@', $password);
         $lowercase = preg_match('@[a-z]@', $password);
         $number = preg_match('@[0-9]@', $password);
-        $specialChars = preg_match('@[^\w]@', $password);
+        $specialchars = preg_match('@[^\w]@', $password);
     
         if ($length < $requirements['caractere'] || 
             !$uppercase && $requirements['majuscule'] ||
             !$lowercase && $requirements['minuscule'] ||
             !$number && $requirements['chiffre'] ||
-            !$specialChars && $requirements['carac']) {
+            !$specialchars && $requirements['carac']) {
             return false;
         } else {
             return true;

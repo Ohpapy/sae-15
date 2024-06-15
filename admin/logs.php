@@ -4,10 +4,10 @@
     try {
         // Create database connection
         $conn = createConnection();
-        $sqlGETlog = "SELECT * FROM logs";
-        $stmtGETlog = $conn->prepare($sqlGETlog);
-        $stmtGETlog->execute();
-        $logs = $stmtGETlog->fetchAll(PDO::FETCH_ASSOC);
+        $sqlgetlog = "SELECT * FROM logs";
+        $stmtgetlog = $conn->prepare($sqlgetlog);
+        $stmtgetlog->execute();
+        $logs = $stmtgetlog->fetchAll(PDO::FETCH_ASSOC);
     } catch(PDOException $e) {
         // Display error message if connection fails
         echo "Connection failed: " . $e->getMessage();

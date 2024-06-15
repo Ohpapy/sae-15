@@ -40,14 +40,14 @@
         $stmt2->execute();
 
         // Select all phases
-        $sqlfiltrephase = "SELECT nom_phase FROM phase";
-        $stmt = $conn->prepare($sqlfiltrephase);
+        $sqlphasefilter = "SELECT nom_phase FROM phase";
+        $stmt = $conn->prepare($sqlphasefilter);
         $stmt->execute();
         $phases = $stmt->fetchAll();
 
         // Select all programs
-        $sqlfiltreprog = "SELECT nom_prog FROM programme";
-        $stmt = $conn->prepare($sqlfiltreprog);
+        $sqlprogfilter = "SELECT nom_prog FROM programme";
+        $stmt = $conn->prepare($sqlprogfilter);
         $stmt->execute();
         $progs = $stmt->fetchAll();
 
@@ -79,7 +79,7 @@
 
     // Handle form submission for filtering bonnes pratiques
     if (isset($_POST['filtrePhase']) && isset($_POST['filtreProg']) && isset($_POST['recherche'])) {
-        $sqlrecherche = "SELECT DISTINCT appartenance.num_bp, bonnespratique.test_bp, bonnespratique.utilisation_bp, programme.nom_prog, phase.nom_phase
+        $sqlsearch = "SELECT DISTINCT appartenance.num_bp, bonnespratique.test_bp, bonnespratique.utilisation_bp, programme.nom_prog, phase.nom_phase
         FROM appartenance
         JOIN bonnespratique ON appartenance.num_bp = bonnespratique.num_bp
         JOIN programme ON appartenance.num_prog = programme.num_prog
@@ -91,23 +91,23 @@
 
         if ($_POST['recherche'] !== "") {
             // Search for keywords by text
-            $sqlrecherche .= " AND motcles.mot = :motcle";
+            $sqlsearch .= " AND motcles.mot = :motcle";
             $params['motcle'] = $_POST['recherche'];
         }
 
         if ($_POST['filtrePhase'] !== "*") {
             // Search for keywords by text
-            $sqlrecherche .= " AND phase.nom_phase = :phase";
+            $sqlsearch .= " AND phase.nom_phase = :phase";
             $params['phase'] = $_POST['filtrePhase'];
         }
 
         if ($_POST['filtreProg'] !== "*") {
             // Search for keywords by text
-            $sqlrecherche .= " AND programme.nom_prog = :prog";
+            $sqlsearch .= " AND programme.nom_prog = :prog";
             $params['prog'] = $_POST['filtreProg'];
         }
 
-        $stmt = $conn->prepare($sqlrecherche);
+        $stmt = $conn->prepare($sqlsearch);
         $stmt->execute($params);
     
         $bps = $stmt->fetchAll();
@@ -156,9 +156,9 @@
                             <label>Filtre par phase</label>
                             <select class="filtre-select" name="filtrePhase">
                                 <option value="*">Tous</option>
-                                <!-- Generating options dynamically from PHP -->
                                 <?php if (count($phases) > 0) : ?>
                                     <?php foreach ($phases as $phase) : ?>
+                                        <!--Drop-down menu for filters by phase-->
                                         <option value="<?= $phase["nom_phase"] ?>" 
                                             <?php if (isset($_POST['filtrePhase']) && $_POST['filtrePhase'] == $phase["nom_phase"]): ?>
                                                 selected
@@ -173,8 +173,8 @@
                             <label>Filtre par prog</label>
                             <select class="filtre-select" name="filtreProg">
                                 <option value="*">Tous</option>
-                                <!-- Generating options dynamically from PHP -->
                                 <?php if (count($progs) > 0) : ?>
+                                    <!--Drop-down menu for filters by phase-->
                                     <?php foreach ($progs as $prog) : ?>
                                         <option value="<?= $prog["nom_prog"] ?>" 
                                             <?php if (isset($_POST['filtreProg']) && $_POST['filtreProg'] == $prog["nom_prog"]): ?>
@@ -256,6 +256,7 @@
     </div>
     <div class="popup">
         <?php if (count($descriptions) > 0) : ?>
+            <!--bp details-->
             <?php foreach ($descriptions as $desc) : ?>
                 <div id="numbp_<?= $desc["num_bp"] ?>" style="display: none">
                     <h2><?= $desc["num_bp"] ?></h2>

@@ -22,23 +22,23 @@
 
         // Creating keywords and joining keywords in the 'motcles' and 'bp_motcles' tables
         foreach ($keywords as $keyword) {
-            $sqlselectmc = "SELECT * FROM motcles WHERE mot = ?";
-            $stmtselectmc = $conn->prepare($sqlselectmc);
-            $stmtselectmc->execute([trim($keyword)]);        // Searches if the keyword already exists
-            $existemc = $stmtselectmc->fetch();
-            $num_cle = $existemc['num_cles'];           // Retrieves the ID of the existing keyword
+            $sqlselectkw = "SELECT * FROM motcles WHERE mot = ?";
+            $stmtselectkw = $conn->prepare($sqlselectkw);
+            $stmtselectkw==->execute([trim($keyword)]);        // Searches if the keyword already exists
+            $existkw = $stmtselectkw->fetch();
+            $num_key = $existkw['num_cles'];           // Retrieves the ID of the existing keyword
 
-            if (!$existemc) {              // If the keyword doesn't exist, inserts it into the 'motcles' table
-                $sqlmc = "INSERT INTO motcles (mot) VALUES (?)";
-                $stmtmc = $conn->prepare($sqlmc);
-                $stmtmc->execute([trim($keyword)]);
-                $num_cle = $conn->lastInsertId();       // Retrieves the ID of the new keyword
+            if (!$existkw) {              // If the keyword doesn't exist, inserts it into the 'motcles' table
+                $sqlkw = "INSERT INTO motcles (mot) VALUES (?)";
+                $stmtkw = $conn->prepare($sqlkw);
+                $stmtkw->execute([trim($keyword)]);
+                $num_key = $conn->lastInsertId();       // Retrieves the ID of the new keyword
             }
 
             // Inserts the relationship between the best practice and the keyword in the 'bp_motcles' table
-            $sqlbpmc = "INSERT INTO bp_motcles (num_bp,num_cles) VALUES (?,?)";             
-            $stmtbpmc = $conn->prepare($sqlbpmc);
-            $stmtbpmc->execute([$num_bp, $num_cle]);
+            $sqlbpkw = "INSERT INTO bp_motcles (num_bp,num_cles) VALUES (?,?)";             
+            $stmtbpkw = $conn->prepare($sqlbpkw);
+            $stmtbpkw->execute([$num_bp, $num_key]);
         }
 
         header('Location: ../utilisateur/utilisateur.php');     // Redirects after successful operation

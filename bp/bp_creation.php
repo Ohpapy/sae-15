@@ -24,7 +24,7 @@
         foreach ($keywords as $keyword) {
             $sqlselectkw = "SELECT * FROM motcles WHERE mot = ?";
             $stmtselectkw = $conn->prepare($sqlselectkw);
-            $stmtselectkw==->execute([trim($keyword)]);        // Searches if the keyword already exists
+            $stmtselectkw->execute([trim($keyword)]);        // Searches if the keyword already exists
             $existkw = $stmtselectkw->fetch();
             $num_key = $existkw['num_cles'];           // Retrieves the ID of the existing keyword
 

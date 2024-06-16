@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mer. 12 juin 2024 à 13:58
+-- Généré le : dim. 16 juin 2024 à 12:19
 -- Version du serveur : 5.7.24
 -- Version de PHP : 8.3.1
 
@@ -190,7 +190,23 @@ INSERT INTO `logs` (`num_log`, `message`, `type`, `date`, `nom`) VALUES
 (113, 'La forme des mots de passe a été changée', 'MODIFICATION FORME MOT DE PASSE', '2024-06-12 13:54:47', 'Mathis'),
 (114, 'Un nouvel utilisateur a été créé avec cet ID: 7 son login est: bloque', 'CRÉATION UTILISATEUR', '2024-06-12 13:54:59', 'Mathis'),
 (115, 'Un nouvel utilisateur a été créé avec cet ID: 8 son login est: supp', 'CRÉATION UTILISATEUR', '2024-06-12 13:55:28', 'Mathis'),
-(116, 'Un nouveau programme a été créée avec cet ID5 son nom est: Nouveau', 'CRÉATION PROGRAMME', '2024-06-12 13:55:45', 'Mathis');
+(116, 'Un nouveau programme a été créée avec cet ID5 son nom est: Nouveau', 'CRÉATION PROGRAMME', '2024-06-12 13:55:45', 'Mathis'),
+(117, 'Un utilisateur est connecté: Mathis', 'UTILISATEUR CONNECTÉ', '2024-06-12 14:37:47', 'Mathis'),
+(118, 'Un utilisateur est connecté: Mathis', 'UTILISATEUR CONNECTÉ', '2024-06-12 14:53:43', 'Mathis'),
+(119, 'Un utilisateur est connecté: Mathis', 'UTILISATEUR CONNECTÉ', '2024-06-12 15:06:07', 'Mathis'),
+(120, 'Un utilisateur est connecté: Mathis', 'UTILISATEUR CONNECTÉ', '2024-06-14 11:33:54', 'Mathis'),
+(121, 'Erreur pour la création utilisateur le mot de passe ne convien pas', 'ERREUR CREATION UTILISATEUR', '2024-06-14 11:36:58', 'Mathis'),
+(122, 'Déconnexion de Mathis', 'SUPPRESSION UTILISATEUR', '2024-06-14 11:38:02', 'Mathis'),
+(123, 'l\' utilisateur s\'est trompé: bloque', 'MOT DE PASSE INCORRECT', '2024-06-14 11:38:10', NULL),
+(124, 'l\' utilisateur s\'est trompé: bloque', 'MOT DE PASSE INCORRECT', '2024-06-14 11:38:19', NULL),
+(125, 'l\' utilisateur s\'est trompé: bloque', 'MOT DE PASSE INCORRECT', '2024-06-14 11:38:30', NULL),
+(126, 'Un utilisateur est bloquébloque', 'BLOCAGE UTILISATEUR', '2024-06-14 11:38:31', NULL),
+(127, 'Un utilisateur essaye de ce connecter avec un compet bloqué: ', 'TENTATIVE DE CONNEXION', '2024-06-14 11:38:56', NULL),
+(128, 'Un utilisateur est connecté: Mathis', 'UTILISATEUR CONNECTÉ', '2024-06-14 11:39:01', 'Mathis'),
+(129, 'Un utilisateur a été débloqué avec ce login: ', 'UTILISATEUR DÉBLOQUÉ', '2024-06-14 11:39:09', 'Mathis'),
+(130, 'Un utilisateur a été débloqué avec ce login: ', 'UTILISATEUR DÉBLOQUÉ', '2024-06-14 11:39:13', 'Mathis'),
+(131, 'Un utilisateur a été débloqué avec ce login: ', 'UTILISATEUR DÉBLOQUÉ', '2024-06-14 11:40:07', 'Mathis'),
+(132, 'Un utilisateur est connecté: Mathis', 'UTILISATEUR CONNECTÉ', '2024-06-16 12:14:08', 'Mathis');
 
 -- --------------------------------------------------------
 
@@ -324,7 +340,7 @@ INSERT INTO `utilisateur` (`num_ut`, `login_ut`, `nom_ut`, `mdp_ut`, `acces_ut`,
 (3, 'user', 'user', '$2y$10$LckjQW4yfRoCCQ.bua0iDO6.zCFoLDf9Dm3JL8VRphlQGh36s3edq', 1, 0, 0, 0),
 (4, 'create', 'Creation', '$2y$10$zD8KrvF.nV/nf6tPagG8zuG/UZI.RaNYIDLGDJX.5nRh2fIgEZtI2', 15, 0, 0, 0),
 (6, 'modif', 'modifier', '$2y$10$2H8M6YFz1UdJjPaAAPqD8uyGxNumb.y2a7cpUAXc26738O/9/gJXq', 15, 0, 0, 0),
-(7, 'bloque', 'bloque', '$2y$10$uvJCSsdNLepQB1E67PyI..bEaHt9S7yuuYZqDxCpeTDA/flVcGx5G', 15, 0, 0, 0),
+(7, 'bloque', 'bloque', '$2y$10$uvJCSsdNLepQB1E67PyI..bEaHt9S7yuuYZqDxCpeTDA/flVcGx5G', 15, 1, 3, 0),
 (8, 'supp', 'supp', '$2y$10$BorcSdh3eOek6HtPS0ug0.2Cs4ARVXFVBxW2mS4oDkvwAxnUPPwiG', 15, 0, 0, 0);
 
 --
@@ -398,25 +414,25 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `appartenance`
 --
 ALTER TABLE `appartenance`
-  MODIFY `num_app` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `num_app` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT pour la table `bonnespratique`
 --
 ALTER TABLE `bonnespratique`
-  MODIFY `num_bp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `num_bp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT pour la table `bp_motcles`
 --
 ALTER TABLE `bp_motcles`
-  MODIFY `num_bpmotcles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `num_bpmotcles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT pour la table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `num_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `num_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 
 --
 -- AUTO_INCREMENT pour la table `mdp`

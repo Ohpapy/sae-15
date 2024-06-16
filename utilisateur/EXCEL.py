@@ -76,8 +76,8 @@ def export_to_excel(liste_bp, creator_name):
 
     # Add text at the bottom of the file
     creation_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    footer_row1 = [f"Créé par: {creator_name}"] + [""] * (len(headers) - 1)
-    footer_row2 = [f"Date de création: {creation_date}"] + [""] * (len(headers) - 1)
+    footer_row1 = [""] * 11 + [f"Créé par: {creator_name}"] + [""] * (len(headers) - 1)
+    footer_row2 = [""] * 11 + [f"Date de création: {creation_date}"] + [""] * (len(headers) - 1)
     ws.append([""] * (empty_columns_each_side + len(headers)))  # Empty line
     ws.append(footer_row1)
     ws.append(footer_row2)

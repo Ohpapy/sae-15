@@ -7,8 +7,8 @@ import datetime
 # Connection to the database
 db = mysql.connector.connect(
     host="localhost",
-    user="root",
-    password="root",
+    user="RP09",
+    password="RP09",
     database="rp09"
 )
 

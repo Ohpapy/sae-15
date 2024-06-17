@@ -91,8 +91,9 @@
 
         if ($_POST['recherche'] !== "") {
             // Search for keywords by text
+            $recherches = htmlspecialchars($_POST['recherche']);
             $sqlsearch .= " AND motcles.mot = :motcle";
-            $params['motcle'] = $_POST['recherche'];
+            $params['motcle'] = $recherches;
         }
 
         if ($_POST['filtrePhase'] !== "*") {

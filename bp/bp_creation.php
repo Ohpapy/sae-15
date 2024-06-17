@@ -4,11 +4,12 @@
 
     try {
         $conn = createConnection();          // Creates a connection to the database
+        $item = htmlspecialchars($_POST['item']);
 
         // Inserting a new best practice into the 'bonnespratique' table
         $sqlbp = "INSERT INTO bonnespratique (test_bp) VALUES (?)";  
         $stmtbp = $conn->prepare($sqlbp);
-        $stmtbp->execute([$_POST['item']]);
+        $stmtbp->execute([$item]);
         $num_bp = $conn->lastInsertId();    // Retrieves the ID of the last insertion
         $mess ='Une bonne pratique a été créée avec cet ID: ' . $num_bp;
         logMessage($conn, $mess, 'CRÉATION BONNE PRATIQUE');

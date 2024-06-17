@@ -10,7 +10,7 @@
         $stmtuser = $conn->prepare($sqluser);
         $stmtuser->execute([$_POST['usersupp']]);
         $num_user = $conn->lastInsertId();    // Retrieves the ID of the last insertion
-        $mess ='Un utilisateur a été supprimé avec cet ID: ' . $num_user. ' son login était: ' . $_POST['login_ut'];
+        $mess ='Un utilisateur a été supprimé avec cet ID: ' . $num_user. ' son login était: ' . $_POST['usersupp'];
         logMessage($conn, $mess, 'SUPPRESSION UTILISATEUR');
         header('Location: ../admin/admin.php');     // Redirects after successful operation
     } catch(PDOException $e) {

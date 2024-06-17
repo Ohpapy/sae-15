@@ -11,11 +11,12 @@
         if (in_array($_POST['nom_prog'], $progs)) {     
             header('Location: ../admin/admin.php');     // Redirects if the best practice already exists
         } else {
+            $programme = htmlspecialchars($_POST['nom_prog']);
             $sqlbp = "INSERT INTO programme (nom_prog) VALUES (?)";  
             $stmtbp = $conn->prepare($sqlbp);
-            $stmtbp->execute([$_POST['nom_prog']]);
+            $stmtbp->execute([$programme]);
             $num_bp = $conn->lastInsertId();    // Retrieves the ID of the last insertion
-            $mess ='Un nouveau programme a été créée avec cet ID' . $num_bp. ' son nom est: ' . $_POST['nom_prog'];
+            $mess ='Un nouveau programme a été créée avec cet ID' . $num_bp. ' son nom est: ' . $programme;
             logMessage($conn, $mess, 'CRÉATION PROGRAMME');
             header('Location: ../admin/admin.php');     // Redirects after successful operation         
         }

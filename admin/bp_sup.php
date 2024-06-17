@@ -27,10 +27,10 @@
         else {
             $sqlupdatebp = "UPDATE bonnespratique SET utilisation_bp = 1 WHERE num_bp = ?";
             $stmtupdatebp = $conn->prepare($sqlupdatebp);
-            $stmtudatebp->execute([$_POST['num_bp']]);
+            $stmtupdatebp->execute([$_POST['num_bp']]);
             $mess ='Une bp a été remise en utilisation avec cet ID: ' . $_POST['num_bp'];
             logMessage($conn, $mess, 'REMISE EN UTILISATION BP');
-            header('Location: ../admin/admin.php');
+            header('Location: admin.php');
         }   
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();        // Displays an error message in case of connection failure

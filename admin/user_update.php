@@ -33,7 +33,7 @@
 
     try {
         $conn = createConnection();          // Creates a connection to the database
-        $password = $_POST['mdp_ut'];        // Get the password from POST data
+        $password = htmlspecialchars($_POST['mdp_ut']);        // Get the password from POST data
 
         if (!validatePassword($password, $conn)) {
             $mess ='Erreur pour la modification utilisateur le mot de passe ne convien pas';

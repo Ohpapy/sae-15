@@ -121,14 +121,14 @@
             $numBpSelected_str = implode(" ", $numBpSelected);
             $username = $_SESSION['nom_ut'];
     
-            $executable_python = "C:\Users\bosch\AppData\Local\Programs\Python\Python312\python.exe";
+            $executable_python = "/usr/bin/python3";
     
             if (isset($_POST['generate_pdf'])) {
-                exec("$executable_python C:\\MAMP\\htdocs\\sae-15\\utilisateur\\PDF.py $numBpSelected_str $username", $output);
+                exec("$executable_python pdf.py $numBpSelected_str $username", $output);
                 header("Location: bonnes_pratiques.pdf");
                 exit();
             } elseif (isset($_POST['generate_excel'])) {
-                exec("$executable_python C:\\MAMP\\htdocs\\sae-15\\utilisateur\\EXCEL.py $numBpSelected_str $username", $output);
+                exec("$executable_python excel.py $numBpSelected_str $username", $output);
                 header("Location: bonnes_pratiques.xlsx");
                 exit();
             }

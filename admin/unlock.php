@@ -5,8 +5,8 @@
         $conn = createConnection();  
         $sqlunlock = "UPDATE utilisateur SET bloque_ut = 0, tentative_ut = 0 WHERE login_ut = ?";
         $stmtunlock = $conn->prepare($sqlunlock);
-        $stmtunlock->execute([$_POST['login_ut']]);
-        $mess ='Un utilisateur a été débloqué avec ce login: ' . $_POST['login_ut'];
+        $stmtunlock->execute([$_POST['userdebloq']]);
+        $mess ='Un utilisateur a été débloqué avec ce login: ' . $_POST['userdebloq'];
         logMessage($conn, $mess, 'UTILISATEUR DÉBLOQUÉ');
         header('Location: ../admin/admin.php');  
     } catch(PDOException $e) {
